@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <description>
-	Defines the contract for the API, by providing models for the requests/responses.
+        Defines the contract for the API, by providing models for the requests/responses.
     </description>
 
     <dependencies>
