@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cascaio</groupId>
+    <name>Cascaio - Parent</name>
+    <artifactId>parent</artifactId>
+    <version>1.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <description>
+        Parent module, where the versions are defined.
+    </description>
+
+    <scm>
+        <connection>scm:git:https://github.com/jpkrohling/cascaio</connection>
+        <developerConnection>scm:git:git@github.com:jpkrohling/cascaio.git</developerConnection>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>AGPL</name>
+            <url>http://www.gnu.org/licenses/agpl-3.0.html</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
+    <modules>
+        <module>api</module>
+        <module>backend</module>
+        <!--<module>frontend</module> This is not a maven module, yet-->
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+    </build>
+</project>
