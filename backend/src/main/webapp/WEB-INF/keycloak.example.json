@@ -1,0 +1,7 @@
+{
+    "realm": "cascaio",
+    "realm-public-key": "...",
+    "resource": "backend",
+    "bearer-only" : true,
+    "enable-cors" : true
+}
