@@ -6,11 +6,11 @@ angular.module('frontendApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config ['$routeProvider', ($routeProvider) ->
+.config ['$routeProvider', ($routeProvider) ->
     $routeProvider
-      .when '/',
+    .when '/',
         templateUrl: 'views/main.html'
         controller: 'MainCtrl'
-      .otherwise
+    .otherwise
         redirectTo: '/'
   ]
