@@ -4,9 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * User: jpkrohling
- * Date: 7/10/13
- * Time: 7:51 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class BICValidator implements ConstraintValidator<BIC, String> {
     @Override

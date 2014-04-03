@@ -8,9 +8,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * User: jpkrohling
- * Date: 7/10/13
- * Time: 7:21 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class CurrencyValidator implements ConstraintValidator<Currency, String> {
     Logger logger = LoggerFactory.getLogger(CurrencyValidator.class);

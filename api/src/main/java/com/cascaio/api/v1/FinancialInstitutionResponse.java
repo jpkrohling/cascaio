@@ -1,9 +1,7 @@
 package com.cascaio.api.v1;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:16 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class FinancialInstitutionResponse extends FinancialInstitutionCreateRequest {
+public class FinancialInstitutionResponse extends FinancialInstitutionUpdateRequest {
 }

@@ -5,9 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:44 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class MutualFundAccount extends ShareAccount {

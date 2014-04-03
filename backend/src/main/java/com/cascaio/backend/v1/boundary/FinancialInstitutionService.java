@@ -13,9 +13,7 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.Path;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:09 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Path("/reference/financialInstitutions")
 @Stateless

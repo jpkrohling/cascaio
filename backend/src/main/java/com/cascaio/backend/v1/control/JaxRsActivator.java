@@ -4,9 +4,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:29 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @ApplicationPath("/v1")
 public class JaxRsActivator extends Application {

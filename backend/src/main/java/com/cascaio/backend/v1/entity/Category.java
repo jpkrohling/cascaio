@@ -9,9 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 12:32 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class Category extends NamedCascaioEntity {

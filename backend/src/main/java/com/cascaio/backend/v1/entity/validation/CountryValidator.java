@@ -5,9 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Locale;
 
 /**
- * User: jpkrohling
- * Date: 7/2/13
- * Time: 8:22 AM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class CountryValidator implements ConstraintValidator<Country, String> {
     @Override

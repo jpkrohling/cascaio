@@ -4,9 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * User: jpkrohling
- * Date: 7/10/13
- * Time: 7:27 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class ISODateValidator implements ConstraintValidator<ISODate, String> {
     @Override

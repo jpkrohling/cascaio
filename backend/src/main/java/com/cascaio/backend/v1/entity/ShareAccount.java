@@ -8,9 +8,7 @@ import javax.persistence.InheritanceType;
 import java.math.BigDecimal;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:43 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public abstract class ShareAccount extends Account {

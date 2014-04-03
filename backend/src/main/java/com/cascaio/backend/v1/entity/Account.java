@@ -12,9 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 5:23 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

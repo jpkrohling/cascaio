@@ -3,9 +3,7 @@ package com.cascaio.backend.v1.entity;
 import javax.persistence.Entity;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 12:29 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class CascaioUser extends CascaioEntity {

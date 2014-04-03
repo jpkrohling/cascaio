@@ -5,9 +5,7 @@ import org.joda.money.CurrencyUnit;
 import javax.persistence.Entity;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:41 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class CheckingAccount extends FinancialInstitutionAccount {

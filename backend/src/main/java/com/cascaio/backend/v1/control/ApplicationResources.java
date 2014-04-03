@@ -6,12 +6,11 @@ import org.slf4j.LoggerFactory;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.inject.Inject;
 import javax.persistence.PersistenceContext;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:51 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @ApplicationScoped
 public class ApplicationResources {
@@ -19,9 +18,11 @@ public class ApplicationResources {
     @PersistenceContext
     private static javax.persistence.EntityManager em;
 
+    @Inject
+    Logger logger;
+
     @Produces
     public static Logger produceLog(InjectionPoint injectionPoint) {
         return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }
-
 }

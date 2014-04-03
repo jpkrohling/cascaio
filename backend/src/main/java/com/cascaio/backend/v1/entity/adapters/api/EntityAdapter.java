@@ -1,14 +1,14 @@
 package com.cascaio.backend.v1.entity.adapters.api;
 
+import com.cascaio.backend.v1.entity.CascaioEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:31 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public abstract class EntityAdapter<CreateRequest, UpdateRequest, Response, Persistent> {
+public abstract class EntityAdapter<CreateRequest, UpdateRequest, Response, Persistent extends CascaioEntity> {
 
     public abstract Response adaptPersistent(Persistent persistent);
     public abstract Persistent adaptUpdate(UpdateRequest request);

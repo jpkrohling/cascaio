@@ -6,9 +6,7 @@ import javax.persistence.MappedSuperclass;
 import java.math.BigDecimal;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-12
- * Time: 6:14 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @MappedSuperclass
 public abstract class ShareTransaction extends Transaction {

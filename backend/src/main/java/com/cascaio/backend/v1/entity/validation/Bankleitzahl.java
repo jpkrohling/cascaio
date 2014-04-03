@@ -10,9 +10,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 
 /**
- * User: jpkrohling
- * Date: 7/10/13
- * Time: 7:37 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Documented
 @Constraint(validatedBy = BankleitzahlValidator.class)

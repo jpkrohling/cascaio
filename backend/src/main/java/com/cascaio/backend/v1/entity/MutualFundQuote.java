@@ -10,9 +10,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:47 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"mutualFund_id", "date"})})

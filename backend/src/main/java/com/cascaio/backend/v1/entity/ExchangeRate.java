@@ -10,9 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
- * User: jpkrohling
- * Date: 7/7/13
- * Time: 4:49 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"currencyFrom", "currencyTo", "date"})})

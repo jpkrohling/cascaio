@@ -4,9 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * User: jpkrohling
- * Date: 7/10/13
- * Time: 7:53 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class CNPJValidator implements ConstraintValidator<CNPJ, String> {
     @Override

@@ -5,8 +5,7 @@ import org.joda.time.LocalDate;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- * @author jpkroehling
- *         2014-01-07
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
     public LocalDate unmarshal(String v) throws Exception {

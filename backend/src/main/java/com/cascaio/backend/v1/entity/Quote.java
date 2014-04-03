@@ -8,9 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:46 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @MappedSuperclass
 public class Quote extends CascaioEntity {

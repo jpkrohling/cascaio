@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 7:45 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class MutualFund extends NamedCascaioEntity {

@@ -6,9 +6,7 @@ import com.cascaio.api.v1.FinancialInstitutionUpdateRequest;
 import com.cascaio.backend.v1.entity.FinancialInstitution;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-20
- * Time: 9:30 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class FinancialInstitutionAdapter extends
         EntityAdapter<FinancialInstitutionCreateRequest, FinancialInstitutionUpdateRequest, FinancialInstitutionResponse, FinancialInstitution> {

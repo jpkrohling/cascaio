@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import java.math.BigDecimal;
 
 /**
- * User: jpkroehling
- * Date: 2014-02-12
- * Time: 6:13 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class MutualFundTransaction extends ShareTransaction {

@@ -9,9 +9,7 @@ import javax.persistence.UniqueConstraint;
 import java.math.BigDecimal;
 
 /**
- * User: jpkroehling
- * Date: 11/25/13
- * Time: 8:52 AM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"stock_id", "date"})})

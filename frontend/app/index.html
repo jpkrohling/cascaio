@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="bower_components/semantic/build/packaged/css/semantic.css">
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
@@ -19,12 +20,95 @@
     <!-- endbuild -->
   </head>
   <body ng-app="frontendApp">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <div class="ui fixed transparent inverted main menu">
+        <div class="container">
+            <div class="title item">
+                <b><i class="money icon"></i>cascaio</b>
+            </div>
+        </div>
+    </div>
 
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="ui grid">
+        <div class="four wide column">
+            <div class="ui">
+                <div class="ui fluid vertical menu">
+                    <a class="item" data-ng-href="#/">
+                        <i class="dashboard icon"></i> Dashboard
+                    </a>
+                    <div class="item">
+                        <i class="grid money icon"></i> Checking Accounts
+                        <div class="menu">
+                            <a class="item" data-ng-href="#/checkingAccount/sparda">
+                                Sparda-M GiroKonto
+                                <div class="ui right floated basic segment">&euro;133.234,56</div>
+                            </a>
+                            <div class="item">
+                                <a class="ui basic small labeled icon button" data-ng-href="#/checkingAccount/new">
+                                    add checking account
+                                    <i class="add sign icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="grid umbrella icon"></i> Savings Accounts
+                        <div class="menu">
+                            <a class="item">
+                                Sparda-M ExtraZinsOnline
+                                <div class="ui right floated basic segment">&euro;1.234,56</div>
+                            </a>
+                            <a class="item">
+                                Sparda-M Spar
+                                <div class="ui right floated basic segment">&euro;1.234,56</div>
+                            </a>
+                            <div class="item">
+                                <a class="ui basic small labeled icon button">
+                                    add savings account
+                                    <i class="add sign icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="grid payment icon"></i> Credit Cards
+                        <div class="menu">
+                            <a class="item">
+                                Amazon.de
+                                <div class="ui right floated basic segment">&euro;-1.234,56</div>
+                            </a>
+                            <div class="item">
+                                <a class="ui basic small labeled icon button">
+                                    add credit card
+                                    <i class="add sign icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="chart basic icon"></i> Investment Accounts
+                        <div class="menu">
+                            <a class="item">
+                                High risk
+                                <div class="ui right floated basic segment">&euro;133.234,56 (+14.95%)</div>
+                            </a>
+                            <a class="item">
+                                Low risk
+                                <div class="ui right floated basic segment">&euro;133.234,56 (+1.95%)</div>
+                            </a>
+                            <div class="item">
+                                <a class="ui basic small labeled icon button">
+                                    add investment account
+                                    <i class="add sign icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="twelve wide column" data-ng-view="">
+        </div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -33,20 +117,37 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/Chart.js/Chart.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/semantic/build/packaged/javascript/semantic.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/authInterceptor.js"></script>
+        <script src="scripts/controllers/Main.js"></script>
+        <script src="scripts/services/AuthInterceptor.js"></script>
         <script src="scripts/services/FinancialInstitution.js"></script>
+        <script src="scripts/services/CheckingAccount.js"></script>
+        <script src="scripts/controllers/CheckingAccountTransactions.js"></script>
+        <script src="scripts/controllers/CheckingAccountNew.js"></script>
+        <script src="scripts/controllers/CheckingAccountUpdate.js"></script>
         <!-- endbuild -->
+
     <script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
+    <script type="text/javascript">
+        window.keycloak = Keycloak('/keycloak.json');
+        window.keycloak.onAuthSuccess = function() {
+            window.keycloak.updateToken(5).success(function() {
+                console.debug("Updated auth token");
+            });
+        };
+        window.keycloak.init('login-required');
+    </script>
 </body>
 </html>

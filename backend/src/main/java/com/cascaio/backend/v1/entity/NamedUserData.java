@@ -4,9 +4,7 @@ import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 12:31 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @MappedSuperclass
 public class NamedUserData extends UserData {

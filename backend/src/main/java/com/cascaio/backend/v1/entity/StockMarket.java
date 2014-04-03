@@ -11,9 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * User: jpkroehling
- * Date: 11/24/13
- * Time: 12:04 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class StockMarket extends NamedCascaioEntity {

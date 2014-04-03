@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 /**
- * User: jpkrohling
- * Date: 6/22/13
- * Time: 10:23 AM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 public class FinancialInstitution extends NamedCascaioEntity {

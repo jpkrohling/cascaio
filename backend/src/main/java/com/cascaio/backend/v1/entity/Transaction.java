@@ -11,9 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 /**
- * User: jpkrohling
- * Date: 6/30/13
- * Time: 5:24 PM
+ * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
