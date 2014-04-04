@@ -12,17 +12,49 @@
         Parent module, where the versions are defined.
     </description>
 
+    <developers>
+        <developer>
+            <id>jpkroehling</id>
+            <name>Juraci Paixão Kröhling</name>
+            <timezone>+01:00</timezone>
+        </developer>
+    </developers>
+
     <scm>
+        <url>https://github.com/jpkrohling/cascaio</url>
         <connection>scm:git:https://github.com/jpkrohling/cascaio</connection>
         <developerConnection>scm:git:git@github.com:jpkrohling/cascaio.git</developerConnection>
     </scm>
 
+    <issueManagement>
+        <url>https://github.com/jpkrohling/cascaio/issues</url>
+        <system>GitHub</system>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://jenkins.kroehling.de/job/cascaio</url>
+    </ciManagement>
+
     <licenses>
         <license>
             <name>AGPL</name>
-            <url>http://www.gnu.org/licenses/agpl-3.0.html</url>
+            <url>http://www.gnu.org/licenses/agpl-3.0.txt</url>
         </license>
     </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>repo.kroehling.de</id>
+            <name>repo.kroehling.de-releases</name>
+            <url>https://repo.kroehling.de/artifactory/libs-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>repo.kroehling.de</id>
+            <name>repo.kroehling.de-snapshots</name>
+            <url>https://repo.kroehling.de/artifactory/libs-snapshot-local</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
