@@ -47,12 +47,12 @@
         <repository>
             <id>repo.kroehling.de</id>
             <name>repo.kroehling.de-releases</name>
-            <url>https://repo.kroehling.de/artifactory/libs-release-local</url>
+            <url>http://repo.kroehling.de/artifactory/libs-release-local</url>
         </repository>
         <snapshotRepository>
             <id>repo.kroehling.de</id>
             <name>repo.kroehling.de-snapshots</name>
-            <url>https://repo.kroehling.de/artifactory/libs-snapshot-local</url>
+            <url>http://repo.kroehling.de/artifactory/libs-snapshot-local</url>
         </snapshotRepository>
     </distributionManagement>
 
