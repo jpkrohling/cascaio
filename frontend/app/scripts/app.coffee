@@ -16,10 +16,13 @@ angular.module('frontendApp', [
         controller: 'CheckingAccountNewCtrl'
     .when '/checkingAccount/:accountId',
       templateUrl: 'views/checking/checkingaccounttransactions.html'
-      controller: 'CheckingaccounttransactionsCtrl'
-    .when '/checkingAccount/:accountId/update',
-      templateUrl: 'views/checking/checkingaccountupdate.html'
-      controller: 'CheckingaccountupdateCtrl'
+      controller: 'CheckingAccountTransactionsCtrl'
+    .when '/savingsAccount/new',
+      templateUrl: 'views/savings/savingsaccountnew.html'
+      controller: 'SavingsAccountNewCtrl'
+    .when '/savingsAccount/:accountId',
+        templateUrl: 'views/savings/savingsaccounttransactions.html'
+        controller: 'SavingsAccountTransactionsCtrl'
     .otherwise
         redirectTo: '/'
   ]

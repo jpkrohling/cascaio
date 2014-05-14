@@ -9,8 +9,15 @@ import javax.persistence.Entity;
  */
 @Entity
 public class SavingsAccount extends FinancialInstitutionAccount {
-
     public SavingsAccount() {
+    }
+
+    /**
+     * Duplicates a CheckingAccount into a SavingsAccount
+     * @param checkingAccount
+     */
+    public SavingsAccount(CheckingAccount checkingAccount) {
+        super(checkingAccount.getUser(), checkingAccount.getName(), checkingAccount.getCurrency(), checkingAccount.getFinancialInstitution());
     }
 
     public SavingsAccount(CascaioUser user, String name, CurrencyUnit currency, FinancialInstitution financialInstitution) {

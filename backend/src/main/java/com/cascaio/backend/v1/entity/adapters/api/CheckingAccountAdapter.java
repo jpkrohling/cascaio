@@ -26,6 +26,7 @@ public class CheckingAccountAdapter extends
         response.setFinancialInstitutionId(checkingAccount.getFinancialInstitution().getId());
         response.setName(checkingAccount.getName());
         response.setId(checkingAccount.getId());
+        response.setTotal(checkingAccount.getTotal());
         return response;
     }
 

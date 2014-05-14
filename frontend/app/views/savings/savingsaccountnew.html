@@ -1,0 +1,34 @@
+<div class="ui">
+    <h1><i class="money icon"></i>Savings Account - New</h1>
+    <p>Create a new savings account</p>
+    <div class="container" data-ng-model="savingsAccountNew">
+        <div class="ui form segment" id="savingsAccountNewForm">
+            <div class="field">
+                <label>Account name</label>
+                <input name="name" placeholder="Name" type="text" data-ng-model="savingsAccountNew.name">
+            </div>
+            <div class="field">
+                <label>Financial institution</label>
+                <div class="ui fluid selection dropdown" id="savingsAccountNewFormFinancialInstitutionDropdown">
+                    <div class="text">Select</div>
+                    <i class="dropdown icon"></i>
+                    <input id="financialInstitutionId" name="financialInstitutionId" type="hidden" data-ng-model="savingsAccountNew.financialInstitutionId">
+                    <div class="menu">
+                        <div class="item" data-value="96959356-0c13-4513-9eea-c219e5eac6e8">Sparda-M</div>
+                        <div class="item" data-value="other">Other</div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Currency</label>
+                <input name="currencyUnit" placeholder="EUR, USD, BRL" type="text" data-ng-model="savingsAccountNew.currencyUnit">
+            </div>
+            <div class="ui blue submit button" data-ng-click="createNewAccount()">Submit</div>
+            <div class="ui error message"></div>
+        </div>
+        Name: {{savingsAccountNew.name}}<br/>
+        Fin id: {{savingsAccountNew.financialInstitutionId}}<br/>
+        Currency: {{savingsAccountNew.currencyUnit}}<br/>
+        ID: {{savingsAccountNew.id}}
+    </div>
+</div>

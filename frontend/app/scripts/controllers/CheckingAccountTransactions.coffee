@@ -1,9 +1,7 @@
 'use strict'
 
 angular.module('frontendApp')
-  .controller 'CheckingaccounttransactionsCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'CheckingAccountTransactionsCtrl', ['$scope', '$routeParams', 'CheckingAccount', ($scope, $routeParams, CheckingAccount) ->
+    console.log("Loading checking account with ID " + $routeParams.accountId)
+    $scope.checkingAccount = CheckingAccount.get({id: $routeParams.accountId})
+  ]

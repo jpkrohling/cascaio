@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('frontendApp')
-  .controller 'CheckingAccountNewCtrl', ['$scope', 'CheckingAccount', ($scope, CheckingAccount) ->
+  .controller 'CheckingAccountNewCtrl', ['$rootScope', '$scope', 'CheckingAccount', ($rootScope, $scope, CheckingAccount) ->
     $scope.checkingAccountNew = new CheckingAccount({})
 
     form = $('#checkingAccountNewForm')
@@ -30,6 +30,8 @@ angular.module('frontendApp')
 
     $scope.createNewAccount = () ->
       if (form.form('validate form'))
-        $scope.checkingAccountNew.$save()
+        $scope.checkingAccountNew.$save().then((account) ->
+          $rootScope.checkingAccounts.push account
+        )
         $scope.checkingAccountNew = new CheckingAccount({})
   ]

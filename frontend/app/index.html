@@ -20,7 +20,7 @@
     <!-- endbuild -->
   </head>
   <body ng-app="frontendApp">
-    <div class="ui fixed transparent inverted main menu">
+    <div class="ui fixed transparent inverted main menu" data-ng-controller="MainCtrl">
         <div class="container">
             <div class="title item">
                 <b><i class="money icon"></i>cascaio</b>
@@ -38,9 +38,9 @@
                     <div class="item">
                         <i class="grid money icon"></i> Checking Accounts
                         <div class="menu">
-                            <a class="item" data-ng-href="#/checkingAccount/sparda">
-                                Sparda-M GiroKonto
-                                <div class="ui right floated basic segment">&euro;133.234,56</div>
+                            <a class="item" data-ng-repeat="account in checkingAccounts" data-ng-href="#/checkingAccount/{{account.id}}">
+                                {{account.name}}
+                                <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
                             </a>
                             <div class="item">
                                 <a class="ui basic small labeled icon button" data-ng-href="#/checkingAccount/new">
@@ -53,16 +53,12 @@
                     <div class="item">
                         <i class="grid umbrella icon"></i> Savings Accounts
                         <div class="menu">
-                            <a class="item">
-                                Sparda-M ExtraZinsOnline
-                                <div class="ui right floated basic segment">&euro;1.234,56</div>
-                            </a>
-                            <a class="item">
-                                Sparda-M Spar
-                                <div class="ui right floated basic segment">&euro;1.234,56</div>
+                            <a class="item" data-ng-repeat="account in savingsAccounts" data-ng-href="#/savingsAccount/{{account.id}}">
+                                {{account.name}}
+                                <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
                             </a>
                             <div class="item">
-                                <a class="ui basic small labeled icon button">
+                                <a class="ui basic small labeled icon button" data-ng-href="#/savingsAccount/new">
                                     add savings account
                                     <i class="add sign icon"></i>
                                 </a>
@@ -134,19 +130,15 @@
         <script src="scripts/services/AuthInterceptor.js"></script>
         <script src="scripts/services/FinancialInstitution.js"></script>
         <script src="scripts/services/CheckingAccount.js"></script>
+        <script src="scripts/services/SavingsAccount.js"></script>
         <script src="scripts/controllers/CheckingAccountTransactions.js"></script>
         <script src="scripts/controllers/CheckingAccountNew.js"></script>
-        <script src="scripts/controllers/CheckingAccountUpdate.js"></script>
+        <script src="scripts/controllers/SavingsAccountNew.js"></script>
         <!-- endbuild -->
 
     <script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
     <script type="text/javascript">
         window.keycloak = Keycloak('/keycloak.json');
-        window.keycloak.onAuthSuccess = function() {
-            window.keycloak.updateToken(5).success(function() {
-                console.debug("Updated auth token");
-            });
-        };
         window.keycloak.init('login-required');
     </script>
 </body>
