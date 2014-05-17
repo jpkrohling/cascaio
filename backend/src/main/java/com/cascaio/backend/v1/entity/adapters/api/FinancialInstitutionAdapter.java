@@ -3,13 +3,19 @@ package com.cascaio.backend.v1.entity.adapters.api;
 import com.cascaio.api.v1.FinancialInstitutionCreateRequest;
 import com.cascaio.api.v1.FinancialInstitutionResponse;
 import com.cascaio.api.v1.FinancialInstitutionUpdateRequest;
+import com.cascaio.backend.v1.boundary.FinancialInstitutionService;
 import com.cascaio.backend.v1.entity.FinancialInstitution;
+
+import javax.inject.Inject;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class FinancialInstitutionAdapter extends
         EntityAdapter<FinancialInstitutionCreateRequest, FinancialInstitutionUpdateRequest, FinancialInstitutionResponse, FinancialInstitution> {
+
+    @Inject
+    FinancialInstitutionService service;
 
     @Override
     public FinancialInstitutionResponse adaptPersistent(FinancialInstitution financialInstitution) {
@@ -25,7 +31,13 @@ public class FinancialInstitutionAdapter extends
 
     @Override
     public FinancialInstitution adaptUpdate(FinancialInstitutionUpdateRequest request) {
-        FinancialInstitution financialInstitution = new FinancialInstitution(request.getId(), request.getName(), request.getCountry());
+        FinancialInstitution financialInstitution = service.readAsEntity(request.getId());
+
+        String name = request.getName();
+        if (isSet(name)) {
+            financialInstitution.setName(name);
+        }
+
         return adaptCommonRequest(request, financialInstitution);
     }
 

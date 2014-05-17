@@ -29,15 +29,6 @@ public class CheckingAccountService extends
     @Inject
     CheckingAccountAdapter adapter;
 
-    @Inject
-    Logger logger;
-
-    @Override
-    public void postCreate(CheckingAccountResponse checkingAccountResponse) {
-        logger.info("Created and returning: {}", checkingAccountResponse);
-        super.postCreate(checkingAccountResponse);
-    }
-
     @Override
     public CheckingAccountAdapter getAdapter() {
         return adapter;

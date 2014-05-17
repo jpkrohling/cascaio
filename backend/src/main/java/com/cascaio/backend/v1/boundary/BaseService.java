@@ -97,17 +97,22 @@ public abstract class BaseService<
 
         Root<Persistent> root = query.from(getPersistentClass());
         query.select(root);
+        instrumentQuery(builder, root, query);
 
         List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(getEntityManager().createQuery(query).getResultList());
         postList(response);
         return response;
     }
 
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
+        // no op on this implementation
+    }
+
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") String id) {
         preDelete(id);
-        Persistent financialInstitution = getEntityManager().find(getPersistentClass(), id);
+        Persistent financialInstitution = readAsEntity(id);
         getEntityManager().remove(financialInstitution);
     }
 
@@ -122,6 +127,7 @@ public abstract class BaseService<
         Root<Persistent> root = query.from(getPersistentClass());
         query.select(root);
         query.where(builder.equal(root.get(CascaioEntity_.id), id));
+        instrumentQuery(builder, root, query);
         return getEntityManager().createQuery(query).getSingleResult();
     }
 

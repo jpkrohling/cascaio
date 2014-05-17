@@ -27,9 +27,6 @@ public class FinancialInstitutionService extends
                 FinancialInstitutionAdapter> {
 
     @Inject
-    EntityManager entityManager;
-
-    @Inject
     FinancialInstitutionAdapter adapter;
 
     @Override
@@ -40,10 +37,5 @@ public class FinancialInstitutionService extends
     @Override
     public Class<FinancialInstitution> getPersistentClass() {
         return FinancialInstitution.class;
-    }
-
-    @Override
-    public EntityManager getEntityManager() {
-        return entityManager;
     }
 }

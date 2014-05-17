@@ -4,7 +4,10 @@ import com.cascaio.api.v1.SavingsAccountCreateRequest;
 import com.cascaio.api.v1.SavingsAccountResponse;
 import com.cascaio.api.v1.SavingsAccountUpdateRequest;
 import com.cascaio.backend.v1.boundary.FinancialInstitutionService;
+import com.cascaio.backend.v1.boundary.SavingsAccountService;
+import com.cascaio.backend.v1.entity.FinancialInstitution;
 import com.cascaio.backend.v1.entity.SavingsAccount;
+import org.joda.money.CurrencyUnit;
 
 import javax.inject.Inject;
 
@@ -14,7 +17,7 @@ import javax.inject.Inject;
 public class SavingsAccountAdapter extends UserDataAdapter<SavingsAccountCreateRequest, SavingsAccountUpdateRequest, SavingsAccountResponse, SavingsAccount> {
 
     @Inject
-    CheckingAccountAdapter checkingAccountAdapter;
+    SavingsAccountService service;
 
     @Inject
     FinancialInstitutionService financialInstitutionService;
@@ -32,11 +35,26 @@ public class SavingsAccountAdapter extends UserDataAdapter<SavingsAccountCreateR
 
     @Override
     public SavingsAccount adaptUpdate(SavingsAccountUpdateRequest request) {
-        return new SavingsAccount(checkingAccountAdapter.adaptUpdate(request));
+        SavingsAccount account = service.readAsEntity(request.getId());
+        account.setName(currentOrUpdated(request.getName(), account.getName()));
+
+        String financialInstitutionId = request.getFinancialInstitutionId();
+        if (isSet(financialInstitutionId)) {
+            account.setFinancialInstitution(financialInstitutionService.readAsEntity(financialInstitutionId));
+        }
+
+        String currencyUnit = request.getCurrencyUnit();
+        if (isSet(currencyUnit)) {
+            account.setCurrency(CurrencyUnit.of(currencyUnit));
+        }
+
+        return account;
     }
 
     @Override
     public SavingsAccount adaptCreate(SavingsAccountCreateRequest request) {
-        return new SavingsAccount(checkingAccountAdapter.adaptCreate(request));
+        FinancialInstitution fi = financialInstitutionService.readAsEntity(request.getFinancialInstitutionId());
+        CurrencyUnit currency = CurrencyUnit.of(request.getCurrencyUnit());
+        return new SavingsAccount(getCascaioUser(), request.getName(), currency, fi);
     }
 }

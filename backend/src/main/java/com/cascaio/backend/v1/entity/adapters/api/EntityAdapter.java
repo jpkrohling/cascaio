@@ -38,4 +38,12 @@ public abstract class EntityAdapter<CreateRequest, UpdateRequest, Response, Pers
         return responses;
     }
 
+    protected String currentOrUpdated(String newValue, String currentValue) {
+        return isSet(newValue) ? newValue : currentValue;
+    }
+
+    protected boolean isSet(String value) {
+        return (null != value && !value.isEmpty());
+    }
+
 }

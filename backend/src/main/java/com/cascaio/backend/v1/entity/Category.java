@@ -29,6 +29,10 @@ public class Category extends NamedCascaioEntity {
         super(name);
     }
 
+    public Category(String id, String name) {
+        super(id, name);
+    }
+
     public Category getParent() {
         return parent;
     }

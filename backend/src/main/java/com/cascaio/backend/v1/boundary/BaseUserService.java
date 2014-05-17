@@ -3,6 +3,7 @@ package com.cascaio.backend.v1.boundary;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.CascaioUser;
 import com.cascaio.backend.v1.entity.UserData;
+import com.cascaio.backend.v1.entity.UserData_;
 import com.cascaio.backend.v1.entity.adapters.api.UserDataAdapter;
 import org.slf4j.Logger;
 
@@ -34,14 +35,24 @@ public abstract class BaseUserService
     @Inject
     Logger logger;
 
+    private CascaioUser cascaioUser;
+
     @Override
     public Adapter instrumentAdapter(Adapter adapter) {
         adapter.setCascaioUser(getCurrentUser());
         return super.instrumentAdapter(adapter);
     }
 
+    @Override
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
+        query.where(builder.equal(root.get(UserData_.user), getCurrentUser()));
+    }
+
     public CascaioUser getCurrentUser() {
-        return getUserFromId(sessionContext.getCallerPrincipal().getName());
+        if (null == cascaioUser) {
+            cascaioUser = getUserFromId(sessionContext.getCallerPrincipal().getName());
+        }
+        return cascaioUser;
     }
 
     private CascaioUser getUserFromId(String id) {
