@@ -3,8 +3,6 @@ package com.cascaio.backend.v1.entity.adapters.api;
 import com.cascaio.api.v1.CheckingAccountCreateRequest;
 import com.cascaio.api.v1.CheckingAccountResponse;
 import com.cascaio.api.v1.CheckingAccountUpdateRequest;
-import com.cascaio.backend.v1.boundary.BaseService;
-import com.cascaio.backend.v1.boundary.CheckingAccountService;
 import com.cascaio.backend.v1.boundary.FinancialInstitutionService;
 import com.cascaio.backend.v1.entity.CheckingAccount;
 import com.cascaio.backend.v1.entity.FinancialInstitution;
@@ -21,9 +19,6 @@ public class CheckingAccountAdapter extends
     @Inject
     FinancialInstitutionService financialInstitutionService;
 
-    @Inject
-    CheckingAccountService service;
-
     @Override
     public CheckingAccountResponse adaptPersistent(CheckingAccount checkingAccount) {
         CheckingAccountResponse response = new CheckingAccountResponse();
@@ -36,8 +31,7 @@ public class CheckingAccountAdapter extends
     }
 
     @Override
-    public CheckingAccount adaptUpdate(CheckingAccountUpdateRequest request) {
-        CheckingAccount account = service.readAsEntity(request.getId());
+    public CheckingAccount adaptUpdate(CheckingAccountUpdateRequest request, CheckingAccount account) {
         account.setName(currentOrUpdated(request.getName(), account.getName()));
 
         String financialInstitutionId = request.getFinancialInstitutionId();

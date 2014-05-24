@@ -3,7 +3,7 @@ package com.cascaio.api.v1;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class CheckingAccountUpdateRequest extends CheckingAccountCreateRequest{
+public class CheckingAccountUpdateRequest extends CheckingAccountCreateRequest implements BaseUpdateRequest {
     private String id;
 
     public String getId() {

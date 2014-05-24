@@ -5,8 +5,6 @@ import org.hibernate.annotations.Type;
 import org.joda.money.CurrencyUnit;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 

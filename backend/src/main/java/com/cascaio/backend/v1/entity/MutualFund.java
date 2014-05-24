@@ -3,11 +3,7 @@ package com.cascaio.backend.v1.entity;
 import org.joda.money.CurrencyUnit;
 import org.joda.time.DateTime;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;

@@ -5,7 +5,6 @@ import com.cascaio.api.v1.CategoryResponse;
 import com.cascaio.api.v1.CategoryUpdateRequest;
 import com.cascaio.backend.v1.entity.Category;
 import com.cascaio.backend.v1.entity.adapters.api.CategoryAdapter;
-import org.jboss.ejb3.annotation.SecurityDomain;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,7 +15,6 @@ import javax.ws.rs.Path;
  */
 @Path("/reference/categories")
 @Stateless
-@SecurityDomain("keycloak")
 public class CategoryService extends BaseService<
         CategoryCreateRequest,
         CategoryUpdateRequest,

@@ -1,15 +1,17 @@
 package com.cascaio.backend.v1.boundary;
 
+import com.cascaio.api.v1.BaseUpdateRequest;
 import com.cascaio.backend.v1.entity.CascaioEntity;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.adapters.api.EntityAdapter;
+import org.slf4j.Logger;
 
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -18,16 +20,21 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RolesAllowed("user")
 public abstract class BaseService<
         CreateRequest,
-        UpdateRequest,
+        UpdateRequest extends BaseUpdateRequest,
         ApiResponse,
         Persistent extends CascaioEntity,
         Adapter extends EntityAdapter<CreateRequest, UpdateRequest, ApiResponse, Persistent>
         > {
     @Inject
     EntityManager entityManager;
+
+    @Inject
+    HttpServletRequest servletRequest;
+
+    @Inject
+    Logger logger;
 
     public abstract Adapter getAdapter();
     public abstract Class<Persistent> getPersistentClass();
@@ -47,6 +54,11 @@ public abstract class BaseService<
     }
 
     public ApiResponse create(CreateRequest request) {
+        if (null != servletRequest.getUserPrincipal()) {
+            logger.info("******* User for this request:" + servletRequest.getUserPrincipal().getName());
+        } else {
+            logger.info("******* NO User for this request");
+        }
         preCreate(request);
         Persistent persistent = getInstrumentedAdapter().adaptCreate(request);
         getEntityManager().persist(persistent);
@@ -71,7 +83,7 @@ public abstract class BaseService<
 
     public ApiResponse update(UpdateRequest request) {
         preUpdate(request);
-        Persistent persistent = getInstrumentedAdapter().adaptUpdate(request);
+        Persistent persistent = getInstrumentedAdapter().adaptUpdate(request, readAsEntity(request.getId()));
         getEntityManager().persist(persistent);
         ApiResponse response = getInstrumentedAdapter().adaptPersistent(persistent);
         postUpdate(response);

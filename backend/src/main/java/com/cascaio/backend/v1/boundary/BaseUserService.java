@@ -1,5 +1,6 @@
 package com.cascaio.backend.v1.boundary;
 
+import com.cascaio.api.v1.BaseUpdateRequest;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.CascaioUser;
 import com.cascaio.backend.v1.entity.UserData;
@@ -8,7 +9,6 @@ import com.cascaio.backend.v1.entity.adapters.api.UserDataAdapter;
 import org.slf4j.Logger;
 
 import javax.annotation.Resource;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,10 +20,9 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RolesAllowed("user")
 public abstract class BaseUserService
         <   CreateRequest,
-            UpdateRequest,
+            UpdateRequest extends BaseUpdateRequest,
             ApiResponse,
             Persistent extends UserData,
             Adapter extends UserDataAdapter<CreateRequest, UpdateRequest, ApiResponse, Persistent>

@@ -4,7 +4,6 @@ import com.cascaio.api.v1.SavingsAccountCreateRequest;
 import com.cascaio.api.v1.SavingsAccountResponse;
 import com.cascaio.api.v1.SavingsAccountUpdateRequest;
 import com.cascaio.backend.v1.boundary.FinancialInstitutionService;
-import com.cascaio.backend.v1.boundary.SavingsAccountService;
 import com.cascaio.backend.v1.entity.FinancialInstitution;
 import com.cascaio.backend.v1.entity.SavingsAccount;
 import org.joda.money.CurrencyUnit;
@@ -15,9 +14,6 @@ import javax.inject.Inject;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class SavingsAccountAdapter extends UserDataAdapter<SavingsAccountCreateRequest, SavingsAccountUpdateRequest, SavingsAccountResponse, SavingsAccount> {
-
-    @Inject
-    SavingsAccountService service;
 
     @Inject
     FinancialInstitutionService financialInstitutionService;
@@ -34,8 +30,7 @@ public class SavingsAccountAdapter extends UserDataAdapter<SavingsAccountCreateR
     }
 
     @Override
-    public SavingsAccount adaptUpdate(SavingsAccountUpdateRequest request) {
-        SavingsAccount account = service.readAsEntity(request.getId());
+    public SavingsAccount adaptUpdate(SavingsAccountUpdateRequest request, SavingsAccount account) {
         account.setName(currentOrUpdated(request.getName(), account.getName()));
 
         String financialInstitutionId = request.getFinancialInstitutionId();

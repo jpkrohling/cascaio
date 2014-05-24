@@ -3,8 +3,6 @@ package com.cascaio.backend.v1.entity;
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import java.math.BigDecimal;
 
 /**
