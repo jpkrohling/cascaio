@@ -5,7 +5,7 @@ import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.user.CascaioUser;
 import com.cascaio.backend.v1.entity.user.UserData;
-import com.cascaio.backend.v1.entity.UserData_;
+import com.cascaio.backend.v1.entity.user.UserData_;
 import com.cascaio.backend.v1.entity.user.adapter.UserDataAdapter;
 import org.slf4j.Logger;
 
