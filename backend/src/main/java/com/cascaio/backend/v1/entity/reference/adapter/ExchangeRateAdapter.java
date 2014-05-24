@@ -15,18 +15,22 @@ import java.math.BigDecimal;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class ExchangeRateAdapter extends EntityAdapter<ExchangeRateCreateRequest, ExchangeRateUpdateRequest, ExchangeRateResponse, ExchangeRate> {
+public class ExchangeRateAdapter extends
+        EntityAdapter<ExchangeRateCreateRequest, ExchangeRateUpdateRequest, ExchangeRateResponse, ExchangeRate> {
     
     @Inject
-    DateTimeFormatter dateTimeFormatter;
+    CurrencyAdapter currencyAdapter;
     
+    @Inject
+    DateTimeAdapter dateTimeAdapter;
+
     @Override
     public ExchangeRateResponse adaptPersistent(ExchangeRate exchangeRate) {
         ExchangeRateResponse response = new ExchangeRateResponse();
         response.setId(exchangeRate.getId());
-        response.setCurrencyFrom(exchangeRate.getCurrencyFrom().getCurrencyCode());
-        response.setCurrencyTo(exchangeRate.getCurrencyTo().getCurrencyCode());
-        response.setDate(exchangeRate.getDate().toString(dateTimeFormatter));
+        response.setCurrencyFrom(currencyAdapter.adapt(exchangeRate.getCurrencyFrom()));
+        response.setCurrencyTo(currencyAdapter.adapt(exchangeRate.getCurrencyTo()));
+        response.setDate(dateTimeAdapter.adapt(exchangeRate.getDate()));
         response.setRate(exchangeRate.getPrice().toString());
         return response;
     }
@@ -42,10 +46,10 @@ public class ExchangeRateAdapter extends EntityAdapter<ExchangeRateCreateRequest
 
     @Override
     public ExchangeRate adaptCreate(ExchangeRateCreateRequest request) {
-        CurrencyUnit from = CurrencyUnit.of(request.getCurrencyFrom());
-        CurrencyUnit to = CurrencyUnit.of(request.getCurrencyTo());
+        CurrencyUnit from = currencyAdapter.adapt(request.getCurrencyFrom());
+        CurrencyUnit to = currencyAdapter.adapt(request.getCurrencyTo());
         BigDecimal rate = new BigDecimal(request.getRate());
-        DateTime date = new DateTime(request.getDate());
+        DateTime date = dateTimeAdapter.adapt(request.getDate());
         return new ExchangeRate(from, to, rate, date);
     }
 }

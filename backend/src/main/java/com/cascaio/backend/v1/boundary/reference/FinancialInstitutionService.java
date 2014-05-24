@@ -18,13 +18,12 @@ import javax.ws.rs.Path;
 @Path("/reference/financialInstitutions")
 @Stateless
 @SecurityDomain("keycloak")
-public class FinancialInstitutionService extends
-        BaseService<
-                        FinancialInstitutionCreateRequest,
-                        FinancialInstitutionUpdateRequest,
-                        FinancialInstitutionResponse,
-                        FinancialInstitution,
-                        FinancialInstitutionAdapter> {
+public class FinancialInstitutionService extends BaseService<
+        FinancialInstitutionCreateRequest,
+        FinancialInstitutionUpdateRequest,
+        FinancialInstitutionResponse,
+        FinancialInstitution,
+        FinancialInstitutionAdapter> {
 
     @Inject
     FinancialInstitutionAdapter adapter;
