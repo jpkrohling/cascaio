@@ -3,7 +3,7 @@ package com.cascaio.backend.v1.boundary;
 import com.cascaio.api.v1.BaseUpdateRequest;
 import com.cascaio.backend.v1.entity.CascaioEntity;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
-import com.cascaio.backend.v1.entity.adapters.api.EntityAdapter;
+import com.cascaio.backend.v1.entity.EntityAdapter;
 import org.slf4j.Logger;
 
 import javax.inject.Inject;

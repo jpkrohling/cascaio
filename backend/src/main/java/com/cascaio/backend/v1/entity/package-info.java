@@ -12,9 +12,9 @@
 })
 package com.cascaio.backend.v1.entity;
 
-import com.cascaio.backend.v1.entity.adapters.CurrencyUnitAdapter;
-import com.cascaio.backend.v1.entity.adapters.DateTimeAdapter;
-import com.cascaio.backend.v1.entity.adapters.LocalDateAdapter;
+import com.cascaio.backend.v1.entity.adapter.CurrencyUnitAdapter;
+import com.cascaio.backend.v1.entity.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.adapter.LocalDateAdapter;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 import org.jadira.usertype.dateandtime.joda.PersistentLocalDate;
