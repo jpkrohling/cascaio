@@ -6,7 +6,6 @@ import com.cascaio.api.v1.reference.MutualFundUpdateRequest;
 import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.MutualFund;
 import com.cascaio.backend.v1.entity.reference.adapter.MutualFundAdapter;
-import org.jboss.ejb3.annotation.SecurityDomain;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,7 +16,6 @@ import javax.ws.rs.Path;
  */
 @Path("/reference/financialInstitutions")
 @Stateless
-@SecurityDomain("keycloak")
 public class MutualFundService extends BaseService<
         MutualFundCreateRequest,
         MutualFundUpdateRequest,

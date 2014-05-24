@@ -5,7 +5,6 @@ import com.cascaio.api.v1.user.SavingsAccountResponse;
 import com.cascaio.api.v1.user.SavingsAccountUpdateRequest;
 import com.cascaio.backend.v1.entity.user.SavingsAccount;
 import com.cascaio.backend.v1.entity.user.adapter.SavingsAccountAdapter;
-import org.jboss.ejb3.annotation.SecurityDomain;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,7 +15,6 @@ import javax.ws.rs.Path;
  */
 @Path("/user/savingsAccounts")
 @Stateless
-@SecurityDomain("keycloak")
 public class SavingsAccountService extends BaseUserService<
         SavingsAccountCreateRequest,
         SavingsAccountUpdateRequest,

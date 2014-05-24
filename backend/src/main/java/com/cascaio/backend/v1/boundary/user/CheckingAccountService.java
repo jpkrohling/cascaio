@@ -5,7 +5,6 @@ import com.cascaio.api.v1.user.CheckingAccountResponse;
 import com.cascaio.api.v1.user.CheckingAccountUpdateRequest;
 import com.cascaio.backend.v1.entity.user.CheckingAccount;
 import com.cascaio.backend.v1.entity.user.adapter.CheckingAccountAdapter;
-import org.jboss.ejb3.annotation.SecurityDomain;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,7 +15,6 @@ import javax.ws.rs.Path;
  */
 @Path("/user/checkingAccounts")
 @Stateless
-@SecurityDomain("keycloak")
 public class CheckingAccountService extends
         BaseUserService<
                         CheckingAccountCreateRequest,
