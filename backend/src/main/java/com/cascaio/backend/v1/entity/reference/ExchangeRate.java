@@ -1,7 +1,7 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import org.joda.money.CurrencyUnit;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -22,7 +22,7 @@ public class ExchangeRate extends Quote {
     @NotNull
     private CurrencyUnit currencyTo;
 
-    public ExchangeRate(CurrencyUnit currencyFrom, CurrencyUnit currencyTo, BigDecimal rate, DateTime date) {
+    public ExchangeRate(CurrencyUnit currencyFrom, CurrencyUnit currencyTo, BigDecimal rate, LocalDate date) {
         super(date, rate);
         this.currencyFrom = currencyFrom;
         this.currencyTo = currencyTo;

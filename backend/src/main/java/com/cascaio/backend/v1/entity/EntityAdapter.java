@@ -1,7 +1,5 @@
 package com.cascaio.backend.v1.entity;
 
-import com.cascaio.backend.v1.entity.CascaioEntity;
-
 import java.util.ArrayList;
 import java.util.List;
 

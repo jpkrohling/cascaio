@@ -4,8 +4,8 @@ import com.cascaio.api.v1.user.CheckingAccountCreateRequest;
 import com.cascaio.api.v1.user.CheckingAccountResponse;
 import com.cascaio.api.v1.user.CheckingAccountUpdateRequest;
 import com.cascaio.backend.v1.boundary.reference.FinancialInstitutionService;
-import com.cascaio.backend.v1.entity.user.CheckingAccount;
 import com.cascaio.backend.v1.entity.reference.FinancialInstitution;
+import com.cascaio.backend.v1.entity.user.CheckingAccount;
 import org.joda.money.CurrencyUnit;
 
 import javax.inject.Inject;

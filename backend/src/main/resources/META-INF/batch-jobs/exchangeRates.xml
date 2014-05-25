@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="exchangeRates" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <listeners>
+        <listener ref="batchExceptionListener"/>
+    </listeners>
+    <step id="exchangeRateSingleStep">
+        <listeners>
+            <listener ref="batchExceptionListener"/>
+        </listeners>
+        <chunk retry-limit="50">
+            <reader ref="exchangeRateReader">
+                <properties>
+                    <property name="from" value="#{partitionPlan['from']}"/>
+                </properties>
+            </reader>
+            <processor ref="exchangeRateProcessor"/>
+            <writer ref="exchangeRateWriter"/>
+            <skippable-exception-classes>
+                <include class="java.lang.RuntimeException"/>
+                <include class="javax.persistence.PersistenceException"/>
+            </skippable-exception-classes>
+            <retryable-exception-classes>
+                <include class="java.net.SocketTimeoutException"/>
+            </retryable-exception-classes>
+        </chunk>
+        <partition>
+            <mapper ref="exchangeRatePartitionMapper"/>
+        </partition>
+        <end on="COMPLETED"/>
+    </step>
+</job>

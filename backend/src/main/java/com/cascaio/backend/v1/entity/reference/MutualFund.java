@@ -3,6 +3,7 @@ package com.cascaio.backend.v1.entity.reference;
 import com.cascaio.backend.v1.entity.NamedCascaioEntity;
 import org.joda.money.CurrencyUnit;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -49,7 +50,7 @@ public class MutualFund extends NamedCascaioEntity {
         return Collections.unmodifiableList(quotes);
     }
 
-    public MutualFundQuote addQuote(DateTime date, BigDecimal price) {
+    public MutualFundQuote addQuote(LocalDate date, BigDecimal price) {
         MutualFundQuote quote = new MutualFundQuote(date, price, this);
         this.quotes.add(quote);
         return quote;

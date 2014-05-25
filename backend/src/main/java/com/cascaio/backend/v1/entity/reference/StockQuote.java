@@ -1,6 +1,7 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -21,12 +22,12 @@ public class StockQuote extends Quote {
     protected StockQuote() {
     }
 
-    protected StockQuote(DateTime date, BigDecimal price, Stock stock) {
+    protected StockQuote(LocalDate date, BigDecimal price, Stock stock) {
         super(date, price);
         this.stock = stock;
     }
 
-    protected StockQuote(String id, DateTime date, BigDecimal price, Stock stock) {
+    protected StockQuote(String id, LocalDate date, BigDecimal price, Stock stock) {
         super(id, date, price);
         this.stock = stock;
     }

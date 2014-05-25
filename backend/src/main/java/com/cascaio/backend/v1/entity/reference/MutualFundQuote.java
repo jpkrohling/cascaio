@@ -1,6 +1,6 @@
 package com.cascaio.backend.v1.entity.reference;
 
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -23,11 +23,11 @@ public class MutualFundQuote extends Quote {
     protected MutualFundQuote() {
     }
 
-    protected MutualFundQuote(DateTime date, BigDecimal price, MutualFund mutualFund) {
+    protected MutualFundQuote(LocalDate date, BigDecimal price, MutualFund mutualFund) {
         this(UUID.randomUUID().toString(), date, price, mutualFund);
     }
 
-    protected MutualFundQuote(String id, DateTime date, BigDecimal price, MutualFund mutualFund) {
+    protected MutualFundQuote(String id, LocalDate date, BigDecimal price, MutualFund mutualFund) {
         super(id, date, price);
         this.mutualFund = mutualFund;
     }

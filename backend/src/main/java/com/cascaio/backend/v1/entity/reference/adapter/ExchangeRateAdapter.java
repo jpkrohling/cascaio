@@ -6,8 +6,7 @@ import com.cascaio.api.v1.reference.ExchangeRateUpdateRequest;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate;
 import org.joda.money.CurrencyUnit;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
@@ -49,7 +48,7 @@ public class ExchangeRateAdapter extends
         CurrencyUnit from = currencyAdapter.adapt(request.getCurrencyFrom());
         CurrencyUnit to = currencyAdapter.adapt(request.getCurrencyTo());
         BigDecimal rate = new BigDecimal(request.getRate());
-        DateTime date = dateTimeAdapter.adapt(request.getDate());
+        LocalDate date = dateTimeAdapter.adaptToLocalDate(request.getDate());
         return new ExchangeRate(from, to, rate, date);
     }
 }

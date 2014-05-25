@@ -61,10 +61,16 @@ public abstract class BaseService<
         }
         preCreate(request);
         Persistent persistent = getInstrumentedAdapter().adaptCreate(request);
-        getEntityManager().persist(persistent);
+        prePersist(persistent);
+        createAsEntity(persistent);
         ApiResponse response = getInstrumentedAdapter().adaptPersistent(persistent);
         postCreate(response);
         return response;
+    }
+
+    public Persistent createAsEntity(Persistent persistent) {
+        getEntityManager().persist(persistent);
+        return persistent;
     }
 
     @PUT
@@ -172,6 +178,10 @@ public abstract class BaseService<
     }
 
     public void preList() {
+
+    }
+
+    public void prePersist(Persistent persistent) {
 
     }
 

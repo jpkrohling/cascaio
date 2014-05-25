@@ -2,6 +2,7 @@ package com.cascaio.backend.v1.entity.reference;
 
 import com.cascaio.backend.v1.entity.CascaioEntity;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -62,7 +63,7 @@ public class Stock extends CascaioEntity {
         return Collections.unmodifiableList(quotes);
     }
 
-    public StockQuote addQuote(DateTime date, BigDecimal price) {
+    public StockQuote addQuote(LocalDate date, BigDecimal price) {
         StockQuote quote = new StockQuote(date, price, this);
         this.quotes.add(quote);
         return quote;
