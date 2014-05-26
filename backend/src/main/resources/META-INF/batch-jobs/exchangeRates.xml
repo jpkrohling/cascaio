@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job id="exchangeRates" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <listeners>
-        <listener ref="batchExceptionListener"/>
+        <listener ref="batchStatusListener"/>
     </listeners>
     <step id="exchangeRateSingleStep">
         <listeners>
-            <listener ref="batchExceptionListener"/>
+            <listener ref="batchStatusListener"/>
         </listeners>
         <chunk retry-limit="50">
             <reader ref="exchangeRateReader">

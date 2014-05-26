@@ -12,7 +12,7 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Named
-public class BatchExceptionListener implements
+public class BatchStatusListener implements
         SkipProcessListener, SkipReadListener, SkipWriteListener,
         RetryProcessListener, RetryReadListener, RetryWriteListener, ItemProcessListener,
         JobListener, ChunkListener {
@@ -67,12 +67,12 @@ public class BatchExceptionListener implements
 
     @Override
     public void beforeJob() throws Exception {
-        logger.trace("beforeJob");
+        logger.info("Starting Batch job");
     }
 
     @Override
     public void afterJob() throws Exception {
-        logger.trace("afterJob");
+        logger.info("Finished Batch job");
     }
 
     @Override
