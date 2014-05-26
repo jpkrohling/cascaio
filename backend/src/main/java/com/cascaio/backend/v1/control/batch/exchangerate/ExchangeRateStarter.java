@@ -28,7 +28,7 @@ public class ExchangeRateStarter {
     Logger logger;
 
     @POST
-    @Schedule(minute="5", hour="9")
+    @Schedule(minute="0", hour="23")
     public String start() {
         JobOperator jobOperator = BatchRuntime.getJobOperator();
         long executionId = jobOperator.start("exchangeRates", new Properties());
