@@ -87,6 +87,6 @@ public class BatchStatusListener implements
 
     @Override
     public void afterChunk() throws Exception {
-        logger.trace("afterJob");
+        logger.trace("afterChunk");
     }
 }
