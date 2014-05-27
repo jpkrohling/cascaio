@@ -1,6 +1,4 @@
-package com.cascaio.backend.v1.control.batch.exchangerate;
-
-import org.slf4j.Logger;
+package com.cascaio.backend.v1.control.batch.stockquote;
 
 import javax.batch.api.partition.PartitionMapper;
 import javax.batch.api.partition.PartitionPlan;
@@ -11,17 +9,13 @@ import javax.inject.Named;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Named
-public class ExchangeRatePartitionMapper implements PartitionMapper {
+public class StockQuotePartitionMapper implements PartitionMapper {
 
     @Inject
-    ExchangeRatePartitionPlan partitionPlan;
-
-    @Inject
-    Logger logger;
+    StockQuotePartitionPlan partitionPlan;
 
     @Override
     public PartitionPlan mapPartitions() throws Exception {
-        logger.trace("Returning partition plan");
         return partitionPlan;
     }
 }

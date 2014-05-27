@@ -31,21 +31,8 @@ import java.util.List;
 public class ExchangeRateReader implements ItemReader {
     private static final String BASE_URL = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&e=.csv&s=";
 
-    static {
-        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom();
-        requestConfigBuilder.setConnectTimeout(5000);
-        requestConfigBuilder.setSocketTimeout(5000);
-        requestConfigBuilder.setStaleConnectionCheckEnabled(true);
-
-        httpclient = HttpClientBuilder
-                .create()
-                .setMaxConnTotal(100)
-                .setDefaultRequestConfig(requestConfigBuilder.build())
-                .build();
-
-    }
-
-    private static final HttpClient httpclient;
+    @Inject
+    HttpClient httpClient;
 
     @Inject
     Logger logger;
@@ -65,87 +52,70 @@ public class ExchangeRateReader implements ItemReader {
 
     @Override
     public void open(Serializable serializable) throws Exception {
-        try {
-            if (null == serializable) {
-                logger.trace("Starting a new checkpoint");
-                checkpoint = new BasicBatchCheckpoint();
-            } else {
-                checkpoint = (BasicBatchCheckpoint) serializable;
-                logger.trace("Checkpoint available: {}", checkpoint);
-            }
-
-            CurrencyUnit fromCurrency = CurrencyUnit.of(from);
-
-            logger.trace("Building http client");
-
-            logger.trace("Listing currently registered currencies");
-            List<CurrencyUnit> registeredCurrencies = CurrencyUnit.registeredCurrencies();
-            StringBuilder conversionsToAsk = new StringBuilder();
-            int current = 0;
-            for (CurrencyUnit to : registeredCurrencies) {
-                if (fromCurrency.equals(to)) {
-                    continue;
-                }
-                logger.debug("Would ask the provider from convert {} into {}", fromCurrency, to);
-
-                if (current > 0) {
-                    conversionsToAsk.append("+");
-                }
-
-                conversionsToAsk.append(fromCurrency).append(to).append("=X");
-                current++;
-            }
-            String url = BASE_URL + conversionsToAsk.toString();
-            logger.trace("URL to call: {}", url);
-
-            HttpGet requestGet = new HttpGet(url);
-            HttpResponse responseGet = httpclient.execute(requestGet);
-            HttpEntity responseGetEntity = responseGet.getEntity();
-
-            logger.trace("Preparing reader");
-            reader = new BufferedReader(new InputStreamReader(responseGetEntity.getContent()));
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRateReader.open", e);
-            throw e;
+        if (null == serializable) {
+            logger.trace("Starting a new checkpoint");
+            checkpoint = new BasicBatchCheckpoint();
+        } else {
+            checkpoint = (BasicBatchCheckpoint) serializable;
+            logger.trace("Checkpoint available: {}", checkpoint);
         }
+
+        CurrencyUnit fromCurrency = CurrencyUnit.of(from);
+
+        logger.trace("Building http client");
+
+        logger.trace("Listing currently registered currencies");
+        List<CurrencyUnit> registeredCurrencies = CurrencyUnit.registeredCurrencies();
+        StringBuilder conversionsToAsk = new StringBuilder();
+        int current = 0;
+        for (CurrencyUnit to : registeredCurrencies) {
+            if (fromCurrency.equals(to)) {
+                continue;
+            }
+            logger.debug("Would ask the provider from convert {} into {}", fromCurrency, to);
+
+            if (current > 0) {
+                conversionsToAsk.append("+");
+            }
+
+            conversionsToAsk.append(fromCurrency).append(to).append("=X");
+            current++;
+        }
+        String url = BASE_URL + conversionsToAsk.toString();
+        logger.trace("URL to call: {}", url);
+
+        HttpGet requestGet = new HttpGet(url);
+        HttpResponse responseGet = httpClient.execute(requestGet);
+        HttpEntity responseGetEntity = responseGet.getEntity();
+
+        logger.trace("Preparing reader");
+        reader = new BufferedReader(new InputStreamReader(responseGetEntity.getContent()));
     }
 
     @Override
     public void close() throws Exception {
-        try {
-            logger.trace("Closing");
-            if (null != reader) {
-                reader.close();
-            }
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRateReader.close", e);
-            e.printStackTrace();
-            throw e;
+        logger.trace("Closing");
+        if (null != reader) {
+            reader.close();
         }
     }
 
     @Override
     public Object readItem() throws Exception {
-        try {
-            logger.trace("Reading item");
-            String line = reader.readLine();
-            if (null != line) {
-                String[] parts = line.split(",");
-                String left = parts[0];
-                CurrencyUnit to = currencyAdapter.adapt(left.substring(4, 7));
-                BigDecimal rate = bigDecimalAdapter.adapt(parts[1]);
-                ExchangeRate exchangeRate = new ExchangeRate(CurrencyUnit.of(from), to, rate, LocalDate.now());
+        logger.trace("Reading item");
+        String line = reader.readLine();
+        if (null != line) {
+            String[] parts = line.split(",");
+            String left = parts[0];
+            CurrencyUnit to = currencyAdapter.adapt(left.substring(4, 7));
+            BigDecimal rate = bigDecimalAdapter.adapt(parts[1]);
+            ExchangeRate exchangeRate = new ExchangeRate(CurrencyUnit.of(from), to, rate, LocalDate.now());
 
-                checkpoint.incrementAndGet();
-                logger.trace("Item read: {}", exchangeRate);
-                return exchangeRate;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRateReader", e);
-            e.printStackTrace();
-            throw e;
+            checkpoint.incrementAndGet();
+            logger.trace("Item read: {}", exchangeRate);
+            return exchangeRate;
+        } else {
+            return null;
         }
     }
 

@@ -109,6 +109,12 @@ public abstract class BaseService<
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<ApiResponse> list() {
+        List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity());
+        postList(response);
+        return response;
+    }
+
+    public List<Persistent> listAsEntity() {
         preList();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Persistent> query = builder.createQuery(getPersistentClass());
@@ -117,8 +123,8 @@ public abstract class BaseService<
         query.select(root);
         instrumentQuery(builder, root, query);
 
-        List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(getEntityManager().createQuery(query).getResultList());
-        postList(response);
+        List<Persistent> response = getEntityManager().createQuery(query).getResultList();
+        postListAsEntity(response);
         return response;
     }
 
@@ -186,6 +192,10 @@ public abstract class BaseService<
     }
 
     public void postList(List<ApiResponse> response) {
+
+    }
+
+    public void postListAsEntity(List<Persistent> response) {
 
     }
 

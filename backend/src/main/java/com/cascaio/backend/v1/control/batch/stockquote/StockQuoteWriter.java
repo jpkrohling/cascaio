@@ -1,13 +1,14 @@
-package com.cascaio.backend.v1.control.batch.exchangerate;
+package com.cascaio.backend.v1.control.batch.stockquote;
 
-import com.cascaio.backend.v1.boundary.reference.ExchangeRateService;
+import com.cascaio.backend.v1.boundary.reference.StockQuoteService;
 import com.cascaio.backend.v1.control.batch.BasicBatchCheckpoint;
-import com.cascaio.backend.v1.entity.reference.ExchangeRate;
+import com.cascaio.backend.v1.entity.reference.StockQuote;
 import org.slf4j.Logger;
 
 import javax.batch.api.chunk.ItemWriter;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,24 +16,26 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Named
-public class ExchangeRateWriter implements ItemWriter {
-
-    @Inject
-    ExchangeRateService service;
+public class StockQuoteWriter implements ItemWriter {
 
     @Inject
     Logger logger;
 
+    @Inject
+    EntityManager entityManager;
+
+    @Inject
+    StockQuoteService stockQuoteService;
+
     private BasicBatchCheckpoint checkpoint;
 
     @Override
-    public void writeItems(List<Object> objects) throws Exception {
-        logger.trace("Got {} items to write", objects.size());
-        for (Object item : objects) {
-            ExchangeRate exchangeRate = (ExchangeRate) item;
-            logger.trace("Writing item", item);
-            service.createAsEntity(exchangeRate);
+    public void writeItems(List<Object> items) throws Exception {
+        for (Object item : items) {
+            StockQuote stockQuote = (StockQuote) item;
             checkpoint.incrementAndGet();
+            logger.trace("Writing item", item);
+            entityManager.persist(stockQuote);
         }
     }
 
@@ -49,6 +52,7 @@ public class ExchangeRateWriter implements ItemWriter {
 
     @Override
     public void close() throws Exception {
+
     }
 
     @Override

@@ -20,41 +20,23 @@ public class ExchangeRatePartitionPlan extends PartitionPlanImpl {
 
     @Override
     public int getPartitions() {
-        try {
-            int partitions = availableCurrencies.size();
-            logger.trace("getPartitions: {}", partitions);
-            return partitions;
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRatePartitionPlan", e);
-            e.printStackTrace();
-            throw e;
-        }
+        int partitions = availableCurrencies.size();
+        logger.trace("getPartitions: {}", partitions);
+        return partitions;
     }
 
     @Override
     public int getThreads() {
-        try {
-            int threads = availableCurrencies.size() / 2;
-            logger.trace("getThreads: {}", threads);
-            return threads;
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRatePartitionPlan", e);
-            e.printStackTrace();
-            throw e;
-        }
+        int threads = availableCurrencies.size() / 2;
+        logger.trace("getThreads: {}", threads);
+        return threads;
     }
 
     @Override
     public Properties[] getPartitionProperties() {
-        try {
-            Properties[] properties = getCurrenciesToProcess();
-            logger.trace("Final properties size: {}", properties.length);
-            return properties;
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRatePartitionPlan", e);
-            e.printStackTrace();
-            throw e;
-        }
+        Properties[] properties = getCurrenciesToProcess();
+        logger.trace("Final properties size: {}", properties.length);
+        return properties;
     }
 
     private Properties[] getCurrenciesToProcess() {

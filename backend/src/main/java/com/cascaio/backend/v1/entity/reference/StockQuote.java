@@ -22,12 +22,12 @@ public class StockQuote extends Quote {
     protected StockQuote() {
     }
 
-    protected StockQuote(LocalDate date, BigDecimal price, Stock stock) {
+    public StockQuote(LocalDate date, BigDecimal price, Stock stock) {
         super(date, price);
         this.stock = stock;
     }
 
-    protected StockQuote(String id, LocalDate date, BigDecimal price, Stock stock) {
+    public StockQuote(String id, LocalDate date, BigDecimal price, Stock stock) {
         super(id, date, price);
         this.stock = stock;
     }

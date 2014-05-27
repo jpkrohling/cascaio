@@ -16,7 +16,7 @@ public class CategoryAdapter extends
         EntityAdapter<CategoryCreateRequest, CategoryUpdateRequest, CategoryResponse, Category> {
 
     // TODO: figure out a clean way to retrieve objects of the same type, without circular dependencies
-    // for now, we use the entity manager, but would be better to use the service (which injects this adapter)
+    // for now, we use the entity manager, but would be better to use the service (which injects this dateTimeAdapter)
     @Inject
     EntityManager entityManager;
 

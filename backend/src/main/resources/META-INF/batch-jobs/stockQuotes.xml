@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<job id="exchangeRates" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="stockQuotes" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <listeners>
         <listener ref="batchStatusListener"/>
     </listeners>
-    <step id="exchangeRateSingleStep">
+    <step id="stockQuotesSingleStep">
         <listeners>
             <listener ref="batchStatusListener"/>
         </listeners>
         <chunk retry-limit="50">
-            <reader ref="exchangeRateReader">
+            <reader ref="stockQuoteReader">
                 <properties>
-                    <property name="from" value="#{partitionPlan['from']}"/>
+                    <property name="stockSymbol" value="#{partitionPlan['stockSymbol']}"/>
                 </properties>
             </reader>
-            <processor ref="exchangeRateProcessor"/>
-            <writer ref="exchangeRateWriter"/>
+            <processor ref="stockQuoteProcessor">
+                <properties>
+                    <property name="stockId" value="#{partitionPlan['stockId']}"/>
+                </properties>
+            </processor>
+            <writer ref="stockQuoteWriter"/>
             <retryable-exception-classes>
                 <include class="java.net.SocketTimeoutException"/>
             </retryable-exception-classes>
         </chunk>
         <partition>
-            <mapper ref="exchangeRatePartitionMapper"/>
+            <mapper ref="stockQuotePartitionMapper"/>
         </partition>
         <end on="COMPLETED"/>
     </step>

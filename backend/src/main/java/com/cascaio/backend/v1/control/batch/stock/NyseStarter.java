@@ -1,4 +1,4 @@
-package com.cascaio.backend.v1.control.batch.exchangerate;
+package com.cascaio.backend.v1.control.batch.stock;
 
 import com.cascaio.backend.v1.control.batch.BasicStarter;
 import org.slf4j.Logger;
@@ -12,10 +12,9 @@ import javax.ws.rs.Path;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-@Path("/batch/exchangeRate")
+@Path("/batch/nyse")
 @Singleton
-public class ExchangeRateStarter extends BasicStarter {
-
+public class NyseStarter extends BasicStarter {
     @Inject
     Logger logger;
 
@@ -27,6 +26,7 @@ public class ExchangeRateStarter extends BasicStarter {
 
     @Override
     protected String getJobName() {
-        return "exchangeRates";
+        return "nyse";
     }
+
 }

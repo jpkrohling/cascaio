@@ -38,4 +38,8 @@ public class BigDecimalAdapter {
         return new BigDecimal(value);
     }
 
+    public String adapt(BigDecimal value) {
+        return value.toPlainString();
+    }
+
 }

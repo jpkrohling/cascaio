@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job id="nasdaq" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+    <listeners>
+        <listener ref="batchStatusListener"/>
+    </listeners>
+    <step id="nasdaqSingleStep">
+        <listeners>
+            <listener ref="batchStatusListener"/>
+        </listeners>
+        <chunk skip-limit="10" retry-limit="5">
+            <reader ref="nasdaqReader"/>
+            <processor ref="nasdaqProcessor"/>
+            <writer ref="nasdaqWriter"/>
+            <skippable-exception-classes>
+                <include class="java.lang.RuntimeException"/>
+            </skippable-exception-classes>
+            <retryable-exception-classes>
+                <include class="java.net.SocketTimeoutException"/>
+            </retryable-exception-classes>
+        </chunk>
+        <end on="COMPLETED"/>
+    </step>
+</job>

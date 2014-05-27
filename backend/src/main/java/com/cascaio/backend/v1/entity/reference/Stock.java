@@ -59,6 +59,13 @@ public class Stock extends CascaioEntity {
         return symbol;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public List<StockQuote> getQuotes() {
         return Collections.unmodifiableList(quotes);
     }

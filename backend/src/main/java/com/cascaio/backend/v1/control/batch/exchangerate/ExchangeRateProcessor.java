@@ -26,30 +26,24 @@ public class ExchangeRateProcessor implements ItemProcessor {
 
     @Override
     public Object processItem(Object item) throws Exception {
-        try {
-            ExchangeRate exchangeRate = (ExchangeRate) item;
-            logger.trace("Checking if we have the exchange rate for this: {}", exchangeRate);
-            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<ExchangeRate> query = builder.createQuery(ExchangeRate.class);
+        ExchangeRate exchangeRate = (ExchangeRate) item;
+        logger.trace("Checking if we have the exchange rate for this: {}", exchangeRate);
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ExchangeRate> query = builder.createQuery(ExchangeRate.class);
 
-            Root<ExchangeRate> root = query.from(ExchangeRate.class);
-            query.select(root);
-            query.where(
-                    builder.equal(root.get(ExchangeRate_.date), exchangeRate.getDate()),
-                    builder.equal(root.get(ExchangeRate_.currencyFrom), exchangeRate.getCurrencyFrom()),
-                    builder.equal(root.get(ExchangeRate_.currencyTo), exchangeRate.getCurrencyTo())
-            );
+        Root<ExchangeRate> root = query.from(ExchangeRate.class);
+        query.select(root);
+        query.where(
+                builder.equal(root.get(ExchangeRate_.date), exchangeRate.getDate()),
+                builder.equal(root.get(ExchangeRate_.currencyFrom), exchangeRate.getCurrencyFrom()),
+                builder.equal(root.get(ExchangeRate_.currencyTo), exchangeRate.getCurrencyTo())
+        );
 
-            if (entityManager.createQuery(query).getResultList().size() > 0) {
-                logger.debug("Skipping {}, as it exists already.", exchangeRate);
-                return null;
-            }
-
-            return item;
-        } catch (Exception e) {
-            logger.error("Caught on ExchangeRateReader", e);
-            e.printStackTrace();
-            throw e;
+        if (entityManager.createQuery(query).getResultList().size() > 0) {
+            logger.debug("Skipping {}, as it exists already.", exchangeRate);
+            return null;
         }
+
+        return item;
     }
 }
