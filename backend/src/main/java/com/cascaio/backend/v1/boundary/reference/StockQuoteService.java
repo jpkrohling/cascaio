@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -58,10 +59,10 @@ public class StockQuoteService extends BaseService<
         LocalDate date = dateTimeAdapter.adaptToLocalDate(isoDate);
         StockMarket stockMarket = stockMarketService.getBySymbolAsEntity(marketSymbol);
         Stock stock = stockService.getBySymbolAsEntity(symbol, stockMarket);
-        return adapter.adaptPersistent(getBySymbolAndDateAsEntity(stock, date));
+        return adapter.adaptPersistent(getByStockAndDateAsEntity(stock, date));
     }
 
-    public StockQuote getBySymbolAndDateAsEntity(Stock stock, LocalDate date) {
+    public StockQuote getByStockAndDateAsEntity(Stock stock, LocalDate date) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<StockQuote> query = builder.createQuery(StockQuote.class);
         Root<StockQuote> root = query.from(StockQuote.class);
@@ -76,7 +77,7 @@ public class StockQuoteService extends BaseService<
         if (stockQuoteList.size() > 1) {
             String message = "More than one quote found for the stock "+stock+" on market "+stock.getMarket()+" on date " + date;
             logger.warn(message);
-            throw new IllegalStateException(message);
+            throw new NonUniqueResultException(message);
         }
 
         if (stockQuoteList.size() == 0) {

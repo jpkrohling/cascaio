@@ -24,6 +24,7 @@ public class StockQuotePartitionPlan extends PartitionPlanImpl {
     Logger logger;
 
     private List<Stock> stockList;
+    private static final int MAX_THREADS = 250;
 
     @Override
     public int getPartitions() {
@@ -33,7 +34,7 @@ public class StockQuotePartitionPlan extends PartitionPlanImpl {
 
     @Override
     public int getThreads() {
-        return Math.min(getStockList().size(), 10); // at most, 10 threads
+        return Math.min(getStockList().size(), MAX_THREADS); // at most, MAX_THREADS threads
     }
 
     @Override

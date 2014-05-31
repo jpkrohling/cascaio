@@ -15,7 +15,8 @@ import java.math.BigDecimal;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class StockQuoteAdapter extends EntityAdapter<StockQuoteCreateRequest, StockQuoteUpdateRequest, StockQuoteResponse, StockQuote> {
+public class StockQuoteAdapter extends
+        EntityAdapter<StockQuoteCreateRequest, StockQuoteUpdateRequest, StockQuoteResponse, StockQuote> {
 
     @Inject
     DateTimeAdapter dateTimeAdapter;

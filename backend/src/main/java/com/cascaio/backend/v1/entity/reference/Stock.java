@@ -70,12 +70,6 @@ public class Stock extends CascaioEntity {
         return Collections.unmodifiableList(quotes);
     }
 
-    public StockQuote addQuote(LocalDate date, BigDecimal price) {
-        StockQuote quote = new StockQuote(date, price, this);
-        this.quotes.add(quote);
-        return quote;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

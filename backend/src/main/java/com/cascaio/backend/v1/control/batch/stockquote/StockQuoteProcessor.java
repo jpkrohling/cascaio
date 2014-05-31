@@ -57,7 +57,7 @@ public class StockQuoteProcessor implements ItemProcessor {
         BigDecimal price = bigDecimalAdapter.adapt(parts[4]);
         Stock stock = stockService.readAsEntity(stockId);
 
-        if (null != stockQuoteService.getBySymbolAndDateAsEntity(stock, date)) {
+        if (null != stockQuoteService.getByStockAndDateAsEntity(stock, date)) {
             return null; // already exists, skip
         }
 

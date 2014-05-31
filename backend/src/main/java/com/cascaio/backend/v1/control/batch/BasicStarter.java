@@ -44,6 +44,12 @@ public abstract class BasicStarter {
         String status = jobExecution.getBatchStatus().toString();
         if (logger.isInfoEnabled()) {
             logger.info("Status for job {}: {}", executionId, status);
+
+            logger.info("Job name: {}", jobExecution.getJobName());
+            logger.info("Started at: {}", jobExecution.getStartTime());
+            logger.info("Last update: {}", jobExecution.getLastUpdatedTime());
+            logger.info("Finished at: {}", jobExecution.getEndTime());
+
             List<StepExecution> stepExecutions = jobOperator.getStepExecutions(executionId);
             for (StepExecution stepExecution : stepExecutions) {
                 logger.info("Step name: {}", stepExecution.getStepName());

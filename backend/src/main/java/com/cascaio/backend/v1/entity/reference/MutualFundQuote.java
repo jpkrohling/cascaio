@@ -23,11 +23,11 @@ public class MutualFundQuote extends Quote {
     protected MutualFundQuote() {
     }
 
-    protected MutualFundQuote(LocalDate date, BigDecimal price, MutualFund mutualFund) {
+    public MutualFundQuote(LocalDate date, BigDecimal price, MutualFund mutualFund) {
         this(UUID.randomUUID().toString(), date, price, mutualFund);
     }
 
-    protected MutualFundQuote(String id, LocalDate date, BigDecimal price, MutualFund mutualFund) {
+    public MutualFundQuote(String id, LocalDate date, BigDecimal price, MutualFund mutualFund) {
         super(id, date, price);
         this.mutualFund = mutualFund;
     }

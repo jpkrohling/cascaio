@@ -50,12 +50,6 @@ public class MutualFund extends NamedCascaioEntity {
         return Collections.unmodifiableList(quotes);
     }
 
-    public MutualFundQuote addQuote(LocalDate date, BigDecimal price) {
-        MutualFundQuote quote = new MutualFundQuote(date, price, this);
-        this.quotes.add(quote);
-        return quote;
-    }
-
     public String getIsin() {
         return isin;
     }
