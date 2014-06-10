@@ -19,6 +19,12 @@ public class DateTimeAdapter {
     }
 
     public LocalDate adaptToLocalDate(String dateTime) {
+
+        if (null != dateTime && !dateTime.isEmpty() && dateTime.contains(".")) {
+            String dateTimeParts[] = dateTime.substring(0, 10).split("\\.");
+            dateTime = dateTimeParts[2] + "-" + dateTimeParts[1] + "-" + dateTimeParts[0];
+        }
+
         return new LocalDate(dateTime);
     }
 
