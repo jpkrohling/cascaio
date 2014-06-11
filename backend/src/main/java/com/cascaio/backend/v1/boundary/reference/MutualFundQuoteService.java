@@ -39,9 +39,6 @@ public class MutualFundQuoteService extends BaseService<
     Logger logger;
 
     @Inject
-    MutualFundQuoteAdapter adapter;
-
-    @Inject
     DateTimeAdapter dateTimeAdapter;
 
     @Inject
@@ -52,7 +49,7 @@ public class MutualFundQuoteService extends BaseService<
     public MutualFundQuoteResponse getByIsinAndDate(@PathParam("isin") String isin, @PathParam("isoDate") String isoDate) {
         LocalDate date = dateTimeAdapter.adaptToLocalDate(isoDate);
         MutualFund mutualFund = mutualFundService.getByIsinAsEntity(isin);
-        return adapter.adaptPersistent(getByMutualFundAndDateAsEntity(mutualFund, date));
+        return getAdapter().adaptPersistent(getByMutualFundAndDateAsEntity(mutualFund, date));
     }
 
     public MutualFundQuote getByMutualFundAndDateAsEntity(MutualFund mutualFund, LocalDate date) {
@@ -79,15 +76,5 @@ public class MutualFundQuoteService extends BaseService<
         }
 
         return mutualFundQuoteList.get(0);
-    }
-
-    @Override
-    public MutualFundQuoteAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<MutualFundQuote> getPersistentClass() {
-        return MutualFundQuote.class;
     }
 }

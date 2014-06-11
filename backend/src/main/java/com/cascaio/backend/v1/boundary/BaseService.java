@@ -34,10 +34,21 @@ public abstract class BaseService<
     HttpServletRequest servletRequest;
 
     @Inject
+    Adapter adapter;
+
+    @Inject
+    Persistent persistentSample;
+
+    @Inject
     Logger logger;
 
-    public abstract Adapter getAdapter();
-    public abstract Class<Persistent> getPersistentClass();
+    public Adapter getAdapter() {
+        return this.adapter;
+    }
+
+    public Class<Persistent> getPersistentClass() {
+        return (Class<Persistent>) persistentSample.getClass();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

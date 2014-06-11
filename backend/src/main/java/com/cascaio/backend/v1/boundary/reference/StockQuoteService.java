@@ -40,9 +40,6 @@ public class StockQuoteService extends BaseService<
     Logger logger;
 
     @Inject
-    StockQuoteAdapter adapter;
-
-    @Inject
     DateTimeAdapter dateTimeAdapter;
 
     @Inject
@@ -59,7 +56,7 @@ public class StockQuoteService extends BaseService<
         LocalDate date = dateTimeAdapter.adaptToLocalDate(isoDate);
         StockMarket stockMarket = stockMarketService.getBySymbolAsEntity(marketSymbol);
         Stock stock = stockService.getBySymbolAsEntity(symbol, stockMarket);
-        return adapter.adaptPersistent(getByStockAndDateAsEntity(stock, date));
+        return getAdapter().adaptPersistent(getByStockAndDateAsEntity(stock, date));
     }
 
     public StockQuote getByStockAndDateAsEntity(Stock stock, LocalDate date) {
@@ -85,16 +82,5 @@ public class StockQuoteService extends BaseService<
         }
 
         return stockQuoteList.get(0);
-    }
-
-
-    @Override
-    public StockQuoteAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<StockQuote> getPersistentClass() {
-        return StockQuote.class;
     }
 }

@@ -33,9 +33,6 @@ public class MutualFundService extends BaseService<
         MutualFundAdapter> {
 
     @Inject
-    MutualFundAdapter adapter;
-
-    @Inject
     Logger logger;
 
     public MutualFund getByIsinAsEntity(String isin) {
@@ -61,15 +58,4 @@ public class MutualFundService extends BaseService<
 
         return mutualFundList.get(0);
     }
-
-    @Override
-    public MutualFundAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<MutualFund> getPersistentClass() {
-        return MutualFund.class;
-    }
-
 }

@@ -33,9 +33,6 @@ public class StockService extends BaseService<
         StockAdapter> {
 
     @Inject
-    StockAdapter adapter;
-
-    @Inject
     StockMarketService stockMarketService;
 
     @Inject
@@ -45,7 +42,7 @@ public class StockService extends BaseService<
     @GET
     public StockResponse getBySymbol(@PathParam("symbol") String symbol, @PathParam("marketSymbol") String marketSymbol) {
         StockMarket stockMarket = stockMarketService.getBySymbolAsEntity(marketSymbol);
-        return adapter.adaptPersistent(getBySymbolAsEntity(symbol, stockMarket));
+        return getAdapter().adaptPersistent(getBySymbolAsEntity(symbol, stockMarket));
     }
 
     public Stock getBySymbolAsEntity(String symbol, StockMarket stockMarket) {
@@ -71,15 +68,5 @@ public class StockService extends BaseService<
         }
 
         return stockList.get(0);
-    }
-
-    @Override
-    public StockAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<Stock> getPersistentClass() {
-        return Stock.class;
     }
 }

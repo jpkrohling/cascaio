@@ -21,17 +21,4 @@ public class SavingsAccountService extends BaseUserService<
         SavingsAccountResponse,
         SavingsAccount,
         SavingsAccountAdapter> {
-
-    @Inject
-    SavingsAccountAdapter adapter;
-
-    @Override
-    public SavingsAccountAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<SavingsAccount> getPersistentClass() {
-        return SavingsAccount.class;
-    }
 }

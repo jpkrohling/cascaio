@@ -22,17 +22,4 @@ public class CategoryService extends BaseService<
         CategoryResponse,
         Category,
         CategoryAdapter> {
-
-    @Inject
-    CategoryAdapter adapter;
-
-    @Override
-    public CategoryAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<Category> getPersistentClass() {
-        return Category.class;
-    }
 }

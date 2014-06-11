@@ -32,15 +32,12 @@ public class StockMarketService extends BaseService<
         StockMarketAdapter> {
 
     @Inject
-    StockMarketAdapter adapter;
-
-    @Inject
     Logger logger;
 
     @Path("/symbol/{symbol}")
     @GET
     public StockMarketResponse getBySymbol(@PathParam("symbol") String symbol) {
-        return adapter.adaptPersistent(getBySymbolAsEntity(symbol));
+        return getAdapter().adaptPersistent(getBySymbolAsEntity(symbol));
     }
 
     public StockMarket getBySymbolAsEntity(String symbol) {
@@ -63,15 +60,5 @@ public class StockMarketService extends BaseService<
         }
 
         return stockMarketList.get(0);
-    }
-
-    @Override
-    public StockMarketAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<StockMarket> getPersistentClass() {
-        return StockMarket.class;
     }
 }

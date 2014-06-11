@@ -22,17 +22,4 @@ public class CheckingAccountService extends
                         CheckingAccountResponse,
                         CheckingAccount,
                         CheckingAccountAdapter> {
-
-    @Inject
-    CheckingAccountAdapter adapter;
-
-    @Override
-    public CheckingAccountAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<CheckingAccount> getPersistentClass() {
-        return CheckingAccount.class;
-    }
 }

@@ -22,17 +22,4 @@ public class FinancialInstitutionService extends BaseService<
         FinancialInstitutionResponse,
         FinancialInstitution,
         FinancialInstitutionAdapter> {
-
-    @Inject
-    FinancialInstitutionAdapter adapter;
-
-    @Override
-    public FinancialInstitutionAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<FinancialInstitution> getPersistentClass() {
-        return FinancialInstitution.class;
-    }
 }

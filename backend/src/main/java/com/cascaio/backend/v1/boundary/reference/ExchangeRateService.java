@@ -22,17 +22,4 @@ public class ExchangeRateService extends BaseService<
         ExchangeRateResponse,
         ExchangeRate,
         ExchangeRateAdapter> {
-
-    @Inject
-    ExchangeRateAdapter adapter;
-
-    @Override
-    public ExchangeRateAdapter getAdapter() {
-        return adapter;
-    }
-
-    @Override
-    public Class<ExchangeRate> getPersistentClass() {
-        return ExchangeRate.class;
-    }
 }
