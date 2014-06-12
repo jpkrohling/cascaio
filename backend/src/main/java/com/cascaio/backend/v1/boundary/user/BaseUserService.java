@@ -10,6 +10,7 @@ import com.cascaio.backend.v1.entity.user.adapter.UserDataAdapter;
 import org.slf4j.Logger;
 
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
+@RolesAllowed({"user"})
 public abstract class BaseUserService
         <   CreateRequest,
             UpdateRequest extends BaseUpdateRequest,
@@ -35,8 +37,6 @@ public abstract class BaseUserService
     @Inject
     Logger logger;
 
-    private CascaioUser cascaioUser;
-
     @Override
     public Adapter instrumentAdapter(Adapter adapter) {
         adapter.setCascaioUser(getCurrentUser());
@@ -49,10 +49,7 @@ public abstract class BaseUserService
     }
 
     public CascaioUser getCurrentUser() {
-        if (null == cascaioUser) {
-            cascaioUser = getUserFromId(sessionContext.getCallerPrincipal().getName());
-        }
-        return cascaioUser;
+        return getUserFromId(sessionContext.getCallerPrincipal().getName());
     }
 
     private CascaioUser getUserFromId(String id) {

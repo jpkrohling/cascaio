@@ -1,6 +1,5 @@
 package com.cascaio.backend.v1.entity.reference;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;

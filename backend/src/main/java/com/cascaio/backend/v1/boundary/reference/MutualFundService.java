@@ -5,8 +5,6 @@ import com.cascaio.api.v1.reference.MutualFundResponse;
 import com.cascaio.api.v1.reference.MutualFundUpdateRequest;
 import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.MutualFund;
-import com.cascaio.backend.v1.entity.reference.MutualFundQuote;
-import com.cascaio.backend.v1.entity.reference.MutualFundQuote_;
 import com.cascaio.backend.v1.entity.reference.MutualFund_;
 import com.cascaio.backend.v1.entity.reference.adapter.MutualFundAdapter;
 import org.slf4j.Logger;

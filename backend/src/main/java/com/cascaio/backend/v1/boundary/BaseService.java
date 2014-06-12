@@ -6,6 +6,7 @@ import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
+@RolesAllowed({"admin"})
 public abstract class BaseService<
         CreateRequest,
         UpdateRequest extends BaseUpdateRequest,
@@ -65,11 +67,6 @@ public abstract class BaseService<
     }
 
     public ApiResponse create(CreateRequest request) {
-        if (null != servletRequest.getUserPrincipal()) {
-            logger.info("******* User for this request:" + servletRequest.getUserPrincipal().getName());
-        } else {
-            logger.info("******* NO User for this request");
-        }
         preCreate(request);
         Persistent persistent = getInstrumentedAdapter().adaptCreate(request);
         prePersist(persistent);
@@ -110,6 +107,7 @@ public abstract class BaseService<
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"user"})
     public ApiResponse read(@PathParam("id") String id) {
         preRead(id);
         ApiResponse response = getInstrumentedAdapter().adaptPersistent(readAsEntity(id));
@@ -119,12 +117,14 @@ public abstract class BaseService<
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"user"})
     public List<ApiResponse> list() {
         List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity());
         postList(response);
         return response;
     }
 
+    @RolesAllowed({"user"})
     public List<Persistent> listAsEntity() {
         preList();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
@@ -156,6 +156,7 @@ public abstract class BaseService<
         // do nothing, as this is handled as a filter
     }
 
+    @RolesAllowed({"user"})
     public Persistent readAsEntity(String id) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Persistent> query = builder.createQuery(getPersistentClass());
@@ -174,10 +175,12 @@ public abstract class BaseService<
 
     }
 
+    @RolesAllowed({"user"})
     public void preRead(String id) {
 
     }
 
+    @RolesAllowed({"user"})
     public void postRead(ApiResponse response) {
 
     }
@@ -194,6 +197,7 @@ public abstract class BaseService<
 
     }
 
+    @RolesAllowed({"user"})
     public void preList() {
 
     }
@@ -202,10 +206,12 @@ public abstract class BaseService<
 
     }
 
+    @RolesAllowed({"user"})
     public void postList(List<ApiResponse> response) {
 
     }
 
+    @RolesAllowed({"user"})
     public void postListAsEntity(List<Persistent> response) {
 
     }

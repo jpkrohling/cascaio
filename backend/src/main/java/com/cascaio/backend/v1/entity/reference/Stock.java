@@ -1,12 +1,9 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import com.cascaio.backend.v1.entity.CascaioEntity;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
