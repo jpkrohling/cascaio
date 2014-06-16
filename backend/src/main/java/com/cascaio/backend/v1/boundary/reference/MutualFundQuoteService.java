@@ -12,6 +12,7 @@ import com.cascaio.backend.v1.entity.reference.adapter.MutualFundQuoteAdapter;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
@@ -46,12 +47,14 @@ public class MutualFundQuoteService extends BaseService<
 
     @Path("/isin:{isin}/{isoDate}")
     @GET
+    @RolesAllowed("admin")
     public MutualFundQuoteResponse getByIsinAndDate(@PathParam("isin") String isin, @PathParam("isoDate") String isoDate) {
         LocalDate date = dateTimeAdapter.adaptToLocalDate(isoDate);
         MutualFund mutualFund = mutualFundService.getByIsinAsEntity(isin);
         return getAdapter().adaptPersistent(getByMutualFundAndDateAsEntity(mutualFund, date));
     }
 
+    @RolesAllowed("admin")
     public MutualFundQuote getByMutualFundAndDateAsEntity(MutualFund mutualFund, LocalDate date) {
 
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();

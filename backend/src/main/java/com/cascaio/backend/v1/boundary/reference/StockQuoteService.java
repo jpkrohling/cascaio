@@ -13,6 +13,7 @@ import com.cascaio.backend.v1.entity.reference.adapter.StockQuoteAdapter;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
@@ -50,6 +51,7 @@ public class StockQuoteService extends BaseService<
 
     @Path("/{marketSymbol}:{symbol}/{isoDate}")
     @GET
+    @RolesAllowed("admin")
     public StockQuoteResponse getBySymbolAndDate(@PathParam("symbol") String symbol,
                                                  @PathParam("marketSymbol") String marketSymbol,
                                                  @PathParam("isoDate") String isoDate) {
@@ -59,6 +61,7 @@ public class StockQuoteService extends BaseService<
         return getAdapter().adaptPersistent(getByStockAndDateAsEntity(stock, date));
     }
 
+    @RolesAllowed("admin")
     public StockQuote getByStockAndDateAsEntity(Stock stock, LocalDate date) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<StockQuote> query = builder.createQuery(StockQuote.class);

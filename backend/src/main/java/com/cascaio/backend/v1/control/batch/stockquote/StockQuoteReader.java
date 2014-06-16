@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Named
 public class StockQuoteReader implements ItemReader {
 
-    private static final String BASE_URL = "http://ichart.finance.yahoo.com/table.csv?s=%s&g=d&ignore=.csv";
+    private static final String BASE_URL = "http://ichart.finance.yahoo.com/table.csv?a=01&b=01&c=2014&s=%s&g=d&ignore=.csv";
 
     @Inject
     @BatchProperty(name = "stockSymbol")

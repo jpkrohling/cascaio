@@ -27,7 +27,7 @@ import java.util.List;
  */
 @Named
 public class ExchangeRateReader implements ItemReader {
-    private static final String BASE_URL = "http://download.finance.yahoo.com/d/quotes.csv?f=sl1&e=.csv&s=";
+    private static final String BASE_URL = "http://download.finance.yahoo.com/d/quotes.csv?a=01&b=01&c=2014&f=sl1&e=.csv&s=";
 
     @Inject
     HttpClient httpClient;

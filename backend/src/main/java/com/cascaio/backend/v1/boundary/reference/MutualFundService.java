@@ -9,6 +9,7 @@ import com.cascaio.backend.v1.entity.reference.MutualFund_;
 import com.cascaio.backend.v1.entity.reference.adapter.MutualFundAdapter;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
@@ -33,6 +34,7 @@ public class MutualFundService extends BaseService<
     @Inject
     Logger logger;
 
+    @RolesAllowed("admin")
     public MutualFund getByIsinAsEntity(String isin) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<MutualFund> query = builder.createQuery(MutualFund.class);

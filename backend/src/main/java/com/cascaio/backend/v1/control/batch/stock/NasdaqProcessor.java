@@ -43,6 +43,10 @@ public class NasdaqProcessor implements ItemProcessor {
 
         StockMarket stockMarket = stockMarketService.getBySymbolAsEntity(getMarketSymbol());
 
+        if (null == stockMarket) {
+            throw new IllegalStateException("Stock market '" + getMarketSymbol() + "' doesn't exists on the database.");
+        }
+
         Stock stock = new Stock(splittedLine[0], getSanitizedName(splittedLine[1]), stockMarket);
         if (null == stockService.getBySymbolAsEntity(stock.getSymbol(), stock.getMarket())) {
             // we have no found, proceed with persisting it

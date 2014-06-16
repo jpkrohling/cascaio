@@ -10,6 +10,7 @@ import com.cascaio.backend.v1.entity.reference.Stock_;
 import com.cascaio.backend.v1.entity.reference.adapter.StockAdapter;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -40,11 +41,13 @@ public class StockService extends BaseService<
 
     @Path("/symbol/{marketSymbol}:{symbol}")
     @GET
+    @RolesAllowed("admin")
     public StockResponse getBySymbol(@PathParam("symbol") String symbol, @PathParam("marketSymbol") String marketSymbol) {
         StockMarket stockMarket = stockMarketService.getBySymbolAsEntity(marketSymbol);
         return getAdapter().adaptPersistent(getBySymbolAsEntity(symbol, stockMarket));
     }
 
+    @RolesAllowed("admin")
     public Stock getBySymbolAsEntity(String symbol, StockMarket stockMarket) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Stock> query = builder.createQuery(Stock.class);

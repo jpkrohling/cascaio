@@ -2,6 +2,7 @@ package com.cascaio.backend.v1.control.batch;
 
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
 import javax.batch.runtime.JobExecution;
@@ -17,6 +18,7 @@ import java.util.Properties;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
+@RolesAllowed("admin")
 public abstract class BasicStarter {
 
     @Inject

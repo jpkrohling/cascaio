@@ -3,6 +3,7 @@ package com.cascaio.backend.v1.control.batch.stock;
 import com.cascaio.backend.v1.control.batch.BasicStarter;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -20,6 +21,7 @@ public class NyseStarter extends BasicStarter {
 
     @POST
     @Schedule(minute="0", hour="23")
+    @RolesAllowed("admin")
     public String start() {
         return doStart();
     }

@@ -9,6 +9,7 @@ import com.cascaio.backend.v1.entity.reference.StockMarket_;
 import com.cascaio.backend.v1.entity.reference.adapter.StockMarketAdapter;
 import org.slf4j.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -36,10 +37,12 @@ public class StockMarketService extends BaseService<
 
     @Path("/symbol/{symbol}")
     @GET
+    @RolesAllowed("admin")
     public StockMarketResponse getBySymbol(@PathParam("symbol") String symbol) {
         return getAdapter().adaptPersistent(getBySymbolAsEntity(symbol));
     }
 
+    @RolesAllowed("admin")
     public StockMarket getBySymbolAsEntity(String symbol) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<StockMarket> query = builder.createQuery(StockMarket.class);
