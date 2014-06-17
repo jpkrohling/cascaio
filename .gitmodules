@@ -1,4 +1,0 @@
-[submodule "admin"]
-	path = admin
-	url = git@github.com:jpkrohling/cascaio-admin.git
-	branch = master
