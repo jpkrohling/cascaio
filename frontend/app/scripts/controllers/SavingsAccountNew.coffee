@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('frontendApp')
-  .controller 'SavingsAccountNewCtrl', ['$rootScope', '$scope', 'SavingsAccount', ($rootScope, $scope, SavingsAccount) ->
+.controller 'SavingsAccountNewCtrl', ['$rootScope', '$scope', 'SavingsAccount', ($rootScope, $scope, SavingsAccount) ->
     $scope.savingsAccountNew = new SavingsAccount({})
 
     form = $('#savingsAccountNewForm')

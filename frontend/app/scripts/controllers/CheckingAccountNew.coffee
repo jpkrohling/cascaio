@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('frontendApp')
-  .controller 'CheckingAccountNewCtrl', ['$rootScope', '$scope', 'CheckingAccount', ($rootScope, $scope, CheckingAccount) ->
+.controller 'CheckingAccountNewCtrl', ['$rootScope', '$scope', 'CheckingAccount', ($rootScope, $scope, CheckingAccount) ->
     $scope.checkingAccountNew = new CheckingAccount({})
 
     form = $('#checkingAccountNewForm')
@@ -14,18 +14,18 @@ angular.module('frontendApp')
     })
 
     form.form({
-            financialInstitutionId: {
-              identifier  : 'financialInstitutionId'
-              rules: [{ type   : 'empty', prompt : 'Please select a financial institution'}]
-            },
-            name: {
-              identifier  : 'name'
-              rules: [{ type   : 'empty', prompt : 'Please enter an account name' } ]
-            },
-            currency: {
-              identifier  : 'currency'
-              rules: [ { type   : 'empty', prompt : 'Please enter a currency' } ]
-            }
+      financialInstitutionId: {
+        identifier  : 'financialInstitutionId'
+        rules: [{ type   : 'empty', prompt : 'Please select a financial institution'}]
+      },
+      name: {
+        identifier  : 'name'
+        rules: [{ type   : 'empty', prompt : 'Please enter an account name' } ]
+      },
+      currency: {
+        identifier  : 'currency'
+        rules: [ { type   : 'empty', prompt : 'Please enter a currency' } ]
+      }
     })
 
     $scope.createNewAccount = () ->

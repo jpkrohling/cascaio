@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
@@ -18,128 +18,128 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-  </head>
-  <body ng-app="frontendApp">
-    <div class="ui fixed transparent inverted main menu" data-ng-controller="MainCtrl">
-        <div class="container">
-            <div class="title item">
-                <b><i class="money icon"></i>cascaio</b>
-            </div>
+</head>
+<body ng-app="frontendApp">
+<div class="ui fixed transparent inverted main menu" data-ng-controller="MainCtrl">
+    <div class="container">
+        <div class="title item">
+            <b><i class="money icon"></i>cascaio</b>
         </div>
     </div>
+</div>
 
-    <div class="ui grid">
-        <div class="four wide column">
-            <div class="ui">
-                <div class="ui fluid vertical menu">
-                    <a class="item" data-ng-href="#/">
-                        <i class="dashboard icon"></i> Dashboard
-                    </a>
-                    <div class="item">
-                        <i class="grid money icon"></i> Checking Accounts
-                        <div class="menu">
-                            <a class="item" data-ng-repeat="account in checkingAccounts" data-ng-href="#/checkingAccount/{{account.id}}">
-                                {{account.name}}
-                                <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
+<div class="ui grid">
+    <div class="four wide column">
+        <div class="ui">
+            <div class="ui fluid vertical menu">
+                <a class="item" data-ng-href="#/">
+                    <i class="dashboard icon"></i> Dashboard
+                </a>
+                <div class="item">
+                    <i class="grid money icon"></i> Checking Accounts
+                    <div class="menu">
+                        <a class="item" data-ng-repeat="account in checkingAccounts" data-ng-href="#/checkingAccount/{{account.id}}">
+                            {{account.name}}
+                            <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
+                        </a>
+                        <div class="item">
+                            <a class="ui basic small labeled icon button" data-ng-href="#/checkingAccount/new">
+                                add checking account
+                                <i class="add sign icon"></i>
                             </a>
-                            <div class="item">
-                                <a class="ui basic small labeled icon button" data-ng-href="#/checkingAccount/new">
-                                    add checking account
-                                    <i class="add sign icon"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <i class="grid umbrella icon"></i> Savings Accounts
-                        <div class="menu">
-                            <a class="item" data-ng-repeat="account in savingsAccounts" data-ng-href="#/savingsAccount/{{account.id}}">
-                                {{account.name}}
-                                <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
+                </div>
+                <div class="item">
+                    <i class="grid umbrella icon"></i> Savings Accounts
+                    <div class="menu">
+                        <a class="item" data-ng-repeat="account in savingsAccounts" data-ng-href="#/savingsAccount/{{account.id}}">
+                            {{account.name}}
+                            <div class="ui right floated basic segment">{{account.total | currency: account.currencyUnit}}</div>
+                        </a>
+                        <div class="item">
+                            <a class="ui basic small labeled icon button" data-ng-href="#/savingsAccount/new">
+                                add savings account
+                                <i class="add sign icon"></i>
                             </a>
-                            <div class="item">
-                                <a class="ui basic small labeled icon button" data-ng-href="#/savingsAccount/new">
-                                    add savings account
-                                    <i class="add sign icon"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <i class="grid payment icon"></i> Credit Cards
-                        <div class="menu">
-                            <a class="item">
-                                Amazon.de
-                                <div class="ui right floated basic segment">&euro;-1.234,56</div>
+                </div>
+                <div class="item">
+                    <i class="grid payment icon"></i> Credit Cards
+                    <div class="menu">
+                        <a class="item">
+                            Amazon.de
+                            <div class="ui right floated basic segment">&euro;-1.234,56</div>
+                        </a>
+                        <div class="item">
+                            <a class="ui basic small labeled icon button">
+                                add credit card
+                                <i class="add sign icon"></i>
                             </a>
-                            <div class="item">
-                                <a class="ui basic small labeled icon button">
-                                    add credit card
-                                    <i class="add sign icon"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <i class="chart basic icon"></i> Investment Accounts
-                        <div class="menu">
-                            <a class="item">
-                                High risk
-                                <div class="ui right floated basic segment">&euro;133.234,56 (+14.95%)</div>
+                </div>
+                <div class="item">
+                    <i class="chart basic icon"></i> Investment Accounts
+                    <div class="menu">
+                        <a class="item">
+                            High risk
+                            <div class="ui right floated basic segment">&euro;133.234,56 (+14.95%)</div>
+                        </a>
+                        <a class="item">
+                            Low risk
+                            <div class="ui right floated basic segment">&euro;133.234,56 (+1.95%)</div>
+                        </a>
+                        <div class="item">
+                            <a class="ui basic small labeled icon button">
+                                add investment account
+                                <i class="add sign icon"></i>
                             </a>
-                            <a class="item">
-                                Low risk
-                                <div class="ui right floated basic segment">&euro;133.234,56 (+1.95%)</div>
-                            </a>
-                            <div class="item">
-                                <a class="ui basic small labeled icon button">
-                                    add investment account
-                                    <i class="add sign icon"></i>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="twelve wide column" data-ng-view="">
-        </div>
     </div>
+    <div class="twelve wide column" data-ng-view="">
+    </div>
+</div>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/Chart.js/Chart.min.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    <script src="bower_components/semantic/build/packaged/javascript/semantic.js"></script>
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/Chart.js/Chart.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<script src="bower_components/semantic/build/packaged/javascript/semantic.js"></script>
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/Main.js"></script>
-        <script src="scripts/services/AuthInterceptor.js"></script>
-        <script src="scripts/services/FinancialInstitution.js"></script>
-        <script src="scripts/services/CheckingAccount.js"></script>
-        <script src="scripts/services/SavingsAccount.js"></script>
-        <script src="scripts/controllers/CheckingAccountTransactions.js"></script>
-        <script src="scripts/controllers/CheckingAccountNew.js"></script>
-        <script src="scripts/controllers/SavingsAccountNew.js"></script>
-        <!-- endbuild -->
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/Main.js"></script>
+<script src="scripts/services/AuthInterceptor.js"></script>
+<script src="scripts/services/FinancialInstitution.js"></script>
+<script src="scripts/services/CheckingAccount.js"></script>
+<script src="scripts/services/SavingsAccount.js"></script>
+<script src="scripts/controllers/CheckingAccountTransactions.js"></script>
+<script src="scripts/controllers/CheckingAccountNew.js"></script>
+<script src="scripts/controllers/SavingsAccountNew.js"></script>
+<!-- endbuild -->
 
-    <script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
-    <script type="text/javascript">
-        window.keycloak = Keycloak('/keycloak.json');
-        window.keycloak.init({ onLoad: 'login-required' });
-    </script>
+<script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
+<script type="text/javascript">
+    window.keycloak = Keycloak('/keycloak.json');
+    window.keycloak.init({ onLoad: 'login-required' });
+</script>
 </body>
 </html>

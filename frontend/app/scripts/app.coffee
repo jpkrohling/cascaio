@@ -15,11 +15,11 @@ angular.module('frontendApp', [
         templateUrl: 'views/checking/checkingaccountnew.html'
         controller: 'CheckingAccountNewCtrl'
     .when '/checkingAccount/:accountId',
-      templateUrl: 'views/checking/checkingaccounttransactions.html'
-      controller: 'CheckingAccountTransactionsCtrl'
+        templateUrl: 'views/checking/checkingaccounttransactions.html'
+        controller: 'CheckingAccountTransactionsCtrl'
     .when '/savingsAccount/new',
-      templateUrl: 'views/savings/savingsaccountnew.html'
-      controller: 'SavingsAccountNewCtrl'
+        templateUrl: 'views/savings/savingsaccountnew.html'
+        controller: 'SavingsAccountNewCtrl'
     .when '/savingsAccount/:accountId',
         templateUrl: 'views/savings/savingsaccounttransactions.html'
         controller: 'SavingsAccountTransactionsCtrl'
