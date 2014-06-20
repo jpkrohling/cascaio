@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-@Path("/reference/financialInstitutions")
+@Path("/reference/mutualFunds")
 @Stateless
 public class MutualFundService extends BaseService<
         MutualFundCreateRequest,

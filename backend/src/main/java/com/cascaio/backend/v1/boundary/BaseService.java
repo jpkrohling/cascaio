@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -55,14 +56,14 @@ public abstract class BaseService<
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse createAsJson(CreateRequest request) {
+    public ApiResponse createAsJson(@Valid CreateRequest request) {
         return create(request);
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse createAsFormParameters(@BeanParam CreateRequest request) {
+    public ApiResponse createAsFormParameters(@Valid @BeanParam CreateRequest request) {
         return create(request);
     }
 
@@ -84,14 +85,14 @@ public abstract class BaseService<
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse updateAsJson(UpdateRequest request) {
+    public ApiResponse updateAsJson(@Valid UpdateRequest request) {
         return update(request);
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse updateAsFormParameters(@BeanParam UpdateRequest request) {
+    public ApiResponse updateAsFormParameters(@Valid @BeanParam UpdateRequest request) {
         return update(request);
     }
 

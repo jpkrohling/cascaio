@@ -30,17 +30,17 @@ public class FinancialInstitutionAdapter extends
         if (isSet(name)) {
             financialInstitution.setName(name);
         }
+        financialInstitution.setBic(request.getBic());
+        financialInstitution.setCnpj(request.getCnpj());
+        financialInstitution.setCodCompensacao(request.getCodCompensacao());
+        financialInstitution.setBankleitzahl(request.getBankleitzahl());
 
-        return adaptCommonRequest(request, financialInstitution);
+        return financialInstitution;
     }
 
     @Override
     public FinancialInstitution adaptCreate(FinancialInstitutionCreateRequest request) {
         FinancialInstitution financialInstitution = new FinancialInstitution(request.getName(), request.getCountry());
-        return adaptCommonRequest(request, financialInstitution);
-    }
-
-    private FinancialInstitution adaptCommonRequest(FinancialInstitutionCreateRequest request, FinancialInstitution financialInstitution) {
         financialInstitution.setBic(request.getBic());
         financialInstitution.setCnpj(request.getCnpj());
         financialInstitution.setCodCompensacao(request.getCodCompensacao());

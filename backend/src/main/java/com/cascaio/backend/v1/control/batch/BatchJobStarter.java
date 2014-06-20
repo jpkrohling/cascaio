@@ -19,12 +19,12 @@ import java.util.Properties;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @RolesAllowed("admin")
-public abstract class BasicStarter {
+public abstract class BatchJobStarter {
 
     @Inject
     Logger logger;
 
-    protected abstract String getJobName();
+    public abstract String getJobName();
 
     public String doStart() {
         JobOperator jobOperator = BatchRuntime.getJobOperator();

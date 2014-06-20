@@ -25,7 +25,7 @@ public class ApplicationResources {
     private static javax.persistence.EntityManager em;
 
     @Produces
-    private static DateTimeFormatter dateTimeFormatter = ISODateTimeFormat.basicDateTime();
+    private static DateTimeFormatter dateTimeFormatter = ISODateTimeFormat.dateTime();
 
     @Inject
     Logger logger;

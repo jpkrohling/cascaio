@@ -1,10 +1,10 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import com.cascaio.backend.v1.entity.NamedCascaioEntity;
-import com.cascaio.backend.v1.entity.validation.BIC;
-import com.cascaio.backend.v1.entity.validation.Bankleitzahl;
-import com.cascaio.backend.v1.entity.validation.CNPJ;
-import com.cascaio.backend.v1.entity.validation.Country;
+import com.cascaio.api.v1.validation.BIC;
+import com.cascaio.api.v1.validation.Bankleitzahl;
+import com.cascaio.api.v1.validation.CNPJ;
+import com.cascaio.api.v1.validation.Country;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;

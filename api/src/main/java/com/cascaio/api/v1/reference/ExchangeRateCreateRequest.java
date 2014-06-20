@@ -1,14 +1,31 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.validation.Currency;
+import com.cascaio.api.v1.validation.ISODate;
+import com.cascaio.api.v1.validation.NumericRate;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class ExchangeRateCreateRequest {
 
+    @NotNull
+    @Currency
     private String currencyFrom;
+
+    @NotNull
+    @Currency
     private String currencyTo;
-    private String rate;
+
+    @NotNull
+    @ISODate
     private String date;
+
+    @NotNull
+    @NumericRate
+    private String rate;
 
     public String getCurrencyFrom() {
         return currencyFrom;

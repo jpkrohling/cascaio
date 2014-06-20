@@ -1,9 +1,11 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.BaseResponse;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class MutualFundQuoteResponse {
+public class MutualFundQuoteResponse extends BaseResponse {
     private String id;
     private MutualFundResponse mutualFund;
     private String date;

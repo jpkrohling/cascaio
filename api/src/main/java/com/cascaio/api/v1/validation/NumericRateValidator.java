@@ -1,4 +1,4 @@
-package com.cascaio.backend.v1.entity.validation;
+package com.cascaio.api.v1.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -6,15 +6,15 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class BankleitzahlValidator implements ConstraintValidator<Bankleitzahl, String> {
+public class NumericRateValidator implements ConstraintValidator<NumericRate, String> {
     @Override
-    public void initialize(Bankleitzahl constraintAnnotation) {
+    public void initialize(NumericRate constraintAnnotation) {
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         return value == null
                 || value.isEmpty()
-                || value.matches("^\\d{8}$");
+                || value.matches("^\\-?\\d+(\\.\\d{1,6})?$");
     }
 }

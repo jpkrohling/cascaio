@@ -1,13 +1,25 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.validation.Currency;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class MutualFundCreateRequest {
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String isin;
-    private String wkn;
+
+    @NotNull
+    @Currency
     private String currency;
+
+    private String wkn;
 
     public String getName() {
         return name;

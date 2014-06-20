@@ -1,4 +1,4 @@
-package com.cascaio.backend.v1.entity.validation;
+package com.cascaio.api.v1.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

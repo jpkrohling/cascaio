@@ -1,4 +1,4 @@
-package com.cascaio.backend.v1.entity.validation;
+package com.cascaio.api.v1.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,11 +13,11 @@ import static java.lang.annotation.ElementType.*;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @Documented
-@Constraint(validatedBy = ISODateValidator.class)
+@Constraint(validatedBy = CountryValidator.class)
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ISODate {
-    String message() default "{com.cascaio.validation.ISODate.invalidISODate}";
+public @interface Country {
+    String message() default "{com.cascaio.validation.Country.invalidCountry}";
 
     Class<?>[] groups() default {};
 

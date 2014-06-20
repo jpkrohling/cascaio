@@ -1,6 +1,6 @@
 package com.cascaio.backend.v1.control.batch.stockquote;
 
-import com.cascaio.backend.v1.control.batch.BasicStarter;
+import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -15,7 +15,7 @@ import javax.ws.rs.Path;
  */
 @Path("/batch/stockQuotes")
 @Singleton
-public class StockQuoteStarter extends BasicStarter {
+public class StockQuoteStarter extends BatchJobStarter {
 
     @Inject
     Logger logger;
@@ -28,7 +28,7 @@ public class StockQuoteStarter extends BasicStarter {
     }
 
     @Override
-    protected String getJobName() {
+    public String getJobName() {
         return "stockQuotes";
     }
 

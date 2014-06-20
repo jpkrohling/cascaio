@@ -5,6 +5,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormatter;
 
 import javax.inject.Inject;
+import java.util.Date;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -32,8 +33,12 @@ public class DateTimeAdapter {
         return dateTime.toString(formatter);
     }
 
+    public String adapt(Date date) {
+        return new DateTime(date.getTime()).toString(formatter);
+    }
+
     public String adapt(LocalDate localDate) {
-        return localDate.toString(formatter);
+        return localDate.toString();
     }
 
 }

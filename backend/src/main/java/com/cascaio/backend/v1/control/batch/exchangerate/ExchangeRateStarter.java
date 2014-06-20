@@ -1,6 +1,6 @@
 package com.cascaio.backend.v1.control.batch.exchangerate;
 
-import com.cascaio.backend.v1.control.batch.BasicStarter;
+import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -13,9 +13,9 @@ import javax.ws.rs.Path;
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-@Path("/batch/exchangeRate")
+@Path("/batch/exchangeRates")
 @Singleton
-public class ExchangeRateStarter extends BasicStarter {
+public class ExchangeRateStarter extends BatchJobStarter {
 
     @Inject
     Logger logger;
@@ -28,7 +28,7 @@ public class ExchangeRateStarter extends BasicStarter {
     }
 
     @Override
-    protected String getJobName() {
+    public String getJobName() {
         return "exchangeRates";
     }
 }

@@ -1,4 +1,4 @@
-package com.cascaio.backend.v1.entity.validation;
+package com.cascaio.api.v1.validation;
 
 import org.joda.money.CurrencyUnit;
 import org.slf4j.Logger;

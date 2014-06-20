@@ -1,12 +1,14 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.BaseResponse;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class CategoryResponse {
+public class CategoryResponse extends BaseResponse {
 
     private String name;
     private String id;

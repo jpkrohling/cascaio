@@ -1,15 +1,33 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.validation.BIC;
+import com.cascaio.api.v1.validation.Bankleitzahl;
+import com.cascaio.api.v1.validation.CNPJ;
+import com.cascaio.api.v1.validation.Country;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class FinancialInstitutionCreateRequest {
+    @NotNull
     private String name;
-    private String codCompensacao; // Brazilian Codigo de Compensacao
-    private String cnpj; // Brazilian CNPJ
-    private String bankleitzahl; // German BLZ
-    private String bic; // as per ISO 9362
+
+    @NotNull
+    @Country
     private String country; // 2 chars
+
+    @CNPJ
+    private String cnpj; // Brazilian CNPJ
+
+    @Bankleitzahl
+    private String bankleitzahl; // German BLZ
+
+    @BIC
+    private String bic; // as per ISO 9362
+
+    private String codCompensacao; // Brazilian Codigo de Compensacao
 
     public String getName() {
         return name;

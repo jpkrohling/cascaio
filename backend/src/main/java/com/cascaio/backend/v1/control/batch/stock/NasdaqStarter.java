@@ -1,6 +1,6 @@
 package com.cascaio.backend.v1.control.batch.stock;
 
-import com.cascaio.backend.v1.control.batch.BasicStarter;
+import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -15,7 +15,7 @@ import javax.ws.rs.Path;
  */
 @Path("/batch/nasdaq")
 @Singleton
-public class NasdaqStarter extends BasicStarter {
+public class NasdaqStarter extends BatchJobStarter {
 
     @Inject
     Logger logger;
@@ -28,7 +28,7 @@ public class NasdaqStarter extends BasicStarter {
     }
 
     @Override
-    protected String getJobName() {
+    public String getJobName() {
         return "nasdaq";
     }
 }

@@ -1,11 +1,24 @@
 package com.cascaio.api.v1.reference;
 
+import com.cascaio.api.v1.validation.ISODate;
+import com.cascaio.api.v1.validation.NumericRate;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class MutualFundQuoteCreateRequest {
+
+    @NotNull
     private String mutualFundId;
+
+    @NotNull
+    @ISODate
     private String date;
+
+    @NotNull
+    @NumericRate
     private String price;
 
     public String getMutualFundId() {
