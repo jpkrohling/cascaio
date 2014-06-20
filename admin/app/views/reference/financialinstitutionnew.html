@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/financialInstitutions">Financial Institutions</a></li>
+        </ol>
+        <h1>
+            Add Financial Institution
+        </h1>
+
+        <alert type="danger" data-ng-show="errors">
+            <span class="pficon-layered">
+                <span class="pficon pficon-error-octagon"></span>
+                <span class="pficon pficon-error-exclamation"></span>
+            </span>
+            <strong>Warning</strong>
+            <ul>
+                <li data-ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </alert>
+
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Name <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="financialInstitutionNew.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country" class="col-md-2 control-label">Country <span class="required">*</span></label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="country" placeholder="Country" data-ng-model="financialInstitutionNew.country">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bankleitzahl" class="col-md-2 control-label">BLZ (Bankleitzahl)</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="bankleitzahl" placeholder="BLZ" data-ng-model="financialInstitutionNew.bankleitzahl">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="bic" class="col-md-2 control-label">BIC</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="bic" placeholder="BIC" data-ng-model="financialInstitutionNew.bic">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="codCompensacao" class="col-md-2 control-label">C&oacute;digo de compensa&ccedil;&atilde;o</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="codCompensacao" placeholder="C&oacute;digo de compensa&ccedil;&atilde;o" data-ng-model="financialInstitutionNew.codCompensacao">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cnpj" class="col-md-2 control-label">CNPJ</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="cnpj" placeholder="CNPJ" data-ng-model="financialInstitutionNew.cnpj">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pull-right">
+                    <a data-ng-href="#/reference/financialInstitutions" class="btn btn-default btn-lg">Cancel</a>
+                    <button data-ng-click="persist()" type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div><!-- /col -->
+    <div class="col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left">
+        <ul class="nav nav-pills nav-stacked" id="reference-menu">
+            <li id="reference-menu-categories"><a data-ng-href="#/reference/categories">Categories</a></li>
+            <li id="reference-menu-exchange-rates"><a data-ng-href="#/reference/exchangeRates">Exchange Rates</a></li>
+            <li id="reference-menu-financial-institutions" class="active"><a data-ng-href="#/reference/financialInstitutions">Financial Institutions</a></li>
+            <li id="reference-menu-mutual-funds"><a data-ng-href="#/reference/mutualFunds">Mutual Funds</a></li>
+            <li id="reference-menu-mutual-funds-quotes"><a data-ng-href="#/reference/mutualFundQuotes">Mutual Fund Quotes</a></li>
+            <li id="reference-menu-stocks"><a data-ng-href="#/reference/stocks">Stocks</a></li>
+            <li id="reference-menu-stock-markets"><a data-ng-href="#/reference/stockMarkets">Stock Markets</a></li>
+            <li id="reference-menu-stock-quotes"><a data-ng-href="#/reference/stockQuotes">Stock Quotes</a></li>
+        </ul>
+    </div><!-- /col -->
+
+</div><!-- /row -->

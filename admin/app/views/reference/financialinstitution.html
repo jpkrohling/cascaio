@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#/reference">Reference Data</a></li>
+            <li><a href="#/reference/financialInstitutions">Financial Institutions</a></li>
+        </ol>
+        <h1>
+            Financial Institutions
+            <a data-ng-href="#/reference/financialInstitutions/new" class="btn btn-primary pull-right" role="button">Create</a>
+        </h1>
+        <p data-ng-hide="financialInstitutions.length">No financial institutions to show</p>
+        <table class="table table-striped table-bordered" data-ng-show="financialInstitutions.length">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Country</th>
+                <th>BLZ</th>
+                <th>BIC</th>
+                <th>CNPJ</th>
+                <th>C&oacute;digo de compensa&ccedil;&atilde;o</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="financialInstitution in financialInstitutions">
+                <td>{{financialInstitution.name}}</td>
+                <td>{{financialInstitution.country}}</td>
+                <td>{{financialInstitution.bankleitzahl || "--"}}</td>
+                <td>{{financialInstitution.bic || "--"}}</td>
+                <td>{{financialInstitution.cnpj || "--"}}</td>
+                <td>{{financialInstitution.codCompensacao || "--"}}</td>
+                <td>
+                    <i class="pficon pficon-delete" tooltip="Remove" tooltip-placement="right" data-ng-click="remove(financialInstitution.id)"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div><!-- /col -->
+    <div class="col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left">
+        <ul class="nav nav-pills nav-stacked" id="reference-menu">
+            <li id="reference-menu-categories"><a data-ng-href="#/reference/categories">Categories</a></li>
+            <li id="reference-menu-exchange-rates"><a data-ng-href="#/reference/exchangeRates">Exchange Rates</a></li>
+            <li id="reference-menu-financial-institutions" class="active"><a data-ng-href="#/reference/financialInstitutions">Financial Institutions</a></li>
+            <li id="reference-menu-mutual-funds"><a data-ng-href="#/reference/mutualFunds">Mutual Funds</a></li>
+            <li id="reference-menu-mutual-funds-quotes"><a data-ng-href="#/reference/mutualFundQuotes">Mutual Fund Quotes</a></li>
+            <li id="reference-menu-stocks"><a data-ng-href="#/reference/stocks">Stocks</a></li>
+            <li id="reference-menu-stock-markets"><a data-ng-href="#/reference/stockMarkets">Stock Markets</a></li>
+            <li id="reference-menu-stock-quotes"><a data-ng-href="#/reference/stockQuotes">Stock Quotes</a></li>
+        </ul>
+    </div><!-- /col -->
+
+</div><!-- /row -->

@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+
+<body data-ng-app="adminApp" data-ng-show="username" data-ng-controller="MainCtrl">
+    <div data-ng-idle-countdown="countdown" data-ng-init="countdown=5" id="idle">
+        <strong>You'll be logged out in {{countdown}} second(s).</strong>.
+    </div>
+
+    <nav class="navbar navbar-default navbar-pf" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/">
+                <img src="bower_components/patternfly/dist/img/brand.svg" alt="cascaio admin" />
+            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-utility">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="pficon pficon-user"></span> {{username}}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a data-ng-click="logout()">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-primary" id="main-nav">
+                <li id="main-nav-dashboard"><a data-ng-href="/">Dashboard</a></li>
+                <li id="main-nav-reference"><a data-ng-href="#/reference">Reference Data</a></li>
+                <li id="main-nav-batch"><a data-ng-href="#/batch">Batch</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid" data-ng-view="">
+    </div><!-- /container -->
+
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted">cascaio admin</p>
+        </div>
+    </div>
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="bower_components/patternfly/dist/js/patternfly.js"></script>
+    <script src="bower_components/ng-idle/angular-idle.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/financialinstitution.js"></script>
+    <script src="scripts/services/authinterceptor.js"></script>
+    <script src="scripts/controllers/categories.js"></script>
+    <script src="scripts/controllers/batch.js"></script>
+    <script src="scripts/services/batch.js"></script>
+    <script src="scripts/services/financialinstitution.js"></script>
+    <script src="scripts/controllers/financialinstitutionnew.js"></script>
+    <!-- endbuild -->
+
+    <script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
+    <script type="text/javascript">
+        window.keycloak = Keycloak('/keycloak.json');
+        window.keycloak.onAuthSuccess = function() {
+            if (!window.keycloak.hasRealmRole("admin")) {
+                alert('Only admins are allowed to login to the admin console');
+                window.keycloak.logout();
+            }
+        };
+        window.keycloak.init({ onLoad: 'login-required' });
+    </script>
+</body>
+</html>

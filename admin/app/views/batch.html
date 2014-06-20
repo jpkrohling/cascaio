@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header page-header-bleed-right">
+            <div class="actions pull-right">
+                <a data-ng-click="load()" href=""><span class="pficon pficon-refresh"></span> Refresh</a>
+            </div>
+            <h1>Batch jobs</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" data-ng-repeat="batch in batches">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>
+                            {{batch.name}}
+                            <a data-ng-click="submitJob(batch.name)" class="btn btn-primary pull-right" role="button">Execute</a>
+                        </h3>
+                        <h4 data-ng-show="batch.executions">Executions</h4>
+                        <h4 data-ng-show="!batch.executions">There are no job executions yet for this batch job.</h4>
+                        <table class="table table-striped" data-ng-show="batch.executions">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Start time</th>
+                                    <th>End time</th>
+                                </tr>
+                            </thead>
+                            <tr data-ng-repeat="execution in batch.executions">
+                                <td>{{execution.id}}</td>
+                                <td>{{execution.status}}</td>
+                                <td>{{execution.startTime}}</td>
+                                <td>{{execution.endTime}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /col -->
+</div><!-- /row -->
