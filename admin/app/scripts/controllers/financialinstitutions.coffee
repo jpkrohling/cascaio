@@ -7,7 +7,7 @@
  # # FinancialInstitutionCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'FinancialInstitutionCtrl', ($scope, toaster, $http, $filter, $location, ngTableParams, FinancialInstitution) ->
+angular.module('adminApp').controller 'FinancialInstitutionsCtrl', ($scope, toaster, $http, $filter, $location, ngTableParams, FinancialInstitution) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 

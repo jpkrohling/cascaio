@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: FinancialinstitutionCtrl', ->
+describe 'Controller: FinancialinstitutionsCtrl', ->
 
   # load the controller's module
   beforeEach module 'adminApp'
 
-  FinancialinstitutionCtrl = {}
+  FinancialinstitutionsCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    FinancialinstitutionCtrl = $controller 'FinancialinstitutionCtrl', {
+    FinancialinstitutionCtrl = $controller 'FinancialinstitutionsCtrl', {
       $scope: scope
     }
 

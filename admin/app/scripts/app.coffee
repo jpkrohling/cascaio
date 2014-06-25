@@ -32,8 +32,8 @@ angular.module('adminApp', [
         controller: 'CategoriesCtrl'
 
     .when '/reference/financialInstitutions',
-        templateUrl: 'views/reference/financialinstitution.html'
-        controller: 'FinancialInstitutionCtrl'
+        templateUrl: 'views/reference/financialinstitutions.html'
+        controller: 'FinancialInstitutionsCtrl'
     .when '/reference/financialInstitutions/new',
         templateUrl: 'views/reference/financialinstitutionnew.html'
         controller: 'FinancialInstitutionNewCtrl'
@@ -41,7 +41,6 @@ angular.module('adminApp', [
     .when '/reference/categories',
         templateUrl: 'views/reference/categories.html'
         controller: 'CategoriesCtrl'
-
     .when '/reference/categories/new',
         templateUrl: 'views/reference/categorynew.html'
         controller: 'CategoryNewCtrl'
