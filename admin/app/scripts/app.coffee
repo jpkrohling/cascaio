@@ -49,6 +49,10 @@ angular.module('adminApp', [
         templateUrl: 'views/reference/exchangerates.html'
         controller: 'ExchangeRatesCtrl'
 
+    .when '/reference/mutualFunds',
+        templateUrl: 'views/reference/mutualfunds.html'
+        controller: 'MutualFundsCtrl'
+
     .when '/batch',
         templateUrl: 'views/batch.html'
         controller: 'BatchCtrl'
