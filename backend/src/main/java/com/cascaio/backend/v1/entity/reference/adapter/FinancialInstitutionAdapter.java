@@ -15,6 +15,7 @@ public class FinancialInstitutionAdapter extends
     @Override
     public FinancialInstitutionResponse adaptPersistent(FinancialInstitution financialInstitution) {
         FinancialInstitutionResponse response = new FinancialInstitutionResponse();
+        response.setId(financialInstitution.getId());
         response.setBankleitzahl(financialInstitution.getBankleitzahl());
         response.setBic(financialInstitution.getBic());
         response.setCnpj(financialInstitution.getCnpj());

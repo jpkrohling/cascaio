@@ -8,17 +8,19 @@
  #
  # Main module of the application.
 ###
-angular
-.module('adminApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ngIdle',
-    'ui.bootstrap'
-  ])
+angular.module('adminApp', [
+  'ngAnimate',
+  'ngCookies',
+  'ngResource',
+  'ngRoute',
+  'ngSanitize',
+  'ngTouch',
+  'ngIdle',
+  'ui.bootstrap',
+  'toaster',
+  'ui.select2',
+  'ngTable'
+])
 .config ($routeProvider, $idleProvider, $keepaliveProvider) ->
     $routeProvider
     .when '/',
@@ -41,8 +43,8 @@ angular
         controller: 'CategoriesCtrl'
 
     .when '/batch',
-      templateUrl: 'views/batch.html'
-      controller: 'BatchCtrl'
+        templateUrl: 'views/batch.html'
+        controller: 'BatchCtrl'
 
     .otherwise
         redirectTo: '/'

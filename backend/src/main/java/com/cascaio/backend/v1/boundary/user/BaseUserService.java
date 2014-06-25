@@ -22,7 +22,7 @@ import java.util.List;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @SuppressWarnings("CdiManagedBeanInconsistencyInspection")
-@RolesAllowed({"user"})
+@RolesAllowed({"user", "admin"})
 public abstract class BaseUserService
         <   CreateRequest,
             UpdateRequest extends BaseUpdateRequest,

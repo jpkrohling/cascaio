@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: Authinterceptor', ->
+describe 'Service: AuthInterceptor', ->
 
   # load the service's module
   beforeEach module 'adminApp'
 
   # instantiate service
-  Authinterceptor = {}
-  beforeEach inject (_Authinterceptor_) ->
-    Authinterceptor = _Authinterceptor_
+  AuthInterceptor = {}
+  beforeEach inject (_AuthInterceptor_) ->
+    AuthInterceptor = _AuthInterceptor_
 
   it 'should do something', ->
-    expect(!!Authinterceptor).toBe true
+    expect(!!AuthInterceptor).toBe true

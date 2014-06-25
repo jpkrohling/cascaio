@@ -4,6 +4,7 @@ import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.RunAs;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import javax.ws.rs.Path;
  */
 @Path("/batch/exchangeRates")
 @Singleton
+@RunAs("admin")
 public class ExchangeRateStarter extends BatchJobStarter {
 
     @Inject

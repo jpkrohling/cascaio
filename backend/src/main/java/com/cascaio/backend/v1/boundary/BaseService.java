@@ -45,14 +45,6 @@ public abstract class BaseService<
     @Inject
     Logger logger;
 
-    public Adapter getAdapter() {
-        return this.adapter;
-    }
-
-    public Class<Persistent> getPersistentClass() {
-        return (Class<Persistent>) persistentSample.getClass();
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -108,7 +100,7 @@ public abstract class BaseService<
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public ApiResponse read(@PathParam("id") String id) {
         preRead(id);
         ApiResponse response = getInstrumentedAdapter().adaptPersistent(readAsEntity(id));
@@ -118,14 +110,14 @@ public abstract class BaseService<
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public List<ApiResponse> list() {
         List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity());
         postList(response);
         return response;
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public List<Persistent> listAsEntity() {
         preList();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
@@ -140,10 +132,6 @@ public abstract class BaseService<
         return response;
     }
 
-    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
-        // no op on this implementation
-    }
-
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") String id) {
@@ -152,12 +140,7 @@ public abstract class BaseService<
         getEntityManager().remove(financialInstitution);
     }
 
-    @OPTIONS
-    public void preflight() {
-        // do nothing, as this is handled as a filter
-    }
-
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public Persistent readAsEntity(String id) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Persistent> query = builder.createQuery(getPersistentClass());
@@ -169,52 +152,53 @@ public abstract class BaseService<
     }
 
     public void preCreate(CreateRequest request) {
-
     }
 
     public void postCreate(ApiResponse response) {
-
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public void preRead(String id) {
-
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public void postRead(ApiResponse response) {
-
     }
 
     public void preUpdate(UpdateRequest request) {
-
     }
 
     public void postUpdate(ApiResponse response) {
-
     }
 
     public void preDelete(String id) {
-
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public void preList() {
-
     }
 
     public void prePersist(Persistent persistent) {
-
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public void postList(List<ApiResponse> response) {
-
     }
 
-    @RolesAllowed({"user"})
+    @RolesAllowed({"user", "admin"})
     public void postListAsEntity(List<Persistent> response) {
+    }
 
+    public Adapter instrumentAdapter(Adapter adapter) {
+        return adapter;
+    }
+
+    public Adapter getAdapter() {
+        return this.adapter;
+    }
+
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
+        // no op on this implementation
     }
 
     private Adapter getInstrumentedAdapter() {
@@ -222,11 +206,11 @@ public abstract class BaseService<
         return instrumentAdapter(adapter);
     }
 
-    public Adapter instrumentAdapter(Adapter adapter) {
-        return adapter;
+    protected EntityManager getEntityManager() {
+        return entityManager;
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    private Class<Persistent> getPersistentClass() {
+        return (Class<Persistent>) persistentSample.getClass();
     }
 }

@@ -30,7 +30,10 @@
             <div class="form-group">
                 <label for="country" class="col-md-2 control-label">Country <span class="required">*</span></label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="country" placeholder="Country" data-ng-model="financialInstitutionNew.country">
+                    <select data-ui-select2 data-ng-model="financialInstitutionNew.country" data-placeholder="Select a country" id="country">
+                        <option></option>
+                        <option data-ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
@@ -66,17 +69,5 @@
 
         </form>
     </div><!-- /col -->
-    <div class="col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left">
-        <ul class="nav nav-pills nav-stacked" id="reference-menu">
-            <li id="reference-menu-categories"><a data-ng-href="#/reference/categories">Categories</a></li>
-            <li id="reference-menu-exchange-rates"><a data-ng-href="#/reference/exchangeRates">Exchange Rates</a></li>
-            <li id="reference-menu-financial-institutions" class="active"><a data-ng-href="#/reference/financialInstitutions">Financial Institutions</a></li>
-            <li id="reference-menu-mutual-funds"><a data-ng-href="#/reference/mutualFunds">Mutual Funds</a></li>
-            <li id="reference-menu-mutual-funds-quotes"><a data-ng-href="#/reference/mutualFundQuotes">Mutual Fund Quotes</a></li>
-            <li id="reference-menu-stocks"><a data-ng-href="#/reference/stocks">Stocks</a></li>
-            <li id="reference-menu-stock-markets"><a data-ng-href="#/reference/stockMarkets">Stock Markets</a></li>
-            <li id="reference-menu-stock-quotes"><a data-ng-href="#/reference/stockQuotes">Stock Quotes</a></li>
-        </ul>
-    </div><!-- /col -->
-
+    <cas-reference-data-menu selected="financial-institutions"></cas-reference-data-menu>
 </div><!-- /row -->

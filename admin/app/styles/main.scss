@@ -54,3 +54,47 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+i.pficon.action {
+  cursor: pointer;
+}
+
+.feedback-aligner {
+  height: 0;
+  position: fixed;
+  text-align: center;
+  top: 1.5em;
+  width: 100%;
+  z-index: 100;
+}
+
+.feedback-aligner .alert {
+  background-position: 1.27273em center;
+  background-repeat: no-repeat;
+  border-radius: 2px;
+  border-width: 1px;
+  color: #4d5258;
+  display: inline-block;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin: 0;
+  padding: 0.909091em 3.63636em;
+  position: relative;
+  text-align: left;
+}
+.feedback-aligner .alert.alert-success {
+  background-color: #e4f1e1;
+  border-color: #4b9e39;
+}
+.feedback-aligner .alert.alert-danger {
+  background-color: #f8e7e7;
+  border-color: #b91415;
+}
+.feedback-aligner .alert.alert-warning {
+  background-color: #fef1e9;
+  border-color: #f17528;
+}
+.feedback-aligner .alert.alert-info {
+  background-color: #e4f3fa;
+  border-color: #5994b2;
+}
