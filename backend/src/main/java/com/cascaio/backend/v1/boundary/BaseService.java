@@ -201,6 +201,10 @@ public abstract class BaseService<
         // no op on this implementation
     }
 
+    public HttpServletRequest getServletRequest() {
+        return servletRequest;
+    }
+
     private Adapter getInstrumentedAdapter() {
         Adapter adapter = getAdapter();
         return instrumentAdapter(adapter);
