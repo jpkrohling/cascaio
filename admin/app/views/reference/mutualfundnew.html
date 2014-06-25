@@ -9,16 +9,7 @@
             Add Mutual Fund
         </h1>
 
-        <div data-alert data-type="danger" data-ng-show="errors">
-            <span class="pficon-layered">
-                <span class="pficon pficon-error-octagon"></span>
-                <span class="pficon pficon-error-exclamation"></span>
-            </span>
-            <strong>Warning</strong>
-            <ul>
-                <li data-ng-repeat="error in errors">{{error}}</li>
-            </ul>
-        </div>
+        <div data-cas-errors-box></div>
 
         <form role="form" class="form-horizontal">
             <div class="form-group">

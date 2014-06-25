@@ -2,9 +2,9 @@
 
 ###*
  # @ngdoc directive
- # @name adminApp.directive:referenceDataMenu
+ # @name adminApp.directive:casReferenceDataMenu
  # @description
- # # referenceDataMenu
+ # # casReferenceDataMenu
 ###
 angular.module('adminApp').directive('casReferenceDataMenu', ($document) ->
   templateUrl: 'views/directives/referencedatamenu.html'
