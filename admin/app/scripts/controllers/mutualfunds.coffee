@@ -7,7 +7,7 @@
  # # MutualFundsCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $filter, toaster, ngTableParams, MutualFund) ->
+angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $filter, toaster, ngTableParams, MutualFund) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 
@@ -37,7 +37,7 @@ angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $filter, toast
 
   $scope.remove = (mutualFund) ->
     mutualFund.$remove().then(->
-      toaster.pop('success', '', 'Financial institution removed')
+      toaster.pop('success', '', 'Mutual Fund removed')
       $scope.mutualFunds.splice( $scope.mutualFunds.indexOf(mutualFund), 1 );
       $scope.tableParams.reload()
     )

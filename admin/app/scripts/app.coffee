@@ -52,6 +52,9 @@ angular.module('adminApp', [
     .when '/reference/mutualFunds',
         templateUrl: 'views/reference/mutualfunds.html'
         controller: 'MutualFundsCtrl'
+    .when '/reference/mutualFunds/new',
+        templateUrl: 'views/reference/mutualfundnew.html'
+        controller: 'MutualFundNewCtrl'
 
     .when '/batch',
         templateUrl: 'views/batch.html'

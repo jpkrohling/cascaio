@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/mutualFunds">Mutual Funds</a></li>
+        </ol>
+        <h1>
+            Add Mutual Fund
+        </h1>
+
+        <div data-alert data-type="danger" data-ng-show="errors">
+            <span class="pficon-layered">
+                <span class="pficon pficon-error-octagon"></span>
+                <span class="pficon pficon-error-exclamation"></span>
+            </span>
+            <strong>Warning</strong>
+            <ul>
+                <li data-ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Name <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="mutualFundNew.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="isin" class="col-md-2 control-label">ISIN <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="isin" placeholder="ISIN" data-ng-model="mutualFundNew.isin">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="currency" class="col-md-2 control-label">Currency <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <select data-ui-select2="true" data-ng-model="mutualFundNew.currency" data-placeholder="Currency" id="currency">
+                        <option></option>
+                        <option data-ng-repeat="currency in currencies" value="{{currency.code}}">{{currency.code}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="wkn" class="col-md-2 control-label">WKN</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="wkn" placeholder="WKN" data-ng-model="mutualFundNew.wkn">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pull-right">
+                    <a data-ng-href="#/reference/mutualFunds" class="btn btn-default btn-lg">Cancel</a>
+                    <button data-ng-click="persist()" type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div><!-- /col -->
+    <div data-cas-reference-data-menu data-selected="mutual-funds"></div>
+</div><!-- /row -->
