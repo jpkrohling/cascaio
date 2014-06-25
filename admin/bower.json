@@ -14,10 +14,8 @@
     "angular-touch": "1.2.16",
     "angular-route": "1.2.16",
     "angular-ui-bootstrap-bower": "0.11.0",
-    "datatables": "~1.10.0",
     "patternfly": "1.0.3",
     "ng-idle": "0.3.5",
-    "angular-flash": "~0.1.13",
     "AngularJS-Toaster": "~0.4.7",
     "angular-ui-select2": "~0.0.5",
     "ng-table": "~0.3.3"
@@ -31,11 +29,6 @@
       "main": [
         "dist/js/patternfly.js",
         "dist/css/patternfly.css"
-      ]
-    },
-    "datatables": {
-      "main": [
-        "media/js/jquery.dataTables.js"
       ]
     }
   },

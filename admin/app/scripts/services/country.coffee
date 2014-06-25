@@ -7,5 +7,5 @@
  # # Country
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'Country', ($resource) ->
-  $resource('http://api.cascaio.com:8080/v1/reference/countries')
+angular.module('adminApp').service 'Country', ($resource, apiUrl) ->
+  $resource(apiUrl + '/reference/countries')

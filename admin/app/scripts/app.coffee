@@ -42,6 +42,14 @@ angular.module('adminApp', [
         templateUrl: 'views/reference/categories.html'
         controller: 'CategoriesCtrl'
 
+    .when '/reference/categories/new',
+        templateUrl: 'views/reference/categorynew.html'
+        controller: 'CategoryNewCtrl'
+
+    .when '/reference/exchangeRates',
+        templateUrl: 'views/reference/exchangerates.html'
+        controller: 'ExchangeRatesCtrl'
+
     .when '/batch',
         templateUrl: 'views/batch.html'
         controller: 'BatchCtrl'

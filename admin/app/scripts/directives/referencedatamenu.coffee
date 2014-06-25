@@ -8,7 +8,7 @@
 ###
 angular.module('adminApp').directive('casReferenceDataMenu', ($document) ->
   templateUrl: 'views/directives/referencedatamenu.html'
-  restrict: 'E'
+  restrict: 'A'
   scope: {
     selected: '@selected'
   }

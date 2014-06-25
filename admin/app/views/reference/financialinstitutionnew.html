@@ -9,7 +9,7 @@
             Add Financial Institution
         </h1>
 
-        <alert type="danger" data-ng-show="errors">
+        <div data-alert data-type="danger" data-ng-show="errors">
             <span class="pficon-layered">
                 <span class="pficon pficon-error-octagon"></span>
                 <span class="pficon pficon-error-exclamation"></span>
@@ -18,7 +18,7 @@
             <ul>
                 <li data-ng-repeat="error in errors">{{error}}</li>
             </ul>
-        </alert>
+        </div>
 
         <form role="form" class="form-horizontal">
             <div class="form-group">
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="country" class="col-md-2 control-label">Country <span class="required">*</span></label>
                 <div class="col-md-6">
-                    <select data-ui-select2 data-ng-model="financialInstitutionNew.country" data-placeholder="Select a country" id="country">
+                    <select data-ui-select2="true" data-ng-model="financialInstitutionNew.country" data-placeholder="Select a country" id="country">
                         <option></option>
                         <option data-ng-repeat="country in countries" value="{{country.code}}">{{country.name}}</option>
                     </select>
@@ -69,5 +69,5 @@
 
         </form>
     </div><!-- /col -->
-    <cas-reference-data-menu selected="financial-institutions"></cas-reference-data-menu>
+    <div data-cas-reference-data-menu data-selected="financial-institutions"></div>
 </div><!-- /row -->

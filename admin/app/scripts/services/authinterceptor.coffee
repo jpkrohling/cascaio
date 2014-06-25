@@ -7,17 +7,17 @@
  # # AuthInterceptor
  # Service in the adminApp.
 ###
-angular.module('adminApp').factory 'AuthInterceptor', ($q) ->
+angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl) ->
   {
-  request: (config) ->
-    if config.url.indexOf('api.cascaio.com') == -1
-      return config
+  request: (request) ->
+    if request.url.indexOf(apiUrl) == -1
+      return request
 
-    addBearer = () ->
+    addBearer = ->
       window.keycloak.updateToken(5).success(() ->
-        config.headers.Authorization = 'Bearer ' + window.keycloak.token;
+        request.headers.Authorization = 'Bearer ' + window.keycloak.token;
         deferred.notify()
-        deferred.resolve(config)
+        deferred.resolve(request)
       )
 
     deferred = $q.defer()
@@ -25,16 +25,20 @@ angular.module('adminApp').factory 'AuthInterceptor', ($q) ->
       addBearer()
     else
       oldCallback = window.keycloak.onAuthSuccess
-      window.keycloak.onAuthSuccess = () ->
+      window.keycloak.onAuthSuccess = ->
         oldCallback && oldCallback()
         addBearer()
         window.keycloak.onAuthSuccess = oldCallback
 
     return $q.when(deferred.promise)
-  response: (config) ->
-    return config
+
+  responseError: (rejection) ->
+    if (rejection.status == 401)
+      toaster.pop('error', 'Logged out', 'Your session has expired. Please, login again.')
+      window.keycloak.logout()
+
+    return $q.reject(rejection)
   }
 
 
-angular.module('adminApp').config ($httpProvider) ->
-  $httpProvider.interceptors.push('AuthInterceptor')
+angular.module('adminApp').config ($httpProvider) -> $httpProvider.interceptors.push('AuthInterceptor')

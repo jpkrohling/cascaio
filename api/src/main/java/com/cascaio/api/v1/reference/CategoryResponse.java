@@ -13,6 +13,7 @@ public class CategoryResponse extends BaseResponse {
     private String name;
     private String id;
     private Collection<CategoryResponse> subCategories = new ArrayList<>();
+    private CategoryResponse parent;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class CategoryResponse extends BaseResponse {
 
     public void addSubCategory(CategoryResponse subCategory) {
         this.subCategories.add(subCategory);
+    }
+
+    public CategoryResponse getParent() {
+        return parent;
+    }
+
+    public void setParent(CategoryResponse parent) {
+        this.parent = parent;
     }
 }

@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#/">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/exchangeRates">Exchange Rates</a></li>
+        </ol>
+
+        <h1>Exchange Rates</h1>
+
+        <form role="form" class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="currencyFrom">Currency from</label>
+                <select data-ui-select2="true" data-ng-model="currencyFrom" data-placeholder="Select a currency to convert from" id="currencyFrom">
+                    <option></option>
+                    <option data-ng-repeat="currency in currencies" value="{{currency.code}}">{{currency.code}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="currencyTo">Currency to</label>
+                <select data-ui-select2="true" data-ng-model="currencyTo" data-placeholder="Select a currency to convert to" id="currencyTo">
+                    <option></option>
+                    <option data-ng-repeat="currency in currencies" value="{{currency.code}}">{{currency.code}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="dateStart">Start date</label>
+                <input type="text" class="form-control" id="dateStart" data-ng-model="dateStart" placeholder="Starting at">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="dateEnd">End date</label>
+                <input type="text" class="form-control" id="dateEnd" data-ng-model="dateEnd" placeholder="Finishing at">
+            </div>
+
+            <button data-ng-click="load()" type="submit" class="btn btn-primary btn-lg" data-ng-show="validCurrencies()">Find</button>
+        </form>
+
+        <p data-ng-show="!exchangeRates.length && !loading">No exchange rates to show</p>
+
+        <div class="progress-description" data-ng-show="loading">
+            <div class="spinner spinner-xs spinner-inline"></div> <strong>Loading:</strong>  Exchange Rates
+        </div>
+
+        <div data-ng-show="exchangeRates.length && !loading">
+            <table data-ng-table="tableParams" data-show-filter="true" class="table table-striped table-bordered">
+                <tr data-ng-repeat="exchangeRate in $data">
+                    <td data-title="'From'" data-filter="{ 'currencyFrom': 'text' }">
+                        {{exchangeRate.currencyFrom}}
+                    </td>
+                    <td data-title="'To'" data-filter="{ 'currencyTo': 'text' }">
+                        {{exchangeRate.currencyTo}}
+                    </td>
+                    <td data-title="'Date'" data-filter="{ 'date': 'text' }">
+                        {{exchangeRate.date}}
+                    </td>
+                    <td data-title="'Rate'">
+                        {{exchangeRate.rate}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div><!-- /col -->
+
+    <div data-cas-reference-data-menu data-selected="exchange-rates"></div>
+
+</div><!-- /row -->

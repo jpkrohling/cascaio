@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/categories">Categories</a></li>
+        </ol>
+        <h1>
+            Add Category
+        </h1>
+
+        <div data-alert data-type="danger" data-ng-show="errors">
+            <span class="pficon-layered">
+                <span class="pficon pficon-error-octagon"></span>
+                <span class="pficon pficon-error-exclamation"></span>
+            </span>
+            <strong>Warning</strong>
+            <ul>
+                <li data-ng-repeat="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Name <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="categoryNew.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="parent" class="col-md-2 control-label">Parent <span class="required">*</span></label>
+                <div class="col-md-6">
+                    <select data-ui-select2="true" data-ng-model="categoryNew.parentId" data-placeholder="Select a parent category" id="parent">
+                        <option></option>
+                        <option data-ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pull-right">
+                    <a data-ng-href="#/reference/categories" class="btn btn-default btn-lg">Cancel</a>
+                    <button data-ng-click="persist()" type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div><!-- /col -->
+    <div data-cas-reference-data-menu data-selected="categories"></div>
+</div><!-- /row -->

@@ -28,6 +28,23 @@ public class CategoryAdapter extends
         for (Category subCategory : category.getSubCategories()) {
             response.addSubCategory(adaptPersistent(subCategory));
         }
+
+        if (null != category.getParent()) {
+            response.setParent(adaptParent(category.getParent()));
+        }
+
+        return response;
+    }
+
+    private CategoryResponse adaptParent(Category category) {
+        CategoryResponse response = new CategoryResponse();
+        response.setName(category.getName());
+        response.setId(category.getId());
+
+        if (null != category.getParent()) {
+            response.setParent(adaptParent(category.getParent()));
+        }
+
         return response;
     }
 

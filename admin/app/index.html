@@ -20,9 +20,9 @@
 </head>
 
 <body data-ng-app="adminApp" data-ng-controller="MainCtrl">
-    <toaster-container toaster-options="{'time-out': 5000}"></toaster-container>
+    <div data-toaster-container="true" data-toaster-options="{'time-out': 5000}"></div>
 
-    <div data-ng-show="!username" class="jumbotron">
+    <div data-ng-hide="username" class="jumbotron">
         <h1>
             Authentication in process, please wait.
         </h1>
@@ -104,10 +104,8 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
     <script src="bower_components/patternfly/dist/js/patternfly.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
-    <script src="bower_components/angular-flash/dist/angular-flash.js"></script>
     <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
     <script src="bower_components/select2/select2.js"></script>
     <script src="bower_components/angular-ui-select2/src/select2.js"></script>
@@ -127,6 +125,14 @@
     <script src="scripts/controllers/financialinstitutionnew.js"></script>
     <script src="scripts/services/country.js"></script>
     <script src="scripts/directives/referencedatamenu.js"></script>
+    <script src="scripts/services/errorinterceptor.js"></script>
+    <script src="scripts/services/backendhost.js"></script>
+    <script src="scripts/services/apiurl.js"></script>
+    <script src="scripts/services/category.js"></script>
+    <script src="scripts/controllers/categorynew.js"></script>
+    <script src="scripts/controllers/exchangerates.js"></script>
+    <script src="scripts/services/exchangerate.js"></script>
+    <script src="scripts/services/currency.js"></script>
     <!-- endbuild -->
 
     <script src="https://auth.cascaio.com/auth/js/keycloak.js"></script>
