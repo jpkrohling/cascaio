@@ -1,6 +1,7 @@
 package com.cascaio.backend.v1.boundary;
 
 import com.cascaio.api.v1.BaseUpdateRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.backend.v1.entity.CascaioEntity;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.EntityAdapter;
@@ -26,15 +27,15 @@ import java.util.List;
 public abstract class BaseService<
         CreateRequest,
         UpdateRequest extends BaseUpdateRequest,
+        QueryRequest,
+        ReadRequest extends ReadRequestById,
         ApiResponse,
         Persistent extends CascaioEntity,
         Adapter extends EntityAdapter<CreateRequest, UpdateRequest, ApiResponse, Persistent>
         > {
-    @Inject
-    EntityManager entityManager;
 
     @Inject
-    HttpServletRequest servletRequest;
+    EntityManager entityManager;
 
     @Inject
     Adapter adapter;
@@ -99,11 +100,12 @@ public abstract class BaseService<
 
     @GET
     @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user", "admin"})
-    public ApiResponse read(@PathParam("id") String id) {
-        preRead(id);
-        ApiResponse response = getInstrumentedAdapter().adaptPersistent(readAsEntity(id));
+    public ApiResponse read(@Valid @BeanParam ReadRequest request) {
+        preRead(request);
+        ApiResponse response = getInstrumentedAdapter().adaptPersistent(readAsEntity(request.getId()));
         postRead(response);
         return response;
     }
@@ -111,14 +113,14 @@ public abstract class BaseService<
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user", "admin"})
-    public List<ApiResponse> list() {
-        List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity());
-        postList(response);
+    public List<ApiResponse> list(@Valid @BeanParam QueryRequest request) {
+        List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity(request));
+        postList(request, response);
         return response;
     }
 
     @RolesAllowed({"user", "admin"})
-    public List<Persistent> listAsEntity() {
+    public List<Persistent> listAsEntity(QueryRequest request) {
         preList();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Persistent> query = builder.createQuery(getPersistentClass());
@@ -134,9 +136,9 @@ public abstract class BaseService<
 
     @DELETE
     @Path("{id}")
-    public void delete(@PathParam("id") String id) {
-        preDelete(id);
-        Persistent financialInstitution = readAsEntity(id);
+    public void delete(@Valid @BeanParam ReadRequest request) {
+        preDelete(request);
+        Persistent financialInstitution = readAsEntity(request.getId());
         getEntityManager().remove(financialInstitution);
     }
 
@@ -158,7 +160,7 @@ public abstract class BaseService<
     }
 
     @RolesAllowed({"user", "admin"})
-    public void preRead(String id) {
+    public void preRead(ReadRequest request) {
     }
 
     @RolesAllowed({"user", "admin"})
@@ -171,7 +173,7 @@ public abstract class BaseService<
     public void postUpdate(ApiResponse response) {
     }
 
-    public void preDelete(String id) {
+    public void preDelete(ReadRequest request) {
     }
 
     @RolesAllowed({"user", "admin"})
@@ -182,7 +184,7 @@ public abstract class BaseService<
     }
 
     @RolesAllowed({"user", "admin"})
-    public void postList(List<ApiResponse> response) {
+    public void postList(QueryRequest request, List<ApiResponse> response) {
     }
 
     @RolesAllowed({"user", "admin"})
@@ -199,10 +201,6 @@ public abstract class BaseService<
 
     public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
         // no op on this implementation
-    }
-
-    public HttpServletRequest getServletRequest() {
-        return servletRequest;
     }
 
     private Adapter getInstrumentedAdapter() {

@@ -1,5 +1,7 @@
 package com.cascaio.backend.v1.boundary.user;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.user.SavingsAccountCreateRequest;
 import com.cascaio.api.v1.user.SavingsAccountResponse;
 import com.cascaio.api.v1.user.SavingsAccountUpdateRequest;
@@ -7,7 +9,6 @@ import com.cascaio.backend.v1.entity.user.SavingsAccount;
 import com.cascaio.backend.v1.entity.user.adapter.SavingsAccountAdapter;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.Path;
 
 /**
@@ -18,6 +19,8 @@ import javax.ws.rs.Path;
 public class SavingsAccountService extends BaseUserService<
         SavingsAccountCreateRequest,
         SavingsAccountUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         SavingsAccountResponse,
         SavingsAccount,
         SavingsAccountAdapter> {

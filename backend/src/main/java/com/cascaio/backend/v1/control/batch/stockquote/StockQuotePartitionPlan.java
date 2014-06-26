@@ -63,7 +63,7 @@ public class StockQuotePartitionPlan extends PartitionPlanImpl {
 
     public List<Stock> getAllStocks() {
         if (null == stockList) {
-            stockList = stockService.listAsEntity();
+            stockList = stockService.listAsEntity(null);
         }
         return stockList;
     }

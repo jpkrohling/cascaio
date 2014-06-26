@@ -1,5 +1,8 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.StockMarketCreateRequest;
 import com.cascaio.api.v1.reference.StockMarketResponse;
 import com.cascaio.api.v1.reference.StockMarketUpdateRequest;
@@ -28,6 +31,8 @@ import java.util.List;
 public class StockMarketService extends BaseService<
         StockMarketCreateRequest,
         StockMarketUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         StockMarketResponse,
         StockMarket,
         StockMarketAdapter> {

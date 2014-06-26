@@ -1,6 +1,7 @@
 package com.cascaio.backend.v1.boundary.user;
 
 import com.cascaio.api.v1.BaseUpdateRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.CascaioEntity_;
 import com.cascaio.backend.v1.entity.user.CascaioUser;
@@ -26,10 +27,12 @@ import java.util.List;
 public abstract class BaseUserService
         <   CreateRequest,
             UpdateRequest extends BaseUpdateRequest,
+            QueryRequest,
+            ReadRequest extends ReadRequestById,
             ApiResponse,
             Persistent extends UserData,
             Adapter extends UserDataAdapter<CreateRequest, UpdateRequest, ApiResponse, Persistent>
-        > extends BaseService<CreateRequest, UpdateRequest, ApiResponse, Persistent, Adapter> {
+        > extends BaseService<CreateRequest, UpdateRequest, QueryRequest, ReadRequest, ApiResponse, Persistent, Adapter> {
 
     @Resource
     SessionContext sessionContext;

@@ -1,5 +1,8 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.StockCreateRequest;
 import com.cascaio.api.v1.reference.StockResponse;
 import com.cascaio.api.v1.reference.StockUpdateRequest;
@@ -29,6 +32,8 @@ import java.util.List;
 public class StockService extends BaseService<
         StockCreateRequest,
         StockUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         StockResponse,
         Stock,
         StockAdapter> {

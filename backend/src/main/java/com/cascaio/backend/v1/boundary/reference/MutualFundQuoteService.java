@@ -1,6 +1,10 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.MutualFundQuoteCreateRequest;
+import com.cascaio.api.v1.reference.MutualFundQuoteQueryRequest;
 import com.cascaio.api.v1.reference.MutualFundQuoteResponse;
 import com.cascaio.api.v1.reference.MutualFundQuoteUpdateRequest;
 import com.cascaio.backend.v1.boundary.BaseService;
@@ -34,6 +38,8 @@ import java.util.List;
 public class MutualFundQuoteService extends BaseService<
         MutualFundQuoteCreateRequest,
         MutualFundQuoteUpdateRequest,
+        MutualFundQuoteQueryRequest,
+        ReadRequestById,
         MutualFundQuoteResponse,
         MutualFundQuote,
         MutualFundQuoteAdapter> {
@@ -50,17 +56,11 @@ public class MutualFundQuoteService extends BaseService<
     @Context
     UriInfo uriInfo;
 
-    @RolesAllowed("admin")
     @Override
-    public List<MutualFundQuoteResponse> list() {
-        List<String> fundIds = uriInfo.getPathParameters().get("fundId");
-        if (fundIds.size() != 1) {
-            throw new RuntimeException("Unexpected to have two fundIds on the path");
-        }
-
-        String fundId = fundIds.get(0);
-        MutualFund mutualFund = mutualFundService.readAsEntity(fundId);
-        return getAdapter().adaptPersistent(getByMutualFundAsEntity(mutualFund));
+    @RolesAllowed("admin")
+    public List<MutualFundQuote> listAsEntity(MutualFundQuoteQueryRequest request) {
+        MutualFund mutualFund = mutualFundService.readAsEntity(request.getFundId());
+        return getByMutualFundAsEntity(mutualFund);
     }
 
     @RolesAllowed("admin")

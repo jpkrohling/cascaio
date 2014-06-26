@@ -1,15 +1,13 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.ExchangeRateCreateRequest;
+import com.cascaio.api.v1.reference.ExchangeRateQueryRequest;
 import com.cascaio.api.v1.reference.ExchangeRateResponse;
 import com.cascaio.api.v1.reference.ExchangeRateUpdateRequest;
-import com.cascaio.api.v1.validation.Currency;
-import com.cascaio.api.v1.validation.ISODate;
 import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate_;
-import com.cascaio.backend.v1.entity.reference.MutualFundQuote;
-import com.cascaio.backend.v1.entity.reference.MutualFundQuote_;
 import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.ExchangeRateAdapter;
 import org.joda.money.CurrencyUnit;
@@ -22,12 +20,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +37,8 @@ import java.util.List;
 public class ExchangeRateService extends BaseService<
         ExchangeRateCreateRequest,
         ExchangeRateUpdateRequest,
+        ExchangeRateQueryRequest,
+        ReadRequestById,
         ExchangeRateResponse,
         ExchangeRate,
         ExchangeRateAdapter> {
@@ -50,13 +49,12 @@ public class ExchangeRateService extends BaseService<
     @Inject
     private DateTimeAdapter dateTimeAdapter;
 
-    @Override
-    @RolesAllowed({"user", "admin"})
-    public List<ExchangeRateResponse> list() {
-        CurrencyUnit from = CurrencyUnit.of(getServletRequest().getParameter("currencyFrom"));
-        CurrencyUnit to = CurrencyUnit.of(getServletRequest().getParameter("currencyTo"));
-        String dateStart = getServletRequest().getParameter("dateStart");
-        String dateEnd = getServletRequest().getParameter("dateEnd");
+    @RolesAllowed({"admin", "user"})
+    public List<ExchangeRate> listAsEntity(ExchangeRateQueryRequest request) {
+        CurrencyUnit from = CurrencyUnit.of(request.getCurrencyFrom());
+        CurrencyUnit to = CurrencyUnit.of(request.getCurrencyTo());
+        String dateStart = request.getDateStart();
+        String dateEnd = request.getDateEnd();
 
         LocalDate localDateStart = null;
         LocalDate localDateEnd = null;
@@ -69,16 +67,6 @@ public class ExchangeRateService extends BaseService<
             localDateEnd = dateTimeAdapter.adaptToLocalDate(dateEnd);
         }
 
-        return adapter.adaptPersistent(listAsEntity(from, to, localDateStart, localDateEnd));
-    }
-
-    @Override
-    public List<ExchangeRate> listAsEntity() {
-        throw new RuntimeException("listAsEntity() is not allowed for Exchange Rate");
-    }
-
-    @RolesAllowed({"admin", "user"})
-    public List<ExchangeRate> listAsEntity(CurrencyUnit from, CurrencyUnit to, LocalDate dateStart, LocalDate dateEnd) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<ExchangeRate> query = builder.createQuery(ExchangeRate.class);
         Root<ExchangeRate> root = query.from(ExchangeRate.class);
@@ -88,12 +76,12 @@ public class ExchangeRateService extends BaseService<
         predicates.add(builder.equal(root.get(ExchangeRate_.currencyFrom), from));
         predicates.add(builder.equal(root.get(ExchangeRate_.currencyTo), to));
 
-        if (null != dateStart) {
-            predicates.add(builder.greaterThanOrEqualTo(root.get(ExchangeRate_.date), dateStart));
+        if (null != localDateStart) {
+            predicates.add(builder.greaterThanOrEqualTo(root.get(ExchangeRate_.date), localDateStart));
         }
 
-        if (null != dateEnd) {
-            predicates.add(builder.lessThanOrEqualTo(root.get(ExchangeRate_.date), dateEnd));
+        if (null != localDateEnd) {
+            predicates.add(builder.lessThanOrEqualTo(root.get(ExchangeRate_.date), localDateEnd));
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));

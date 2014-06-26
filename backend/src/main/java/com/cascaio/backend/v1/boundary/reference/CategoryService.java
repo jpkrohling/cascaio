@@ -1,5 +1,8 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.CategoryCreateRequest;
 import com.cascaio.api.v1.reference.CategoryResponse;
 import com.cascaio.api.v1.reference.CategoryUpdateRequest;
@@ -19,6 +22,8 @@ import javax.ws.rs.Path;
 public class CategoryService extends BaseService<
         CategoryCreateRequest,
         CategoryUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         CategoryResponse,
         Category,
         CategoryAdapter> {

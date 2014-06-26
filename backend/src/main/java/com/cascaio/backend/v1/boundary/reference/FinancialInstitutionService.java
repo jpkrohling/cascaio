@@ -1,5 +1,8 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.admin.FinancialInstitutionImportBundesbankRequest;
 import com.cascaio.api.v1.admin.FinancialInstitutionImportBundesbankResponse;
 import com.cascaio.api.v1.reference.FinancialInstitutionCreateRequest;
@@ -36,6 +39,8 @@ import java.util.List;
 public class FinancialInstitutionService extends BaseService<
         FinancialInstitutionCreateRequest,
         FinancialInstitutionUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         FinancialInstitutionResponse,
         FinancialInstitution,
         FinancialInstitutionAdapter> {

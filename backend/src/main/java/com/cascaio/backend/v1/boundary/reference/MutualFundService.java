@@ -1,5 +1,8 @@
 package com.cascaio.backend.v1.boundary.reference;
 
+import com.cascaio.api.v1.BaseQueryRequest;
+import com.cascaio.api.v1.BaseReadRequest;
+import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.MutualFundCreateRequest;
 import com.cascaio.api.v1.reference.MutualFundResponse;
 import com.cascaio.api.v1.reference.MutualFundUpdateRequest;
@@ -27,6 +30,8 @@ import java.util.List;
 public class MutualFundService extends BaseService<
         MutualFundCreateRequest,
         MutualFundUpdateRequest,
+        BaseQueryRequest,
+        ReadRequestById,
         MutualFundResponse,
         MutualFund,
         MutualFundAdapter> {
