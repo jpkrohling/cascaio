@@ -22,7 +22,6 @@ angular.module('adminApp').controller 'FinancialInstitutionNewCtrl', ($scope, $l
       $location.path('/reference/financialInstitutions');
     , (httpResponse) ->
       $scope.errors = []
-      toaster.pop('error', '', 'Invalid data, please check your input.')
       for violation in httpResponse.data.parameterViolations
         fieldParts = violation["path"].split(".")
         fieldName = fieldParts[fieldParts.length-1]

@@ -7,7 +7,7 @@
  # # MutualFundQuotesCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MutualFundQuotesCtrl', ($scope, $filter, $routeParams, ngTableParams, MutualFund, MutualFundQuote) ->
+angular.module('adminApp').controller 'MutualFundQuotesCtrl', ($scope, $filter, $routeParams, $location, ngTableParams, MutualFund, MutualFundQuote) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 
@@ -33,7 +33,11 @@ angular.module('adminApp').controller 'MutualFundQuotesCtrl', ($scope, $filter, 
       $scope.quotes = MutualFundQuote.query({fundId:$scope.mutualFund.id}, ->
         $scope.loading = false
         $scope.tableParams.reload()
+      , -> $scope.loading = false
       )
+    , ->
+      $scope.loading = false
+      $location.path('/reference/mutualFunds')
     )
 
   $scope.load()

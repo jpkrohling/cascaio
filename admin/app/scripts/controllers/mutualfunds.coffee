@@ -30,6 +30,7 @@ angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $fi
     $scope.mutualFunds = MutualFund.query({}, ->
       $scope.loading = false
       $scope.tableParams.reload()
+    , -> $scope.loading = false
     )
 
   $scope.showCreateForm = ->

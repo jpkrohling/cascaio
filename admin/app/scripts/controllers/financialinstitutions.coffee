@@ -31,6 +31,7 @@ angular.module('adminApp').controller 'FinancialInstitutionsCtrl', ($scope, toas
     $scope.financialInstitutions = FinancialInstitution.query({}, ->
       $scope.loading = false
       $scope.tableParams.reload()
+    , -> $scope.loading = false
     )
 
   $scope.importFileBundesbank = ->

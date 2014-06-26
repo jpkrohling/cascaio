@@ -16,6 +16,7 @@ import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -48,15 +49,15 @@ public abstract class BaseService<
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse createAsJson(@Valid CreateRequest request) {
-        return create(request);
+    public Response createAsJson(@Valid CreateRequest request) {
+        return wrapInResponse(create(request));
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse createAsFormParameters(@Valid @BeanParam CreateRequest request) {
-        return create(request);
+    public Response createAsFormParameters(@Valid @BeanParam CreateRequest request) {
+        return wrapInResponse(create(request));
     }
 
     public ApiResponse create(CreateRequest request) {
@@ -77,15 +78,15 @@ public abstract class BaseService<
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse updateAsJson(@Valid UpdateRequest request) {
-        return update(request);
+    public Response updateAsJson(@Valid UpdateRequest request) {
+        return wrapInResponse(update(request));
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public ApiResponse updateAsFormParameters(@Valid @BeanParam UpdateRequest request) {
-        return update(request);
+    public Response updateAsFormParameters(@Valid @BeanParam UpdateRequest request) {
+        return wrapInResponse(update(request));
     }
 
     public ApiResponse update(UpdateRequest request) {
@@ -102,20 +103,20 @@ public abstract class BaseService<
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user", "admin"})
-    public ApiResponse read(@Valid @BeanParam ReadRequest request) {
+    public Response read(@Valid @BeanParam ReadRequest request) {
         preRead(request);
         ApiResponse response = getInstrumentedAdapter().adaptPersistent(readAsEntity(request.getId()));
         postRead(response);
-        return response;
+        return wrapInResponse(response);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"user", "admin"})
-    public List<ApiResponse> list(@Valid @BeanParam QueryRequest request) {
+    public Response list(@Valid @BeanParam QueryRequest request) {
         List<ApiResponse> response = getInstrumentedAdapter().adaptPersistent(listAsEntity(request));
         postList(request, response);
-        return response;
+        return wrapInResponse(response);
     }
 
     @RolesAllowed({"user", "admin"})
@@ -135,10 +136,11 @@ public abstract class BaseService<
 
     @DELETE
     @Path("{id}")
-    public void delete(@Valid @BeanParam ReadRequest request) {
+    public Response delete(@Valid @BeanParam ReadRequest request) {
         preDelete(request);
         Persistent financialInstitution = readAsEntity(request.getId());
         getEntityManager().remove(financialInstitution);
+        return Response.ok().build();
     }
 
     @RolesAllowed({"user", "admin"})
@@ -200,6 +202,22 @@ public abstract class BaseService<
 
     public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
         // no op on this implementation
+    }
+
+    public Response wrapInResponse(ApiResponse response) {
+        return Response.ok().entity(response).build();
+    }
+
+    public Response wrapInResponse(List<ApiResponse> response) {
+        return Response.ok().entity(response).build();
+    }
+
+    public ApiResponse unwrapResponse(Response response) {
+        return (ApiResponse) response.getEntity();
+    }
+
+    public List<ApiResponse> unwrapResponseList(Response response) {
+        return (List<ApiResponse>) response.getEntity();
     }
 
     private Adapter getInstrumentedAdapter() {

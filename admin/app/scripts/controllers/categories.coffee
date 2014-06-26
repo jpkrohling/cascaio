@@ -30,6 +30,7 @@ angular.module('adminApp').controller 'CategoriesCtrl', ($scope, $filter, $locat
     $scope.categories = Category.query({}, ->
       $scope.loading = false
       $scope.tableParams.reload()
+    , -> $scope.loading = false
     )
 
   $scope.showCreateForm = ->

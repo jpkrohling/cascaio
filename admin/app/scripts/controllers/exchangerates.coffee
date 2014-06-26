@@ -53,7 +53,5 @@ angular.module('adminApp').controller 'ExchangeRatesCtrl', ($scope, $filter, toa
     , ->
       $scope.loading = false
       $scope.tableParams.reload()
-    , ->
-      $scope.loading = false
-
+    , -> $scope.loading = false
     )
