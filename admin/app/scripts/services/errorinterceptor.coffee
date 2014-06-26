@@ -10,8 +10,6 @@
 angular.module('adminApp').factory 'ErrorInterceptor', ($q, toaster) ->
   {
   requestError: (rejection) ->
-    console.log("requestError")
-    console.debug(rejection)
     return $q.reject(rejection)
 
   responseError: (rejection) ->

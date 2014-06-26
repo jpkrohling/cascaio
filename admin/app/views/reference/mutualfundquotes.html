@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#/">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/mutualFunds">Mutual Funds</a></li>
+            <li><a data-ng-href="#/reference/mutualFunds/{{mutualFund.id}}/quotes">{{mutualFund.name}}</a></li>
+        </ol>
+
+        <h1>Quotes for {{mutualFund.name}}</h1>
+
+        <p data-ng-show="!quotes.length && !loading">No quotes to show</p>
+
+        <div class="progress-description" data-ng-show="loading">
+            <div class="spinner spinner-xs spinner-inline"></div> <strong>Loading:</strong> Quotes for {{mutualFund.name}}
+        </div>
+
+        <div data-ng-show="quotes.length && !loading">
+            <table data-ng-table="tableParams" data-show-filter="true" class="table table-striped table-bordered">
+                <tr data-ng-repeat="quote in $data">
+                    <td data-title="'Date'" data-filter="{ 'date': 'text' }">
+                        {{quote.date}}
+                    </td>
+                    <td data-title="'NAV'">
+                        {{mutualFund.currency}} {{quote.price}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div><!-- /col -->
+
+    <div data-cas-reference-data-menu data-selected="mutual-funds"></div>
+
+</div><!-- /row -->

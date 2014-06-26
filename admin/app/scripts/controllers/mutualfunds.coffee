@@ -42,4 +42,7 @@ angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $fi
       $scope.tableParams.reload()
     )
 
+  $scope.openQuotes = (mutualFund) ->
+    $location.path('/reference/mutualFunds/' + mutualFund.id + '/quotes')
+
   $scope.load()

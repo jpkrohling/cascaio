@@ -22,12 +22,14 @@ import javax.persistence.criteria.Root;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-@Path("/reference/mutualFundQuotes")
+@Path("/reference/mutualFunds/{fundId}/quotes")
 @Stateless
 public class MutualFundQuoteService extends BaseService<
         MutualFundQuoteCreateRequest,
@@ -45,13 +47,34 @@ public class MutualFundQuoteService extends BaseService<
     @Inject
     MutualFundService mutualFundService;
 
-    @Path("/isin:{isin}/{isoDate}")
-    @GET
+    @Context
+    UriInfo uriInfo;
+
     @RolesAllowed("admin")
-    public MutualFundQuoteResponse getByIsinAndDate(@PathParam("isin") String isin, @PathParam("isoDate") String isoDate) {
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(isoDate);
-        MutualFund mutualFund = mutualFundService.getByIsinAsEntity(isin);
-        return getAdapter().adaptPersistent(getByMutualFundAndDateAsEntity(mutualFund, date));
+    @Override
+    public List<MutualFundQuoteResponse> list() {
+        List<String> fundIds = uriInfo.getPathParameters().get("fundId");
+        if (fundIds.size() != 1) {
+            throw new RuntimeException("Unexpected to have two fundIds on the path");
+        }
+
+        String fundId = fundIds.get(0);
+        MutualFund mutualFund = mutualFundService.readAsEntity(fundId);
+        return getAdapter().adaptPersistent(getByMutualFundAsEntity(mutualFund));
+    }
+
+    @RolesAllowed("admin")
+    public List<MutualFundQuote> getByMutualFundAsEntity(MutualFund mutualFund) {
+
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<MutualFundQuote> query = builder.createQuery(MutualFundQuote.class);
+        Root<MutualFundQuote> root = query.from(MutualFundQuote.class);
+        query.select(root);
+        query.where(
+                builder.equal(root.get(MutualFundQuote_.mutualFund), mutualFund)
+        );
+
+        return getEntityManager().createQuery(query).getResultList();
     }
 
     @RolesAllowed("admin")
