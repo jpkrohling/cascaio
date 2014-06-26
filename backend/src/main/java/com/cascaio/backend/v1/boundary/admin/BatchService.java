@@ -4,7 +4,6 @@ import com.cascaio.api.v1.admin.BatchExecution;
 import com.cascaio.api.v1.admin.BatchResponse;
 import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
-import org.joda.time.LocalDate;
 import org.reflections.Reflections;
 
 import javax.annotation.security.RolesAllowed;

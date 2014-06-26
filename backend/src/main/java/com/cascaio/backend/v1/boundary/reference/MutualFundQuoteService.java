@@ -1,7 +1,5 @@
 package com.cascaio.backend.v1.boundary.reference;
 
-import com.cascaio.api.v1.BaseQueryRequest;
-import com.cascaio.api.v1.BaseReadRequest;
 import com.cascaio.api.v1.ReadRequestById;
 import com.cascaio.api.v1.reference.MutualFundQuoteCreateRequest;
 import com.cascaio.api.v1.reference.MutualFundQuoteQueryRequest;
@@ -23,9 +21,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
