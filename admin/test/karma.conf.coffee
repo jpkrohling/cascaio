@@ -21,16 +21,16 @@ module.exports = (config) ->
       'bower_components/angular-route/angular-route.js'
       'bower_components/angular-sanitize/angular-sanitize.js'
       'bower_components/angular-touch/angular-touch.js'
-      'app/scripts/**/*.cs'
-      'test/mock/**/*.cs'
-      'test/spec/**/*.cs'
+      'app/scripts/**/*.coffee'
+      'test/mock/**/*.coffee'
+      'test/spec/**/*.coffee'
     ],
 
     # list of files / patterns to exclude
     exclude: []
 
     # web server port
-    port: 8080
+    port: 8888
 
     # level of logging
     # possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG

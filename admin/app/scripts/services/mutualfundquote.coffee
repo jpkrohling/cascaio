@@ -2,9 +2,9 @@
 
 ###*
  # @ngdoc service
- # @name adminApp.Mutualfundquote
+ # @name adminApp.MutualFundQuote
  # @description
- # # Mutualfundquote
+ # # MutualFundQuote
  # Service in the adminApp.
 ###
 angular.module('adminApp').service 'MutualFundQuote', ($resource, apiUrl) ->
