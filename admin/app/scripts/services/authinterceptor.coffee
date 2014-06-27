@@ -14,7 +14,8 @@ angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl) ->
       return request
 
     addBearer = ->
-      window.keycloak.updateToken(5).success(() ->
+      window.keycloak.updateToken(5)
+      .success(->
         request.headers.Authorization = 'Bearer ' + window.keycloak.token;
         deferred.notify()
         deferred.resolve(request)

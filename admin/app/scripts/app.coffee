@@ -23,7 +23,6 @@ angular.module('adminApp', [
 ])
 .config ($routeProvider, $idleProvider, $keepaliveProvider) ->
     $routeProvider
-
     .when '/',
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl'
