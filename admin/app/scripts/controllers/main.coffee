@@ -8,9 +8,6 @@
  # Controller of the adminApp
 ###
 angular.module('adminApp').controller 'MainCtrl', ($scope, $idle) ->
-  $('#main-nav li').removeClass('active');
-  $('#main-nav-dashboard').addClass('active');
-
   previousCallback = window.keycloak.onAuthSuccess
   window.keycloak.onAuthSuccess = ->
     previousCallback && previousCallback()

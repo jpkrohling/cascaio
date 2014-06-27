@@ -23,9 +23,10 @@ angular.module('adminApp', [
 ])
 .config ($routeProvider, $idleProvider, $keepaliveProvider) ->
     $routeProvider
+
     .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
+        templateUrl: 'views/dashboard.html'
+        controller: 'DashboardCtrl'
 
     .when '/reference',
         templateUrl: 'views/reference/categories.html'
@@ -64,6 +65,9 @@ angular.module('adminApp', [
         templateUrl: 'views/batch.html'
         controller: 'BatchCtrl'
 
+    .when '/dashboard',
+      templateUrl: 'views/dashboard.html'
+      controller: 'DashboardCtrl'
     .otherwise
         redirectTo: '/'
 
