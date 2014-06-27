@@ -1,19 +1,19 @@
 'use strict'
 
-describe 'Controller: FinancialinstitutionnewCtrl', ->
+describe 'Controller: FinancialInstitutionNewCtrl', ->
 
   # load the controller's module
   beforeEach module 'adminApp'
 
-  FinancialinstitutionnewCtrl = {}
+  FinancialInstitutionNewCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    FinancialinstitutionnewCtrl = $controller 'FinancialinstitutionnewCtrl', {
+    FinancialInstitutionNewCtrl = $controller 'FinancialInstitutionNewCtrl', {
       $scope: scope
     }
 
-  it 'should attach a list of awesomeThings to the scope', ->
-    expect(scope.awesomeThings.length).toBe 3
+  it 'is not a valid test yet', ->
+    console.log("not implemented")

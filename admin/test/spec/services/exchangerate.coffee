@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: Exchangerate', ->
+describe 'Service: ExchangeRate', ->
 
   # load the service's module
   beforeEach module 'adminApp'
 
   # instantiate service
-  Exchangerate = {}
-  beforeEach inject (_Exchangerate_) ->
-    Exchangerate = _Exchangerate_
+  ExchangeRate = {}
+  beforeEach inject (_ExchangeRate_) ->
+    ExchangeRate = _ExchangeRate_
 
   it 'should do something', ->
-    expect(!!Exchangerate).toBe true
+    expect(!!ExchangeRate).toBe true

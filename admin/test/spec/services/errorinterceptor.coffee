@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: errorinterceptor', ->
+describe 'Service: ErrorInterceptor', ->
 
   # load the service's module
   beforeEach module 'adminApp'
 
   # instantiate service
-  errorinterceptor = {}
-  beforeEach inject (_errorinterceptor_) ->
-    errorinterceptor = _errorinterceptor_
+  ErrorInterceptor = {}
+  beforeEach inject (_ErrorInterceptor_) ->
+    ErrorInterceptor = _ErrorInterceptor_
 
   it 'should do something', ->
-    expect(!!errorinterceptor).toBe true
+    expect(!!ErrorInterceptor).toBe true
