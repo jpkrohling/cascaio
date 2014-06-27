@@ -7,36 +7,32 @@
  # # AuthInterceptor
  # Service in the adminApp.
 ###
-angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl) ->
+angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl, Auth) ->
   {
   request: (request) ->
     if request.url.indexOf(apiUrl) == -1
       return request
 
     addBearer = ->
-      window.keycloak.updateToken(5)
+      Auth.updateToken(5)
       .success(->
-        request.headers.Authorization = 'Bearer ' + window.keycloak.token;
+        request.headers.Authorization = 'Bearer ' + Auth.token;
         deferred.notify()
         deferred.resolve(request)
       )
 
     deferred = $q.defer()
-    if (window.keycloak.authenticated)
+    if (Auth.authenticated)
       addBearer()
     else
-      oldCallback = window.keycloak.onAuthSuccess
-      window.keycloak.onAuthSuccess = ->
-        oldCallback && oldCallback()
-        addBearer()
-        window.keycloak.onAuthSuccess = oldCallback
+      Auth.onAuthSuccess = -> addBearer()
 
     return $q.when(deferred.promise)
 
   responseError: (rejection) ->
     if (rejection.status == 401)
       toaster.pop('error', 'Logged out', 'Your session has expired. Please, login again.')
-      window.keycloak.logout()
+      Auth.logout()
 
     return $q.reject(rejection)
   }
