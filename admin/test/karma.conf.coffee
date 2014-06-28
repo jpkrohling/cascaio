@@ -59,6 +59,7 @@ module.exports = (config) ->
       'karma-phantomjs-launcher'
       'karma-jasmine'
       'karma-coffee-preprocessor'
+      'karma-junit-reporter'
     ]
 
     # enable / disable watching file and executing tests whenever any file changes
@@ -76,3 +77,5 @@ module.exports = (config) ->
     # proxies: '/': 'http://localhost:9000/'
     # URL root prevent conflicts with the site root
     # urlRoot: '_karma_'
+
+    reporters: ["junit", "progress"]
