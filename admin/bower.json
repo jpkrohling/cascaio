@@ -1,6 +1,6 @@
 {
   "name": "admin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "angular": "1.2.18",
     "json3": "~3.3.1",
@@ -32,5 +32,8 @@
       ]
     }
   },
-  "appPath": "app"
+  "appPath": "app",
+  "resolutions": {
+    "angular": "1.2.18"
+  }
 }
