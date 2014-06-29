@@ -7,7 +7,7 @@
  # # BatchCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'BatchCtrl', ($scope, $http, Batch) ->
+angular.module('adminApp').controller 'BatchCtrl', ($scope, $http, Batch, apiUrl) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-batch').addClass('active')
 
@@ -17,7 +17,7 @@ angular.module('adminApp').controller 'BatchCtrl', ($scope, $http, Batch) ->
     $scope.batches = Batch.query()
 
   $scope.submitJob = (jobName) ->
-    $http({method: 'POST', url: 'http://api.cascaio.com:8080/v1/batch/' + jobName})
+    $http({method: 'POST', url: "#{apiUrl}/batch/#{jobName}"})
     .success((data, status, headers, config) ->
         $scope.load()
       )
