@@ -7,4 +7,4 @@
  # # apiUrl
  # Constant in the adminApp.
 ###
-angular.module('adminApp').constant 'apiUrl', 'http://backend.cascaio.com/v1'
+angular.module('adminApp').constant 'apiUrl', 'https://backend.cascaio.com/v1'
