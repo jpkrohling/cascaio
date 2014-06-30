@@ -23,6 +23,7 @@
                                     <th>Status</th>
                                     <th>Start time</th>
                                     <th>End time</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tr data-ng-repeat="execution in batch.executions">
@@ -30,6 +31,7 @@
                                 <td>{{execution.status}}</td>
                                 <td>{{execution.startTime}}</td>
                                 <td>{{execution.endTime}}</td>
+                                <td><i class="fa fa-ban action" data-tooltip="Abort" data-tooltip-placement="left" data-ng-click="abortJob(execution)" data-ng-show="canAbort(execution)"></i></td>
                             </tr>
                         </table>
                     </div>

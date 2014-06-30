@@ -1,22 +1,25 @@
 package com.cascaio.backend.v1.boundary.admin;
 
+import com.cascaio.api.v1.*;
+import com.cascaio.api.v1.Error;
 import com.cascaio.api.v1.admin.BatchExecution;
 import com.cascaio.api.v1.admin.BatchResponse;
 import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
 import org.reflections.Reflections;
+import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
 import javax.batch.operations.JobOperator;
 import javax.batch.runtime.BatchRuntime;
+import javax.batch.runtime.BatchStatus;
 import javax.batch.runtime.JobExecution;
 import javax.batch.runtime.JobInstance;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +34,9 @@ public class BatchService {
 
     @Inject
     DateTimeAdapter dateTimeAdapter;
+
+    @Inject
+    Logger logger;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -62,6 +68,31 @@ public class BatchService {
             }
         }
         return batchResponseList;
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response abort(@PathParam("id") long executionId) {
+        JobExecution execution = BatchRuntime.getJobOperator().getJobExecution(executionId);
+
+        boolean aborting = false;
+        logger.trace("Status: {}", execution.getBatchStatus());
+
+        if (execution.getBatchStatus().equals(BatchStatus.STARTED)) {
+            BatchRuntime.getJobOperator().stop(executionId);
+            aborting = true;
+        }
+
+        if (execution.getBatchStatus().equals(BatchStatus.STARTING)) {
+            BatchRuntime.getJobOperator().abandon(executionId);
+            aborting = true;
+        }
+
+        if (aborting) {
+            return Response.noContent().build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).entity(new Error("status", "The job is not in STARTING nor STARTED status")).build();
+        }
     }
 
 }
