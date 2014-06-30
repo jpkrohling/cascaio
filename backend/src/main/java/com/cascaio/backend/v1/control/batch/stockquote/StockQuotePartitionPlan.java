@@ -24,7 +24,7 @@ public class StockQuotePartitionPlan extends PartitionPlanImpl {
     Logger logger;
 
     private List<Stock> stockList;
-    private static final int MAX_THREADS = 250;
+    private static final int MAX_THREADS = 25;
 
     @Override
     public int getPartitions() {
