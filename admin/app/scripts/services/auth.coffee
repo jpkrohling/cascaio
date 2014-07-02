@@ -7,7 +7,7 @@
  # # Auth
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'Auth', class Auth
+angular.module('adminApp').service 'Auth', ['$location', '$window', '$rootScope', 'toaster', class Auth
   constructor: ($location, $window, $rootScope, toaster) ->
     @keycloak = new Keycloak()
     @keycloak.init({
@@ -37,3 +37,4 @@ angular.module('adminApp').service 'Auth', class Auth
 
   isAuthenticated: ->
     @keycloak.authenticated
+]
