@@ -2,3 +2,5 @@ target
 .idea
 *iml
 keycloak.json
+nb-configuration.xml
+
