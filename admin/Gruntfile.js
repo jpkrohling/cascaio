@@ -406,7 +406,48 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.coffee',
         singleRun: true
       }
+    },
+    
+    // environment setting
+    replace: {
+        development: {
+            options: {
+                patterns: [
+                    {
+                        match: 'environment',
+                        replacement: 'development'
+                    }
+                ]
+            },
+            files: [
+                {
+                    expand: true,
+                    flatten: true,
+                    src: ['./config.coffee'],
+                    dest: '<%= yeoman.app %>/scripts/services/'
+                }
+            ]
+        },
+        production: {
+            options: {
+                patterns: [
+                    {
+                        match: 'environment',
+                        replacement: 'production'
+                    }
+                ]
+            },
+            files: [
+                {
+                    expand: true,
+                    flatten: true,
+                    src: ['./config.coffee'],
+                    dest: '<%= yeoman.app %>/scripts/services/'
+                }
+            ]
+        },
     }
+    
   });
 
 
@@ -417,6 +458,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'replace:development',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -440,6 +482,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'replace:production',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -460,4 +503,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  
+  grunt.loadNpmTasks('grunt-replace');
 };

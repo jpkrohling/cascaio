@@ -7,7 +7,7 @@
  # # MainCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth) ->
+angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth, config) ->
 
   $scope.logout = ()->
     Auth.logout()
@@ -26,3 +26,7 @@ angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth) ->
     $scope.logout()
 
   $idle.watch()
+
+  console.log("config is: ")
+  console.log(config)
+  console.log("apihost is: #{config.apihost}")
