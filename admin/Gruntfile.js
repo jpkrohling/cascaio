@@ -428,6 +428,24 @@ module.exports = function (grunt) {
                 }
             ]
         },
+        test: {
+            options: {
+                patterns: [
+                    {
+                        match: 'environment',
+                        replacement: 'test'
+                    }
+                ]
+            },
+            files: [
+                {
+                    expand: true,
+                    flatten: true,
+                    src: ['./config.coffee'],
+                    dest: '<%= yeoman.app %>/scripts/services/'
+                }
+            ]
+        },
         production: {
             options: {
                 patterns: [
@@ -474,6 +492,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'replace:test',
     'concurrent:test',
     'autoprefixer',
     'connect:test',

@@ -17,5 +17,9 @@ angular.module('adminApp')
     production: {
       apihost: 'https://api.cascaio.com/v1'
     }
+    
+    test: {
+      apihost: 'http://test.api.cascaio.com:8080/v1'
+    }
   }
   
