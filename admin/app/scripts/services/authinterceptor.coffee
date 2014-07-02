@@ -16,13 +16,13 @@ angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl, Auth
     addBearer = ->
       Auth.updateToken(5)
       .success(->
-        request.headers.Authorization = 'Bearer ' + Auth.token;
+        request.headers.Authorization = 'Bearer ' + Auth.token();
         deferred.notify()
         deferred.resolve(request)
       )
 
     deferred = $q.defer()
-    if (Auth.authenticated)
+    if (Auth.isAuthenticated())
       addBearer()
     else
       Auth.onAuthSuccess = -> addBearer()

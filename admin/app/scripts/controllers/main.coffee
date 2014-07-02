@@ -9,23 +9,20 @@
 ###
 angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth) ->
 
-  Auth.onAuthSuccess = ->
-    $scope.username = Auth.idToken.name
-
   $scope.logout = ()->
     Auth.logout()
 
-  $scope.$on '$keepalive', () ->
+  $scope.$on '$keepalive', ->
     Auth.updateToken(60)
 
-  $scope.$on '$idleStart', () ->
+  $scope.$on '$idleStart', ->
     $('#idle').slideDown()
 
-  $scope.$on '$idleEnd', () ->
+  $scope.$on '$idleEnd', ->
     $("#idle").slideUp()
 
-  $scope.$on '$idleTimeout', () ->
+  $scope.$on '$idleTimeout', ->
     $("#idle").slideUp()
     $scope.logout()
 
-  $idle.watch();
+  $idle.watch()

@@ -1,6 +1,6 @@
 {
     "realm": "cascaio",
-    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCEapQeqbJlEif8Ii07+eoxwSU5AZjn6bCy2uuaBgeOlowmzhn4EzfGr7YT0yyzOBng0yhq9cOuErIC+rBob+Ha/3KvPFwhEyzDGhTmsrsFxIG/rcczzmzBcOGxddiaHfUDg5NhLPGiu3MoYVlCRMHXVpqrM/DhAHg47We1Sc0XdQIDAQAB",
+    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJQotz732D1gyYQu9t49nh5MY3VHTujTstTLXIfX2cVLok4M+OF5E4tTN3M6Xdkbsps+O4oC5SDQENQgGfTZk1Hy/I/59x5iWkZ/mnhvfkR0kps1wVquwyVjwJXgKQSLJWXufn/CW/u9kTBp8Mj70vmKzEBQVuQCULICjDUpGnOQIDAQAB",
     "auth-server-url": "https://auth.cascaio.com/auth",
     "ssl-not-required": false,
     "resource": "admin",
