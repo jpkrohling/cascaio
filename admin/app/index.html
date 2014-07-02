@@ -10,7 +10,7 @@
                 window.keycloak.logout();
             }
         };
-        window.keycloak.init({ onLoad: 'login-required' });
+        window.keycloak.init({ onLoad: 'login-required' }).success(function() { angular.bootstrap(document, ["adminApp"]) });
     </script>
     <meta charset="utf-8">
     <title>cascaio admin</title>
@@ -29,7 +29,7 @@
     <!-- endbuild -->
 </head>
 
-<body data-ng-app="adminApp" data-ng-controller="MainCtrl">
+<body data-ng-controller="MainCtrl">
     <div data-toaster-container="true" data-toaster-options="{'time-out': 5000}"></div>
 
     <div data-ng-hide="username" class="jumbotron">
