@@ -27,6 +27,7 @@ module.exports = (config) ->
       'bower_components/AngularJS-Toaster/toaster.js'
       'bower_components/angular-ui-select2/src/select2.js'
       'bower_components/ng-table/ng-table.js'
+      'bower_components/keycloak/dist/keycloak.js'
       'app/scripts/**/*.coffee'
       'test/mock/**/*.coffee'
       'test/spec/**/*.coffee'
