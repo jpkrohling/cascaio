@@ -13,7 +13,7 @@ angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth, config) 
     Auth.logout()
 
   $scope.$on '$keepalive', ->
-    Auth.updateToken(60)
+    Auth.updateToken(60).error(-> Auth.logout())
 
   $scope.$on '$idleStart', ->
     $('#idle').slideDown()
