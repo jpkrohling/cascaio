@@ -7,10 +7,10 @@
  # # AuthInterceptor
  # Service in the adminApp.
 ###
-angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, apiUrl, Auth) ->
+angular.module('adminApp').factory 'AuthInterceptor', ($q, toaster, config, Auth) ->
   {
   request: (request) ->
-    if request.url.indexOf(apiUrl) == -1
+    if request.url.indexOf(config.apihost) == -1
       return request
 
     addBearer = ->

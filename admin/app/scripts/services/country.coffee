@@ -7,5 +7,5 @@
  # # Country
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'Country', ($resource, apiUrl) ->
-  $resource(apiUrl + '/reference/countries')
+angular.module('adminApp').service 'Country', ($resource, config) ->
+  $resource(config.apihost + '/reference/countries')

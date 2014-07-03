@@ -7,5 +7,5 @@
  # # FinancialInstitution
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'FinancialInstitution', ($resource, apiUrl) ->
-  $resource(apiUrl + '/reference/financialInstitutions/:id', {id:'@id'})
+angular.module('adminApp').service 'FinancialInstitution', ($resource, config) ->
+  $resource(config.apihost + '/reference/financialInstitutions/:id', {id:'@id'})

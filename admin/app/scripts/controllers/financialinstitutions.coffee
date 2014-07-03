@@ -7,7 +7,7 @@
  # # FinancialInstitutionCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'FinancialInstitutionsCtrl', ($scope, toaster, $http, $filter, $location, ngTableParams, FinancialInstitution, apiUrl) ->
+angular.module('adminApp').controller 'FinancialInstitutionsCtrl', ($scope, toaster, $http, $filter, $location, ngTableParams, FinancialInstitution, config) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 
@@ -37,7 +37,7 @@ angular.module('adminApp').controller 'FinancialInstitutionsCtrl', ($scope, toas
   $scope.importFileBundesbank = ->
     $('#bundesbankFileUrlModal').modal('hide')
     toaster.pop('info', 'Action in background', 'Import is running on the background.')
-    $http.post("#{apiUrl}/reference/financialInstitutions/import/bundesbank", {location: $scope.bundesbankFileUrl})
+    $http.post("#{config.apihost}/reference/financialInstitutions/import/bundesbank", {location: $scope.bundesbankFileUrl})
     .success((data, status, headers, config) ->
         toaster.pop('success', 'Finished', 'Import of the Bundesbank file finished. Success: ' + data["success"] + ", skipped: " + data["skipped"])
         $scope.load()

@@ -7,5 +7,5 @@
  # # Batch
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'Batch', ($resource, apiUrl) ->
-  $resource(apiUrl + '/batch')
+angular.module('adminApp').service 'Batch', ($resource, config) ->
+  $resource(config.apihost + '/batch')

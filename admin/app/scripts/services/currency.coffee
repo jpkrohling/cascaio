@@ -7,5 +7,5 @@
  # # Currency
  # Service in the adminApp.
 ###
-angular.module('adminApp').service 'Currency', ($resource, apiUrl) ->
-  $resource(apiUrl + '/reference/currencies/:id', {id:'@id'})
+angular.module('adminApp').service 'Currency', ($resource, config) ->
+  $resource(config.apihost + '/reference/currencies/:id', {id:'@id'})
