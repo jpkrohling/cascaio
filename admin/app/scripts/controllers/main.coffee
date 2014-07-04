@@ -7,7 +7,7 @@
  # # MainCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth, config) ->
+angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, $route, Auth, config) ->
 
   $scope.logout = ()->
     Auth.logout()
@@ -26,3 +26,4 @@ angular.module('adminApp').controller 'MainCtrl', ($scope, $idle, Auth, config) 
     $scope.logout()
 
   $idle.watch()
+  $route.reload()

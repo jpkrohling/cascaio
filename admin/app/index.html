@@ -18,14 +18,8 @@
     <!-- endbuild -->
 </head>
 
-<body data-ng-app="adminApp" data-ng-controller="MainCtrl">
+<body data-ng-controller="MainCtrl" data-ng-cloak="true">
     <div data-toaster-container="true" data-toaster-options="{'time-out': 5000}"></div>
-
-    <div data-ng-hide="username" class="jumbotron">
-        <h1>
-            Authentication in process, please wait.
-        </h1>
-    </div>
 
     <div data-ng-show="username">
         <div data-ng-idle-countdown="countdown" data-ng-init="countdown=5" id="idle">
@@ -143,5 +137,18 @@
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/services/environment.js"></script>
     <!-- endbuild -->
+
+    <script type="text/javascript">
+        angular.element(document).ready(function () {
+            window.keycloak = Keycloak('/keycloak.json');
+            window.keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
+                .success(function() {
+                    angular.bootstrap(document, ["adminApp"]);
+                })
+                .error(function () {
+                    window.location.reload();
+                });
+        });
+    </script>
 </body>
 </html>
