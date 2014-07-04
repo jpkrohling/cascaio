@@ -2,21 +2,21 @@
 
 ###*
  # @ngdoc function
- # @name adminApp.controller:MutualFundsCtrl
+ # @name adminApp.controller:StockMarketsCtrl
  # @description
- # # MutualFundsCtrl
+ # # StockMarketsCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $filter, toaster, ngTableParams, MutualFund) ->
+angular.module('adminApp').controller 'StockMarketsCtrl', ($scope, $location, $filter, toaster, ngTableParams, StockMarket) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 
   $scope.loading = false
-  $scope.mutualFunds = []
+  $scope.stockMarkets = []
 
   $scope.tableParams = new ngTableParams({page: 1, count: 25}, {
     getData: ($defer, params) ->
-      data = $scope.mutualFunds
+      data = $scope.stockMarkets
 
       if params.filter()
         data = $filter('filter')(data, params.filter())
@@ -25,22 +25,15 @@ angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $fi
       $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()))
   })
 
+  $scope.showCreateForm = ->
+    $location.path('/reference/stockMarkets/new')
+
   $scope.load = ->
     $scope.loading = true
-    $scope.mutualFunds = MutualFund.query({}, ->
+    $scope.stockMarkets = StockMarket.query({}, ->
       $scope.loading = false
       $scope.tableParams.reload()
     , -> $scope.loading = false
-    )
-
-  $scope.showCreateForm = ->
-    $location.path('/reference/mutualFunds/new')
-
-  $scope.remove = (mutualFund) ->
-    mutualFund.$remove().then(->
-      toaster.pop('success', '', 'Mutual Fund removed')
-      $scope.mutualFunds.splice( $scope.mutualFunds.indexOf(mutualFund), 1 );
-      $scope.tableParams.reload()
     )
 
   $scope.load()

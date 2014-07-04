@@ -6,6 +6,16 @@ describe 'Service: Auth', ->
   beforeEach module 'adminApp'
 
   # instantiate service
+  class Keycloak
+    constructor: ->
+      @idToken = {
+        name: "bla"
+      }
+
+    hasResourceRole: (realm, role) ->
+      return true
+
+  window.keycloak = new Keycloak()
   Auth = {}
   beforeEach inject (_Auth_) ->
     Auth = _Auth_

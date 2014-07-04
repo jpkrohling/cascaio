@@ -2,21 +2,21 @@
 
 ###*
  # @ngdoc function
- # @name adminApp.controller:MutualFundsCtrl
+ # @name adminApp.controller:StocksCtrl
  # @description
- # # MutualFundsCtrl
+ # # StocksCtrl
  # Controller of the adminApp
 ###
-angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $filter, toaster, ngTableParams, MutualFund) ->
+angular.module('adminApp').controller 'StocksCtrl', ($scope, $filter, $location, toaster, ngTableParams, Stock) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-reference').addClass('active')
 
   $scope.loading = false
-  $scope.mutualFunds = []
+  $scope.stocks = []
 
   $scope.tableParams = new ngTableParams({page: 1, count: 25}, {
     getData: ($defer, params) ->
-      data = $scope.mutualFunds
+      data = $scope.stocks
 
       if params.filter()
         data = $filter('filter')(data, params.filter())
@@ -27,20 +27,10 @@ angular.module('adminApp').controller 'MutualFundsCtrl', ($scope, $location, $fi
 
   $scope.load = ->
     $scope.loading = true
-    $scope.mutualFunds = MutualFund.query({}, ->
+    $scope.stocks = Stock.query({}, ->
       $scope.loading = false
       $scope.tableParams.reload()
     , -> $scope.loading = false
-    )
-
-  $scope.showCreateForm = ->
-    $location.path('/reference/mutualFunds/new')
-
-  $scope.remove = (mutualFund) ->
-    mutualFund.$remove().then(->
-      toaster.pop('success', '', 'Mutual Fund removed')
-      $scope.mutualFunds.splice( $scope.mutualFunds.indexOf(mutualFund), 1 );
-      $scope.tableParams.reload()
     )
 
   $scope.load()

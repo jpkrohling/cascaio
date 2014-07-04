@@ -60,6 +60,20 @@ angular.module('adminApp', [
         templateUrl: 'views/reference/mutualfundquotes.html'
         controller: 'MutualFundQuotesCtrl'
 
+    .when '/reference/stockMarkets',
+      templateUrl: 'views/reference/stockmarkets.html'
+      controller: 'StockMarketsCtrl'
+    .when '/reference/stockMarkets/new',
+      templateUrl: 'views/reference/stockmarketnew.html'
+      controller: 'StockMarketNewCtrl'
+
+    .when '/reference/stocks',
+      templateUrl: 'views/reference/stocks.html'
+      controller: 'StocksCtrl'
+    .when '/reference/stocks/:id/quotes',
+      templateUrl: 'views/reference/stockquotes.html'
+      controller: 'StockQuotesCtrl'
+
     .when '/batch',
         templateUrl: 'views/batch.html'
         controller: 'BatchCtrl'
@@ -67,6 +81,7 @@ angular.module('adminApp', [
     .when '/dashboard',
       templateUrl: 'views/dashboard.html'
       controller: 'DashboardCtrl'
+
     .otherwise
         redirectTo: '/'
 

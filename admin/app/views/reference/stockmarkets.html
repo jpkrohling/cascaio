@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#/">Home</a></li>
+            <li><a data-ng-href="#/reference">Reference Data</a></li>
+            <li><a data-ng-href="#/reference/stockMarkets">Stock Markets</a></li>
+        </ol>
+        <div class="pull-right">
+            <button class="btn btn-primary" type="button" role="button" data-ng-click="showCreateForm()">Create</button>
+        </div>
+
+        <h1>Stock Markets</h1>
+
+        <p data-ng-show="!stockMarkets.length && !loading">No stock markets to show</p>
+
+        <div class="progress-description" data-ng-show="loading">
+            <div class="spinner spinner-xs spinner-inline"></div> <strong>Loading:</strong>  Stock Markets
+        </div>
+
+        <div data-ng-show="stockMarkets.length && !loading">
+            <table data-ng-table="tableParams" data-show-filter="true" class="table table-striped table-bordered">
+                <tr data-ng-repeat="stockMarket in $data">
+                    <td data-title="'Symbol'" data-filter="{ 'symbol': 'text' }">
+                        {{stockMarket.symbol}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div><!-- /col -->
+
+    <div data-cas-reference-data-menu data-selected="stock-markets"></div>
+
+</div><!-- /row -->
