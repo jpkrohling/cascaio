@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#">Home</a></li>
+            <li><a data-ng-href="#/checkingAccounts">Checking accounts</a></li>
+        </ol>
+        <h1>
+            Add Checking account
+        </h1>
+
+        <div data-cas-errors-box></div>
+
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Name <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="checkingAccountNew.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="currencyUnit" class="col-md-2 control-label">Currency <span class="required">*</span></label>
+                <div class="col-md-6">
+                    <select data-ui-select2="true" data-ng-model="checkingAccountNew.currencyUnit" data-placeholder="Select a currency" id="currencyUnit">
+                        <option></option>
+                        <option data-ng-repeat="currency in currencies" value="{{currency.code}}">{{currency.code}}</option>
+                    </select>
+                    {{checkingAccountNew.currencyUnit}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="financialInstitutionId" class="col-md-2 control-label">Financial Institution <span class="required">*</span></label>
+                <div class="col-md-6">
+                    <input type="hidden" style="width: 300px" id="financialInstitutionId" data-ng-model="checkingAccountNew.financialInstitutionId"/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pull-right">
+                    <a data-ng-href="#/reference/financialInstitutions" class="btn btn-default btn-lg">Cancel</a>
+                    <button data-ng-click="persist()" type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div><!-- /col -->
+    <div data-cas-reference-data-menu data-selected="financial-institutions"></div>
+</div><!-- /row -->

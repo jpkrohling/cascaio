@@ -1,12 +1,20 @@
 package com.cascaio.api.v1.user;
 
+import com.cascaio.api.v1.validation.Currency;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 public class CheckingAccountCreateRequest {
-    // String id, CascaioUser user, String name, CurrencyUnit currency, FinancialInstitution financialInstitution
+    @NotNull
     private String name;
+
+    @NotNull
+    @Currency
     private String currencyUnit;
+
+    @NotNull
     private String financialInstitutionId;
 
     public String getName() {

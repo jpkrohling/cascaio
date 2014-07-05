@@ -18,6 +18,13 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import javax.validation.Valid;
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -39,6 +46,22 @@ public abstract class BaseUserService
 
     @Inject
     Logger logger;
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Override
+    public Response createAsJson(@Valid CreateRequest request) {
+        return super.createAsJson(request);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Override
+    public Response createAsFormParameters(@Valid @BeanParam CreateRequest request) {
+        return super.createAsFormParameters(request);
+    }
 
     @Override
     public Adapter instrumentAdapter(Adapter adapter) {
