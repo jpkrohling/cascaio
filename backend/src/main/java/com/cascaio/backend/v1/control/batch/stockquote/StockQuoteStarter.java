@@ -39,7 +39,7 @@ public class StockQuoteStarter extends BatchJobStarter {
     Logger logger;
 
     @POST
-    @Schedule(minute="0", hour="23")
+    @Schedule(minute="30", hour="23")
     @RolesAllowed("admin")
     public String start() {
         return doStart();
