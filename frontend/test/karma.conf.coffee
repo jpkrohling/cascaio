@@ -25,6 +25,7 @@ module.exports = (config) ->
       'bower_components/ng-idle/src/angular-idle.js'
       'bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js'
       'bower_components/AngularJS-Toaster/toaster.js'
+      'bower_components/select2/select2.js'
       'bower_components/angular-ui-select2/src/select2.js'
       'bower_components/ng-table/ng-table.js'
       'app/scripts/**/*.coffee'

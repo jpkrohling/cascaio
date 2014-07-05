@@ -37,6 +37,10 @@ angular.module('frontendApp', [
       templateUrl: 'views/checkingaccountnew.html'
       controller: 'CheckingAccountNewCtrl'
 
+    .when '/checkingAccounts/:id',
+      templateUrl: 'views/checkingaccountdetail.html'
+      controller: 'CheckingAccountDetailCtrl'
+
     .otherwise
         redirectTo: '/'
 

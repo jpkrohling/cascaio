@@ -71,7 +71,7 @@ public abstract class BaseUserService
 
     @Override
     public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
-        query.where(builder.equal(root.get(UserData_.user), getCurrentUser()));
+        query.where(query.getRestriction(), builder.equal(root.get(UserData_.user), getCurrentUser()));
     }
 
     public CascaioUser getCurrentUser() {
