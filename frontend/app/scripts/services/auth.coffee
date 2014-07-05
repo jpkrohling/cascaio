@@ -2,16 +2,16 @@
 
 ###*
  # @ngdoc service
- # @name adminApp.Auth
+ # @name frontendApp.Auth
  # @description
  # # Auth
- # Service in the adminApp.
+ # Service in the frontendApp.
 ###
-angular.module('adminApp').service 'Auth', ['$window', '$rootScope', 'toaster', class Auth
+angular.module('frontendApp').service 'Auth', ['$window', '$rootScope', 'toaster', class Auth
   constructor: ($window, $rootScope, toaster) ->
     @keycloak = $window.keycloak
-    unless @keycloak.hasResourceRole("admin", "admin")
-      alert("Only admins are allowed to work on this interface. You'll be logged out")
+    unless @keycloak.hasResourceRole("user", "frontend")
+      alert("There's something wrong with your credentials. Contact support.")
       @keycloak.logout()
 
     $rootScope.username = @keycloak.idToken.name

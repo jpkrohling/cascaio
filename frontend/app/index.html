@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>cascaio admin</title>
+    <title>cascaio app</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- build:css(./) styles/vendor.css -->
@@ -36,7 +36,7 @@
                 </button>
 
                 <a class="navbar-brand" href="/">
-                    <img src="images/brand.svg" alt="cascaio admin" />
+                    <img src="images/brand.svg" alt="cascaio app" />
                 </a>
             </div>
             <div class="collapse navbar-collapse navbar-collapse-1">
@@ -55,8 +55,11 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-primary" id="main-nav">
                     <li id="main-nav-dashboard"><a data-ng-href="/">Dashboard</a></li>
-                    <li id="main-nav-reference"><a data-ng-href="#/reference">Reference Data</a></li>
-                    <li id="main-nav-batch"><a data-ng-href="#/batch">Batch</a></li>
+                    <li id="main-nav-checking-accounts"><a data-ng-href="#/reference">Checking accounts</a></li>
+                    <li id="main-nav-savings-accounts"><a data-ng-href="#/reference">Savings accounts</a></li>
+                    <li id="main-nav-credit-cards"><a data-ng-href="#/reference">Credit cards</a></li>
+                    <li id="main-nav-mutual-funds"><a data-ng-href="#/reference">Mutual funds</a></li>
+                    <li id="main-nav-stocks"><a data-ng-href="#/reference">Stocks</a></li>
                 </ul>
             </div>
         </nav>
@@ -66,7 +69,7 @@
 
     <div id="footer">
         <div class="container">
-            <p class="text-muted">cascaio admin</p>
+            <p class="text-muted">cascaio app</p>
         </div>
     </div>
     <!--[if lt IE 9]>
@@ -112,37 +115,9 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/services/config.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/financialinstitutions.js"></script>
-    <script src="scripts/services/authinterceptor.js"></script>
-    <script src="scripts/controllers/categories.js"></script>
-    <script src="scripts/controllers/batch.js"></script>
-    <script src="scripts/services/batch.js"></script>
-    <script src="scripts/services/financialinstitution.js"></script>
-    <script src="scripts/controllers/financialinstitutionnew.js"></script>
-    <script src="scripts/services/country.js"></script>
-    <script src="scripts/directives/referencedatamenu.js"></script>
-    <script src="scripts/services/errorinterceptor.js"></script>
-    <script src="scripts/services/category.js"></script>
-    <script src="scripts/controllers/categorynew.js"></script>
-    <script src="scripts/controllers/exchangerates.js"></script>
-    <script src="scripts/services/exchangerate.js"></script>
-    <script src="scripts/services/currency.js"></script>
-    <script src="scripts/controllers/mutualfunds.js"></script>
-    <script src="scripts/services/mutualfund.js"></script>
-    <script src="scripts/controllers/mutualfundnew.js"></script>
-    <script src="scripts/directives/errorsbox.js"></script>
-    <script src="scripts/controllers/mutualfundquotes.js"></script>
-    <script src="scripts/services/mutualfundquote.js"></script>
-    <script src="scripts/controllers/dashboard.js"></script>
     <script src="scripts/services/auth.js"></script>
+    <script src="scripts/controllers/dashboard.js"></script>
     <script src="scripts/services/environment.js"></script>
-    <script src="scripts/controllers/stockmarkets.js"></script>
-    <script src="scripts/services/stockmarket.js"></script>
-    <script src="scripts/controllers/stockmarketnew.js"></script>
-    <script src="scripts/services/stock.js"></script>
-    <script src="scripts/controllers/stocks.js"></script>
-    <script src="scripts/controllers/stockquotes.js"></script>
-    <script src="scripts/services/stockquote.js"></script>
     <!-- endbuild -->
 
     <script type="text/javascript">
@@ -150,7 +125,7 @@
             window.keycloak = Keycloak('/keycloak.json');
             window.keycloak.init({ onLoad: 'login-required', checkLoginIframe: false })
                 .success(function() {
-                    angular.bootstrap(document, ["adminApp"]);
+                    angular.bootstrap(document, ["frontendApp"]);
                 })
                 .error(function () {
                     window.location.reload();
