@@ -38,6 +38,9 @@ public class DateTimeAdapter {
     }
 
     public String adapt(LocalDate localDate) {
+        if (null == localDate) {
+            return null;
+        }
         return localDate.toString();
     }
 

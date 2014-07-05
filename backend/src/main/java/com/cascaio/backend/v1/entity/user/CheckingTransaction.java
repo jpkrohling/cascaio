@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  */
 @Entity
 public class CheckingTransaction extends MoneyTransaction {
-    public CheckingTransaction() {
+    protected CheckingTransaction() {
     }
 
     public CheckingTransaction(LocalDate date, BigDecimal amount, Account account) {

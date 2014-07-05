@@ -6,8 +6,8 @@ import com.cascaio.api.v1.user.CheckingAccountCreateRequest;
 import com.cascaio.api.v1.user.CheckingAccountResponse;
 import com.cascaio.api.v1.user.CheckingAccountUpdateRequest;
 import com.cascaio.backend.v1.entity.user.CheckingAccount;
+import com.cascaio.backend.v1.entity.user.Transaction;
 import com.cascaio.backend.v1.entity.user.adapter.CheckingAccountAdapter;
-
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
@@ -24,4 +24,14 @@ public class CheckingAccountService extends BaseUserService<
         CheckingAccountResponse,
         CheckingAccount,
         CheckingAccountAdapter> {
+
+    @Override
+    public void preDelete(ReadRequestById request) {
+        CheckingAccount account = getEntityManager().find(CheckingAccount.class, request.getId());
+        for (Transaction transaction : account.getTransactions()) {
+            getEntityManager().remove(transaction);
+        }
+    }
+
+
 }

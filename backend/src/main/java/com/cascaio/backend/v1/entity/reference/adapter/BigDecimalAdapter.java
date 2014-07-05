@@ -39,6 +39,9 @@ public class BigDecimalAdapter {
     }
 
     public String adapt(BigDecimal value) {
+        if (null == value) {
+            return null;
+        }
         return value.toPlainString();
     }
 

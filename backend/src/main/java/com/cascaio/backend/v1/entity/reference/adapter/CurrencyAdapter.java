@@ -11,6 +11,9 @@ public class CurrencyAdapter {
     }
 
     public String adapt(CurrencyUnit currencyUnit) {
+        if (null == currencyUnit) {
+            return null;
+        }
         return currencyUnit.getCurrencyCode();
     }
 }
