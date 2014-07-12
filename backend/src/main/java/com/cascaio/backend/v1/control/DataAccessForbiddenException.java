@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,25 +14,32 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.cascaio.backend.v1.entity.reference.adapter;
 
-import org.joda.money.CurrencyUnit;
+package com.cascaio.backend.v1.control;
 
 /**
- * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
+ *
+ * @author Juraci Paixão Kröhling <juraci at kroehling.de>
  */
-public class CurrencyAdapter {
-    public CurrencyUnit adapt(String currency) {
-        if (null == currency || currency.isEmpty()) {
-            return null;
-        }
-        return CurrencyUnit.of(currency);
+public class DataAccessForbiddenException extends RuntimeException {
+
+    public DataAccessForbiddenException() {
     }
 
-    public String adapt(CurrencyUnit currencyUnit) {
-        if (null == currencyUnit) {
-            return null;
-        }
-        return currencyUnit.getCurrencyCode();
+    public DataAccessForbiddenException(String string) {
+        super(string);
     }
+
+    public DataAccessForbiddenException(String string, Throwable thrwbl) {
+        super(string, thrwbl);
+    }
+
+    public DataAccessForbiddenException(Throwable thrwbl) {
+        super(thrwbl);
+    }
+
+    public DataAccessForbiddenException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
+        super(string, thrwbl, bln, bln1);
+    }
+
 }

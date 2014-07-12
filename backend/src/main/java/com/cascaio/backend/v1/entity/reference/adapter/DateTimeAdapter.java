@@ -32,12 +32,18 @@ public class DateTimeAdapter {
     DateTimeFormatter formatter;
 
     public DateTime adaptToDateTime(String dateTime) {
+        if (null == dateTime || dateTime.isEmpty()) {
+            return null;
+        }
         return new DateTime(dateTime);
     }
 
     public LocalDate adaptToLocalDate(String dateTime) {
+        if (null == dateTime || dateTime.isEmpty()) {
+            return null;
+        }
 
-        if (null != dateTime && !dateTime.isEmpty() && dateTime.contains(".")) {
+        if (dateTime.contains(".")) {
             String dateTimeParts[] = dateTime.substring(0, 10).split("\\.");
             dateTime = dateTimeParts[2] + "-" + dateTimeParts[1] + "-" + dateTimeParts[0];
         }
@@ -46,10 +52,16 @@ public class DateTimeAdapter {
     }
 
     public String adapt(DateTime dateTime) {
+        if (null == dateTime) {
+            return null;
+        }
         return dateTime.toString(formatter);
     }
 
     public String adapt(Date date) {
+        if (null == date) {
+            return null;
+        }
         return new DateTime(date.getTime()).toString(formatter);
     }
 

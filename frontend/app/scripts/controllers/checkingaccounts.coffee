@@ -7,7 +7,7 @@
  # # CheckingAccountsCtrl
  # Controller of the frontendApp
 ###
-angular.module('frontendApp').controller 'CheckingAccountsCtrl', ($scope, $filter, $location, toaster, CheckingAccount) ->
+angular.module('frontendApp').controller 'CheckingAccountsCtrl', ($scope, $filter, $location, toaster, CheckingAccount, CheckingAccountTransaction) ->
   $('#main-nav li').removeClass('active')
   $('#main-nav-checking-accounts').addClass('active')
 

@@ -30,6 +30,10 @@ public class BigDecimalAdapter {
     Logger logger;
 
     public BigDecimal adapt(String value) {
+        if (null == value || value.isEmpty()) {
+            return null;
+        }
+
         int lastComma = value.lastIndexOf(',');
         int lastDot = value.lastIndexOf('.');
 

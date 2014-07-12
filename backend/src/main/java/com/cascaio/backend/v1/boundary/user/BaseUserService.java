@@ -86,13 +86,22 @@ public abstract class BaseUserService
         return super.instrumentAdapter(adapter);
     }
 
-    @Override
-    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
+    private void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
         if (null == query.getRestriction()) {
             query.where(builder.equal(root.get(UserData_.user), getCurrentUser()));
         } else {
             query.where(query.getRestriction(), builder.equal(root.get(UserData_.user), getCurrentUser()));
         }
+    }
+
+    @Override
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query, String id) {
+        instrumentQuery(builder, root, query);
+    }
+
+    @Override
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query, QueryRequest request) {
+        instrumentQuery(builder, root, query);
     }
 
     public CascaioUser getCurrentUser() {

@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,25 +14,33 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.cascaio.backend.v1.entity.reference.adapter;
 
-import org.joda.money.CurrencyUnit;
+package com.cascaio.api.v1.user;
+
+import com.cascaio.api.v1.BaseQueryRequest;
+import javax.ws.rs.PathParam;
 
 /**
- * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
+ *
+ * @author Juraci Paixão Kröhling <juraci at kroehling.de>
  */
-public class CurrencyAdapter {
-    public CurrencyUnit adapt(String currency) {
-        if (null == currency || currency.isEmpty()) {
-            return null;
-        }
-        return CurrencyUnit.of(currency);
+public class CheckingAccountTransactionQueryRequest extends BaseQueryRequest {
+
+    @PathParam("accountId")
+    private String accountId;
+
+    public CheckingAccountTransactionQueryRequest() {
     }
 
-    public String adapt(CurrencyUnit currencyUnit) {
-        if (null == currencyUnit) {
-            return null;
-        }
-        return currencyUnit.getCurrencyCode();
+    public CheckingAccountTransactionQueryRequest(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 }

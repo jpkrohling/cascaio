@@ -137,13 +137,13 @@ public abstract class BaseService<
 
     @RolesAllowed({"user", "admin"})
     public List<Persistent> listAsEntity(QueryRequest request) {
-        preList();
+        preList(request);
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Persistent> query = builder.createQuery(getPersistentClass());
 
         Root<Persistent> root = query.from(getPersistentClass());
         query.select(root);
-        instrumentQuery(builder, root, query);
+        instrumentQuery(builder, root, query, request);
 
         List<Persistent> response = getEntityManager().createQuery(query).getResultList();
         postListAsEntity(response);
@@ -154,8 +154,8 @@ public abstract class BaseService<
     @Path("{id}")
     public Response delete(@Valid @BeanParam ReadRequest request) {
         preDelete(request);
-        Persistent financialInstitution = readAsEntity(request.getId());
-        getEntityManager().remove(financialInstitution);
+        Persistent persistent = readAsEntity(request.getId());
+        getEntityManager().remove(persistent);
         return Response.ok().build();
     }
 
@@ -166,7 +166,7 @@ public abstract class BaseService<
         Root<Persistent> root = query.from(getPersistentClass());
         query.select(root);
         query.where(builder.equal(root.get(CascaioEntity_.id), id));
-        instrumentQuery(builder, root, query);
+        instrumentQuery(builder, root, query, id);
         return getEntityManager().createQuery(query).getSingleResult();
     }
 
@@ -194,7 +194,7 @@ public abstract class BaseService<
     }
 
     @RolesAllowed({"user", "admin"})
-    public void preList() {
+    public void preList(QueryRequest request) {
     }
 
     public void prePersist(Persistent persistent) {
@@ -216,8 +216,10 @@ public abstract class BaseService<
         return this.adapter;
     }
 
-    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query) {
-        // no op on this implementation
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query, String id) {
+    }
+
+    public void instrumentQuery(CriteriaBuilder builder, Root<Persistent> root, CriteriaQuery<Persistent> query, QueryRequest request) {
     }
 
     public Response wrapInResponse(ApiResponse response) {

@@ -1,0 +1,20 @@
+<h4 data-ng-show="transactions.length && !loading">Transactions</h4>
+<h4 data-ng-show="!transactions.length && !loading">There are no transactions yet for this account.</h4>
+<table class="table table-striped" data-ng-show="transactions.length && !loading">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tr data-ng-repeat="transaction in transactions">
+        <td>{{transaction.date}}</td>
+        <td>{{transaction.name}}</td>
+        <td>{{transaction.amount | currency: checkingAccount.currencyUnit + " "}}</td>
+        <td>
+            <i class="pficon pficon-delete action" data-tooltip="Remove" data-tooltip-placement="left" data-ng-click="confirmRemoveTransaction(transaction)"></i>
+        </td>
+    </tr>
+</table>

@@ -20,26 +20,7 @@
                             {{checkingAccount.name}}
                             <a data-ng-href="#/checkingAccounts/{{checkingAccount.id}}" class="btn btn-primary pull-right" role="button">View</a>
                         </h3>
-                        <h4 data-ng-show="checkingAccount.transactions">Transactions</h4>
-                        <h4 data-ng-show="!checkingAccount.transactions">There are no transactions yet for this account.</h4>
-                        <table class="table table-striped" data-ng-show="checkingAccount.transactions">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Status</th>
-                                    <th>Start time</th>
-                                    <th>End time</th>
-                                    <th>&nbsp;</th>
-                                </tr>
-                            </thead>
-                            <tr data-ng-repeat="transaction in checkingAccount.transactions">
-                                <td>id</td>
-                                <td>status</td>
-                                <td>start time</td>
-                                <td>end time</td>
-                                <td><i class="fa fa-ban action" data-tooltip="Action" data-tooltip-placement="left"></i></td>
-                            </tr>
-                        </table>
+                        <div data-cas-transactions-for-account="true" data-account="checkingAccount"></div>
                     </div>
                 </div>
             </div>

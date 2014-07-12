@@ -32,4 +32,21 @@ public class CascaioUser extends CascaioEntity {
     public CascaioUser(String id) {
         super(id);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CascaioUser) {
+            return getId().equals(((CascaioUser)o).getId());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash += getId().hashCode();
+        return hash;
+    }
+
+
 }

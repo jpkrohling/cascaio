@@ -30,11 +30,21 @@ public class EJBExceptionMapper implements ExceptionMapper<EJBException> {
 
     @Override
     public Response toResponse(EJBException e) {
-        if (e.getCausedByException() instanceof NoResultException) {
+        Exception causedBy = e.getCausedByException();
+
+        if (causedBy instanceof NoResultException) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.serverError().entity(e.getCausedByException().getMessage()).build();
+        if (causedBy instanceof DataAccessForbiddenException) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+
+        if (causedBy != null) {
+            return Response.serverError().entity(causedBy.getMessage()).build();
+        } else {
+            return Response.serverError().entity(e.getMessage()).build();
+        }
     }
 
 }
