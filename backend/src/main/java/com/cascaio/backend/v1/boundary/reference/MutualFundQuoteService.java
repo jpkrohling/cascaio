@@ -109,7 +109,7 @@ public class MutualFundQuoteService extends BaseService<
             throw new NonUniqueResultException(message);
         }
 
-        if (mutualFundQuoteList.size() == 0) {
+        if (mutualFundQuoteList.isEmpty()) {
             return null;
         }
 

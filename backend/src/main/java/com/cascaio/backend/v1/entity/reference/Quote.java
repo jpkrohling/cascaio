@@ -17,12 +17,12 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import com.cascaio.backend.v1.entity.CascaioEntity;
-import org.joda.time.LocalDate;
-
+import java.math.BigDecimal;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
+import org.joda.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -42,12 +42,19 @@ public class Quote extends CascaioEntity {
     }
 
     public Quote(LocalDate date, BigDecimal price) {
-        this.date = date;
-        this.price = price;
+        this(UUID.randomUUID().toString(), date, price);
     }
 
     public Quote(String id, LocalDate date, BigDecimal price) {
         super(id);
+        if (null == date) {
+            throw new IllegalArgumentException("A quote should always be relative to a date.");
+        }
+
+        if (null == price) {
+            throw new IllegalArgumentException("A quote should always have a price.");
+        }
+
         this.date = date;
         this.price = price;
     }

@@ -23,6 +23,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -53,14 +54,15 @@ public class MutualFundQuote extends Quote {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MutualFundQuote)) return false;
-
-        MutualFundQuote that = (MutualFundQuote) o;
-
-        if (mutualFund != null ? !mutualFund.equals(that.mutualFund) : that.mutualFund != null) return false;
-        return super.equals(o);
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MutualFundQuote other = (MutualFundQuote) obj;
+        return Objects.equals(this.mutualFund, other.mutualFund);
     }
 
     @Override

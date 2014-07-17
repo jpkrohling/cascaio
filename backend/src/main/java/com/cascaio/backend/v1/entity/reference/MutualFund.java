@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -44,7 +45,7 @@ public class MutualFund extends NamedCascaioEntity {
     private CurrencyUnit currency;
 
     @OneToMany(mappedBy = "mutualFund", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MutualFundQuote> quotes = new ArrayList<>();
+    private final List<MutualFundQuote> quotes = new ArrayList<>();
 
     protected MutualFund() {
     }
@@ -84,16 +85,24 @@ public class MutualFund extends NamedCascaioEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MutualFund)) return false;
-
-        MutualFund fund = (MutualFund) o;
-
-        //if (currency != null ? !currency.equals(fund.currency) : fund.currency != null) return false;
-        if (isin != null ? !isin.equals(fund.isin) : fund.isin != null) return false;
-        if (wkn != null ? !wkn.equals(fund.wkn) : fund.wkn != null) return false;
-        return super.equals(o);
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MutualFund other = (MutualFund) obj;
+        if (!Objects.equals(this.isin, other.isin)) {
+            return false;
+        }
+        if (!Objects.equals(this.wkn, other.wkn)) {
+            return false;
+        }
+        if (!Objects.equals(this.currency, other.currency)) {
+            return false;
+        }
+        return Objects.equals(this.quotes, other.quotes);
     }
 
     @Override

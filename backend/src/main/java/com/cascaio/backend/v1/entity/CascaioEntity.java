@@ -16,6 +16,7 @@
  */
 package com.cascaio.backend.v1.entity;
 
+import java.io.Serializable;
 import org.joda.time.DateTime;
 
 import javax.persistence.Id;
@@ -27,11 +28,11 @@ import java.util.UUID;
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
 @MappedSuperclass
-public abstract class CascaioEntity {
+public abstract class CascaioEntity implements Serializable {
     @Id
     private String id = UUID.randomUUID().toString();
 
-    private DateTime createdAt = new DateTime();
+    private final DateTime createdAt = new DateTime();
     private DateTime updatedAt = new DateTime();
 
     protected CascaioEntity() {
