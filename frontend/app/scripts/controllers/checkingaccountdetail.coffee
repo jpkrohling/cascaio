@@ -1,11 +1,11 @@
 'use strict'
 
 ###*
- # @ngdoc function
- # @name frontendApp.controller:CheckingAccountDetailCtrl
- # @description
- # # CheckingAccountDetailCtrl
- # Controller of the frontendApp
+# @ngdoc function
+# @name frontendApp.controller:CheckingAccountDetailCtrl
+# @description
+# # CheckingAccountDetailCtrl
+# Controller of the frontendApp
 ###
 angular.module('frontendApp').controller 'CheckingAccountDetailCtrl', ($scope, $routeParams, $modal, $filter, $location, toaster, ngTableParams, CheckingAccount, CheckingAccountTransaction) ->
   $('#main-nav li').removeClass('active')
@@ -14,7 +14,6 @@ angular.module('frontendApp').controller 'CheckingAccountDetailCtrl', ($scope, $
   $scope.loading = false
   $scope.checkingAccount = {}
   $scope.transactions = []
-  $scope.transactionNew = new CheckingAccountTransaction({})
 
   $scope.tableParams = new ngTableParams({page: 1, count: 25}, {
     getData: ($defer, params) ->
@@ -51,23 +50,18 @@ angular.module('frontendApp').controller 'CheckingAccountDetailCtrl', ($scope, $
     angular.element('#confirmDeleteModal').modal('hide')
     return
 
-  $scope.createTransaction = ->
-    $scope.transactionNew.accountId = $scope.checkingAccount.id
-    $scope.transactionNew.$save({}, ->
-      toaster.pop('success', 'Created', 'Transaction created')
-      angular.element('#createTransactionModal').modal('hide')
-      $scope.transactions.push $scope.transactionNew
-      $scope.transactionNew = new CheckingAccountTransaction({})
-      $scope.tableParams.reload()
-    , (httpResponse) ->
-      toaster.pop('error', 'Not created', 'There was an error while trying to create this account.')
-      $scope.transactionErrors = []
-      if httpResponse.data?.parameterViolations
-        for violation in httpResponse.data.parameterViolations
-          fieldParts = violation["path"].split(".")
-          fieldName = fieldParts[fieldParts.length-1]
-          $scope.transactionErrors.push "The field '" + fieldName + "' is not valid: " + violation["message"]
+  $scope.confirmRemoveTransaction = (transaction) ->
+    modal = $modal.open({
+      templateUrl: 'views/_checkingaccountdetails-removetransactionmodal.html'
+      resolve: {
+        transaction: transaction
+      }
+    })
+
+    modal.result.then(->
+      console.log('removing transaction')
+    , ->
+      console.log('dismissing removal')
     )
-    return
 
   $scope.load()

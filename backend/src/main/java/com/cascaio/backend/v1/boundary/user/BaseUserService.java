@@ -34,7 +34,9 @@ import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -78,6 +80,13 @@ public abstract class BaseUserService
     @Override
     public Response createAsFormParameters(@Valid @BeanParam CreateRequest request) {
         return super.createAsFormParameters(request);
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Override
+    public Response delete(@Valid @BeanParam ReadRequest request) {
+        return super.delete(request);
     }
 
     @Override

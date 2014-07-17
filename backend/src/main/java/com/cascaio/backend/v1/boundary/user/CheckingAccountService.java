@@ -24,6 +24,7 @@ import com.cascaio.api.v1.user.CheckingAccountUpdateRequest;
 import com.cascaio.backend.v1.entity.user.CheckingAccount;
 import com.cascaio.backend.v1.entity.user.Transaction;
 import com.cascaio.backend.v1.entity.user.adapter.CheckingAccountAdapter;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
@@ -32,6 +33,7 @@ import javax.ws.rs.Path;
  */
 @Path("/user/checkingAccounts")
 @Stateless
+@RolesAllowed({"user", "admin"})
 public class CheckingAccountService extends BaseUserService<
         CheckingAccountCreateRequest,
         CheckingAccountUpdateRequest,
@@ -48,6 +50,4 @@ public class CheckingAccountService extends BaseUserService<
             getEntityManager().remove(transaction);
         }
     }
-
-
 }
