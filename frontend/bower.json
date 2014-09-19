@@ -19,7 +19,8 @@
     "AngularJS-Toaster": "~0.4.7",
     "angular-ui-select2": "~0.0.5",
     "ng-table": "~0.3.3",
-    "keycloak": "1.0"
+    "keycloak": "1.0",
+    "jquery-csv": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",
@@ -30,6 +31,11 @@
       "main": [
         "dist/js/patternfly.js",
         "dist/css/patternfly.css"
+      ]
+    },
+    "jquery-csv": {
+      "main": [
+        "src/jquery.csv.js"
       ]
     }
   },
