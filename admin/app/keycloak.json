@@ -1,9 +1,9 @@
 {
-    "realm": "cascaio",
-    "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJQotz732D1gyYQu9t49nh5MY3VHTujTstTLXIfX2cVLok4M+OF5E4tTN3M6Xdkbsps+O4oC5SDQENQgGfTZk1Hy/I/59x5iWkZ/mnhvfkR0kps1wVquwyVjwJXgKQSLJWXufn/CW/u9kTBp8Mj70vmKzEBQVuQCULICjDUpGnOQIDAQAB",
-    "auth-server-url": "https://auth.cascaio.com/auth",
-    "ssl-not-required": false,
-    "resource": "admin",
-    "public-client": true,
-    "use-resource-role-mappings": true
+  "realm": "cascaio",
+  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGFL3ABo+ZLkFs9IFQOTi2bD1rw4F9lB0LNERhxKUrE4EFJ/xGK2YHx8hOX6G6gpLhuWNTuEcqTG8RO0vVs4ixrvb5SBDBXU6rontHkOCAHRTue9jzqpu+E5D1LGAe79npbWYS5fdbVZsWT8CAzagsCpp7K9JNwAeV1Mpk3gZtpwIDAQAB",
+  "auth-server-url": "https://auth.cascaio.com/auth",
+  "ssl-required": "external",
+  "resource": "admin",
+  "public-client": true,
+  "use-resource-role-mappings": true
 }
