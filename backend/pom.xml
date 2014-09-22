@@ -134,12 +134,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </dependency>
 
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3</version> <!-- Overrides the version, as we need this for SNI support -->
-        </dependency>
-
-        <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
         </dependency>
