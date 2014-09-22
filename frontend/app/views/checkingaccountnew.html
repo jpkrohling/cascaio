@@ -18,17 +18,27 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="currencyUnit" class="col-md-2 control-label">Currency <span class="required">*</span></label>
+                <label class="col-md-2 control-label">Currency <span class="required">*</span></label>
                 <div class="col-md-6">
-                    <select data-ui-select2="true" data-ng-model="checkingAccountNew.currencyUnit" data-placeholder="Select a currency" id="currencyUnit">
-                        <option></option>
-                        <option data-ng-repeat="currency in currencies" value="{{currency.code}}">{{currency.code}}</option>
-                    </select>
+                    <ui-select ng-model="currency.selected" theme="selectize" style="width: 200px;">
+                        <ui-select-match placeholder="Select a currency">{{$select.selected.code}}</ui-select-match>
+                        <ui-select-choices repeat="currency in currencies | filter: $select.search">
+                            <span ng-bind-html="currency.code | highlight: $select.search"></span>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
             </div>
             <div class="form-group">
-                <label for="financialInstitutionId" class="col-md-2 control-label">Financial Institution <span class="required">*</span></label>
+                <label class="col-md-2 control-label">Financial Institution <span class="required">*</span></label>
                 <div class="col-md-6">
+                    <ui-select ng-model="financialInstitution.selected" reset-search-input="false" theme="selectize" style="width: 200px;">
+                        <ui-select-match placeholder="Select a financial institution">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="financialInstitution in financialInstitutionResults track by $index" refresh="refreshFinancialInstitutions($select.search)" refresh-delay="0">
+                            <span ng-bind-html="financialInstitution.name | highlight: $select.search"></span>
+                            <small ng-bind-html="financialInstitution.blz | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+
                     <input type="hidden" style="width: 300px" id="financialInstitutionId" data-ng-model="checkingAccountNew.financialInstitutionId"/>
                 </div>
             </div>

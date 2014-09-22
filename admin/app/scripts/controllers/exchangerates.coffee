@@ -14,13 +14,13 @@ angular.module('adminApp').controller 'ExchangeRatesCtrl', ($scope, $filter, toa
   $scope.currencies = Currency.query()
   $scope.loading = false
   $scope.exchangeRates = []
-  $scope.currencyFrom = ""
-  $scope.currencyTo = ""
+  $scope.currencyFrom = {}
+  $scope.currencyTo = {}
   $scope.dateStart = ""
   $scope.dateEnd = ""
 
   $scope.validCurrencies = ->
-    return $scope.currencyFrom != "" && $scope.currencyTo != "" && $scope.currencyFrom != $scope.currencyTo
+    return $scope.currencyFrom.selected != "" && $scope.currencyTo.selected != "" && $scope.currencyFrom.selected != $scope.currencyTo.selected
 
   $scope.tableParams = new ngTableParams({page: 1, count: 25}, {
     getData: ($defer, params) ->
@@ -34,19 +34,19 @@ angular.module('adminApp').controller 'ExchangeRatesCtrl', ($scope, $filter, toa
   })
 
   $scope.load = ->
-    if $scope.currencyFrom == ""
+    if $scope.currencyFrom.selected.code == ""
       toaster.pop('warning', 'Missing data', 'Please, enter a currency to be converted from')
       return
 
-    if $scope.currencyTo == ""
+    if $scope.currencyTo.selected.code == ""
       toaster.pop('warning', 'Missing data', 'Please, enter a currency to be converted to')
       return
 
     $scope.loading = true
 
     $scope.exchangeRates = ExchangeRate.query({
-        currencyFrom: $scope.currencyFrom,
-        currencyTo: $scope.currencyTo,
+        currencyFrom: $scope.currencyFrom.selected.code,
+        currencyTo: $scope.currencyTo.selected.code,
         dateStart: $scope.dateStart,
         dateEnd: $scope.dateEnd
       }

@@ -18,47 +18,47 @@ angular.module('adminApp', [
   'ngIdle',
   'ui.bootstrap',
   'toaster',
-  'ui.select2',
+  'ui.select',
   'ngTable'
 ])
 .config ($routeProvider, $idleProvider, $keepaliveProvider) ->
     $routeProvider
     .when '/',
-        templateUrl: 'views/dashboard.html'
-        controller: 'DashboardCtrl'
+      templateUrl: 'views/dashboard.html'
+      controller: 'DashboardCtrl'
 
     .when '/reference',
-        templateUrl: 'views/reference/categories.html'
-        controller: 'CategoriesCtrl'
+      templateUrl: 'views/reference/categories.html'
+      controller: 'CategoriesCtrl'
 
     .when '/reference/financialInstitutions',
-        templateUrl: 'views/reference/financialinstitutions.html'
-        controller: 'FinancialInstitutionsCtrl'
+      templateUrl: 'views/reference/financialinstitutions.html'
+      controller: 'FinancialInstitutionsCtrl'
     .when '/reference/financialInstitutions/new',
-        templateUrl: 'views/reference/financialinstitutionnew.html'
-        controller: 'FinancialInstitutionNewCtrl'
+      templateUrl: 'views/reference/financialinstitutionnew.html'
+      controller: 'FinancialInstitutionNewCtrl'
 
     .when '/reference/categories',
-        templateUrl: 'views/reference/categories.html'
-        controller: 'CategoriesCtrl'
+      templateUrl: 'views/reference/categories.html'
+      controller: 'CategoriesCtrl'
     .when '/reference/categories/new',
-        templateUrl: 'views/reference/categorynew.html'
-        controller: 'CategoryNewCtrl'
+      templateUrl: 'views/reference/categorynew.html'
+      controller: 'CategoryNewCtrl'
 
     .when '/reference/exchangeRates',
-        templateUrl: 'views/reference/exchangerates.html'
-        controller: 'ExchangeRatesCtrl'
+      templateUrl: 'views/reference/exchangerates.html'
+      controller: 'ExchangeRatesCtrl'
 
     .when '/reference/mutualFunds',
-        templateUrl: 'views/reference/mutualfunds.html'
-        controller: 'MutualFundsCtrl'
+      templateUrl: 'views/reference/mutualfunds.html'
+      controller: 'MutualFundsCtrl'
     .when '/reference/mutualFunds/new',
-        templateUrl: 'views/reference/mutualfundnew.html'
-        controller: 'MutualFundNewCtrl'
+      templateUrl: 'views/reference/mutualfundnew.html'
+      controller: 'MutualFundNewCtrl'
 
     .when '/reference/mutualFunds/:id/quotes',
-        templateUrl: 'views/reference/mutualfundquotes.html'
-        controller: 'MutualFundQuotesCtrl'
+      templateUrl: 'views/reference/mutualfundquotes.html'
+      controller: 'MutualFundQuotesCtrl'
 
     .when '/reference/stockMarkets',
       templateUrl: 'views/reference/stockmarkets.html'
@@ -75,8 +75,8 @@ angular.module('adminApp', [
       controller: 'StockQuotesCtrl'
 
     .when '/batch',
-        templateUrl: 'views/batch.html'
-        controller: 'BatchCtrl'
+      templateUrl: 'views/batch.html'
+      controller: 'BatchCtrl'
 
     .when '/dashboard',
       templateUrl: 'views/dashboard.html'

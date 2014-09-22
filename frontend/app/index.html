@@ -9,8 +9,9 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly.css" />
     <link rel="stylesheet" href="bower_components/AngularJS-Toaster/toaster.css" />
-    <link rel="stylesheet" href="bower_components/select2/select2.css" />
     <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.default.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -104,10 +105,11 @@
     <script src="bower_components/patternfly/dist/js/patternfly.js"></script>
     <script src="bower_components/ng-idle/angular-idle.js"></script>
     <script src="bower_components/AngularJS-Toaster/toaster.js"></script>
-    <script src="bower_components/select2/select2.js"></script>
-    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
     <script src="bower_components/ng-table/ng-table.js"></script>
     <script src="bower_components/keycloak/dist/keycloak.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="bower_components/sifter/sifter.js"></script>
+    <script src="bower_components/microplugin/src/microplugin.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -139,7 +141,8 @@
                     angular.bootstrap(document, ["frontendApp"]);
                 })
                 .error(function () {
-                    window.location.reload();
+                    alert('Something went wrong.');
+                    //window.location.reload();
                 });
         });
     </script>

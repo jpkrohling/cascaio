@@ -12,7 +12,7 @@
     <tr data-ng-repeat="transaction in transactions">
         <td>{{transaction.date}}</td>
         <td>{{transaction.name}}</td>
-        <td>{{transaction.amount | currency: checkingAccount.currencyUnit + " "}}</td>
+        <td>{{transaction.amount | currency: account.currencyUnit + " "}}</td>
         <td>
             <i class="pficon pficon-delete action" data-tooltip="Remove" data-tooltip-placement="left" data-ng-click="confirmRemoveTransaction(transaction)"></i>
         </td>

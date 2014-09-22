@@ -18,7 +18,7 @@ angular.module('frontendApp', [
   'ngIdle',
   'ui.bootstrap',
   'toaster',
-  'ui.select2',
+  'ui.select',
   'ngTable'
 ])
 .config ($routeProvider, $idleProvider, $keepaliveProvider) ->
