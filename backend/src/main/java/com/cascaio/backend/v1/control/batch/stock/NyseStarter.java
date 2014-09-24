@@ -38,7 +38,7 @@ public class NyseStarter extends BatchJobStarter {
     Logger logger;
 
     @POST
-    @Schedule(minute="20", hour="23")
+    @Schedule(minute="1", hour="23")
     @RolesAllowed("admin")
     public String start() {
         return doStart();

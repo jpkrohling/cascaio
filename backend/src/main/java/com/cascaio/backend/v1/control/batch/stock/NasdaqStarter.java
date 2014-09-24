@@ -39,7 +39,7 @@ public class NasdaqStarter extends BatchJobStarter {
     Logger logger;
 
     @POST
-    @Schedule(minute="10", hour="23")
+    @Schedule(minute="0", hour="23")
     @RolesAllowed("admin")
     public String start() {
         return doStart();

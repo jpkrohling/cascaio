@@ -39,7 +39,7 @@ public class ExchangeRateStarter extends BatchJobStarter {
     Logger logger;
 
     @POST
-    @Schedule(minute="0", hour="23")
+    @Schedule(minute="2", hour="23")
     @RolesAllowed("admin")
     public String start() {
         return doStart();
