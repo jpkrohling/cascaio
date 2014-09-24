@@ -72,9 +72,9 @@ public class StockQuotePartitionPlan extends PartitionPlanImpl {
     }
 
     public List<Stock> getSingleStockList() {
-        List<Stock> stocks = new ArrayList<>(1);
-        stocks.add(stockService.readAsEntity("b4031c4b-6e6b-4dda-8a63-68251e686f97")); // RHT at NYSE
-        return stocks;
+        stockList = new ArrayList<>(1);
+        stockList.add(stockService.readAsEntity("b4031c4b-6e6b-4dda-8a63-68251e686f97")); // RHT at NYSE
+        return stockList;
     }
 
     public List<Stock> getAllStocks() {

@@ -34,6 +34,8 @@ public class ExchangeRatePartitionPlan extends PartitionPlanImpl {
     @Inject
     Logger logger;
 
+    private static final int MAX_THREADS = 25;
+
     @Override
     public int getPartitions() {
         int partitions = availableCurrencies.size();
@@ -43,9 +45,7 @@ public class ExchangeRatePartitionPlan extends PartitionPlanImpl {
 
     @Override
     public int getThreads() {
-        int threads = availableCurrencies.size() / 2;
-        logger.trace("getThreads: {}", threads);
-        return threads;
+        return Math.min(availableCurrencies.size(), MAX_THREADS); // at most, MAX_THREADS threads
     }
 
     @Override
