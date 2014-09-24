@@ -18,6 +18,7 @@ package com.cascaio.backend.v1.control.batch.stockquote;
 
 import com.cascaio.backend.v1.control.batch.BasicBatchCheckpoint;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.URL;
@@ -59,8 +60,14 @@ public class StockQuoteReader implements ItemReader {
         logger.trace("URL to call: {}", url);
 
         logger.trace("Preparing reader");
-        reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-        reader.readLine(); // skip the first line
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+            reader.readLine(); // skip the first line
+        } catch (IOException ioe) {
+            reader = null;
+            logger.warn("Couldn't open URL {}. Message: {}", url, ioe.getMessage());
+        }
     }
 
     @Override

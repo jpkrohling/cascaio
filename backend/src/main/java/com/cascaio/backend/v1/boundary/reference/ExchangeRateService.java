@@ -96,6 +96,7 @@ public class ExchangeRateService extends BaseService<
         }
 
         query.where(predicates.toArray(new Predicate[predicates.size()]));
+        query.orderBy(builder.desc(root.get(ExchangeRate_.date)));
 
         return getEntityManager().createQuery(query).getResultList();
     }

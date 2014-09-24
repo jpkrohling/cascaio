@@ -83,6 +83,7 @@ public class StockQuoteService extends BaseService<
                 builder.equal(root.get(StockQuote_.stock), stock),
                 builder.equal(root.get(StockQuote_.date), date)
         );
+        query.orderBy(builder.desc(root.get(StockQuote_.date)));
 
         List<StockQuote> stockQuoteList = getEntityManager().createQuery(query).getResultList();
 
@@ -108,6 +109,7 @@ public class StockQuoteService extends BaseService<
         query.where(
                 builder.equal(root.get(StockQuote_.stock), stock)
         );
+        query.orderBy(builder.desc(root.get(StockQuote_.date)));
 
         return getEntityManager().createQuery(query).getResultList();
     }

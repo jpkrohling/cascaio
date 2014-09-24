@@ -85,6 +85,7 @@ public class MutualFundQuoteService extends BaseService<
         query.where(
                 builder.equal(root.get(MutualFundQuote_.mutualFund), mutualFund)
         );
+        query.orderBy(builder.desc(root.get(MutualFundQuote_.date)));
 
         return getEntityManager().createQuery(query).getResultList();
     }
@@ -100,6 +101,7 @@ public class MutualFundQuoteService extends BaseService<
                 builder.equal(root.get(MutualFundQuote_.mutualFund), mutualFund),
                 builder.equal(root.get(MutualFundQuote_.date), date)
         );
+        query.orderBy(builder.desc(root.get(MutualFundQuote_.date)));
 
         List<MutualFundQuote> mutualFundQuoteList = getEntityManager().createQuery(query).getResultList();
 
