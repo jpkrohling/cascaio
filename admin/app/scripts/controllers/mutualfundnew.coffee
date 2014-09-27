@@ -13,9 +13,11 @@ angular.module('adminApp').controller 'MutualFundNewCtrl', ($scope, $location, t
 
   $scope.mutualFundNew = new MutualFund({})
   $scope.errors = []
+  $scope.currency = {}
   $scope.currencies = Currency.query()
 
   $scope.persist = ->
+    $scope.mutualFundNew.currency = $scope.currency.selected.code
     $scope.mutualFundNew.$save({}
     , ->
       toaster.pop('success', '', 'Mutual Fund created')
