@@ -24,12 +24,13 @@ import com.cascaio.backend.v1.boundary.user.CheckingAccountService;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.BigDecimalAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.CurrencyAdapter;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.LocalDateAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
 import com.cascaio.backend.v1.entity.user.CheckingAccount;
 import com.cascaio.backend.v1.entity.user.CheckingTransaction;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import javax.inject.Inject;
-import org.joda.time.LocalDate;
 
 /**
  *
@@ -42,7 +43,7 @@ public class CheckingAccountTransactionAdapter extends
     BigDecimalAdapter bigDecimalAdapter;
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    LocalDateAdapter dateTimeAdapter;
 
     @Inject
     CurrencyAdapter currencyAdapter;
@@ -75,7 +76,7 @@ public class CheckingAccountTransactionAdapter extends
     @Override
     public CheckingTransaction adaptUpdate(CheckingAccountTransactionUpdateRequest request, CheckingTransaction toUpdate) {
         toUpdate.setAmount(bigDecimalAdapter.adapt(request.getAmount()));
-        toUpdate.setDate(dateTimeAdapter.adaptToLocalDate(request.getDate()));
+        toUpdate.setDate(dateTimeAdapter.adapt(request.getDate()));
         toUpdate.setExchangeRate(bigDecimalAdapter.adapt(request.getExchangeRate()));
         toUpdate.setName(request.getName());
         toUpdate.setOriginalAmount(bigDecimalAdapter.adapt(request.getOriginalAmount()));
@@ -89,7 +90,7 @@ public class CheckingAccountTransactionAdapter extends
 
     @Override
     public CheckingTransaction adaptCreate(CheckingAccountTransactionCreateRequest request) {
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(request.getDate());
+        LocalDate date = dateTimeAdapter.adapt(request.getDate());
         BigDecimal amount = bigDecimalAdapter.adapt(request.getAmount());
         CheckingAccount account = accountService.readAsEntity(request.getAccountId());
         CheckingTransaction transaction = new CheckingTransaction(date, amount, account);

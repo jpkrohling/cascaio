@@ -25,8 +25,9 @@ import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.Stock;
 import com.cascaio.backend.v1.entity.reference.StockQuote;
 import com.cascaio.backend.v1.entity.reference.StockQuote_;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.StockQuoteAdapter;
+import java.time.LocalDate;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -36,7 +37,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.ws.rs.Path;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 
 /**
@@ -57,7 +57,7 @@ public class StockQuoteService extends BaseService<
     Logger logger;
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    ZonedDateTimeAdapter dateTimeAdapter;
 
     @Inject
     StockService stockService;

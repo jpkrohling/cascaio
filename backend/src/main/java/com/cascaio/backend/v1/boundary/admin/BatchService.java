@@ -20,7 +20,7 @@ import com.cascaio.api.v1.Error;
 import com.cascaio.api.v1.admin.BatchExecution;
 import com.cascaio.api.v1.admin.BatchResponse;
 import com.cascaio.backend.v1.control.batch.BatchJobStarter;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 
@@ -48,7 +48,7 @@ import java.util.Set;
 public class BatchService {
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    ZonedDateTimeAdapter dateTimeAdapter;
 
     @Inject
     Logger logger;

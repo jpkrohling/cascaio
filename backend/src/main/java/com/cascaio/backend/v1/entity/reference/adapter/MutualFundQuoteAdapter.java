@@ -23,10 +23,11 @@ import com.cascaio.backend.v1.boundary.reference.MutualFundService;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import com.cascaio.backend.v1.entity.reference.MutualFund;
 import com.cascaio.backend.v1.entity.reference.MutualFundQuote;
-import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -38,7 +39,7 @@ public class MutualFundQuoteAdapter extends
     MutualFundService mutualFundService;
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    LocalDateAdapter dateTimeAdapter;
 
     @Inject
     BigDecimalAdapter bigDecimalAdapter;
@@ -65,7 +66,7 @@ public class MutualFundQuoteAdapter extends
 
     @Override
     public MutualFundQuote adaptCreate(MutualFundQuoteCreateRequest request) {
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(request.getDate());
+        LocalDate date = dateTimeAdapter.adapt(request.getDate());
         BigDecimal price = bigDecimalAdapter.adapt(request.getPrice());
         MutualFund mutualFund = mutualFundService.readAsEntity(request.getMutualFundId());
         return new MutualFundQuote(date, price, mutualFund);

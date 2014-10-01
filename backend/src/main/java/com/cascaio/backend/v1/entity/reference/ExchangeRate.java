@@ -17,13 +17,13 @@
 package com.cascaio.backend.v1.entity.reference;
 
 import org.joda.money.CurrencyUnit;
-import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>

@@ -18,10 +18,10 @@ package com.cascaio.backend.v1.entity.user;
 
 import com.cascaio.backend.v1.entity.reference.Category;
 import org.joda.money.CurrencyUnit;
-import org.joda.time.LocalDate;
 
 import javax.persistence.Entity;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>

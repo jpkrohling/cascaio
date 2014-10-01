@@ -18,11 +18,11 @@ package com.cascaio.backend.v1.entity.reference;
 
 import com.cascaio.backend.v1.entity.CascaioEntity;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
-import org.joda.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>

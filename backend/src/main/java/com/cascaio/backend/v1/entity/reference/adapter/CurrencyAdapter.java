@@ -16,12 +16,15 @@
  */
 package com.cascaio.backend.v1.entity.reference.adapter;
 
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import org.joda.money.CurrencyUnit;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
  */
-public class CurrencyAdapter {
+@Converter(autoApply = true)
+public class CurrencyAdapter implements AttributeConverter<CurrencyUnit, String> {
     public CurrencyUnit adapt(String currency) {
         if (null == currency || currency.isEmpty()) {
             return null;
@@ -34,5 +37,15 @@ public class CurrencyAdapter {
             return null;
         }
         return currencyUnit.getCurrencyCode();
+    }
+
+    @Override
+    public String convertToDatabaseColumn(CurrencyUnit attribute) {
+        return adapt(attribute);
+    }
+
+    @Override
+    public CurrencyUnit convertToEntityAttribute(String dbData) {
+        return adapt(dbData);
     }
 }

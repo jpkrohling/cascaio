@@ -30,7 +30,6 @@ import java.math.BigDecimal;
 @Entity
 public abstract class MoneyAccount extends Account {
 
-    @Type(type = "CurrencyUnit")
     @NotNull
     private CurrencyUnit currency;
 

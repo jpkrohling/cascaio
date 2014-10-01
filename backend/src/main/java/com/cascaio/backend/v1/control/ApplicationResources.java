@@ -16,8 +16,7 @@
  */
 package com.cascaio.backend.v1.control;
 
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
+import java.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,7 +36,10 @@ public class ApplicationResources {
     private static javax.persistence.EntityManager em;
 
     @Produces
-    private static DateTimeFormatter dateTimeFormatter = ISODateTimeFormat.dateTime();
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
+
+    @Produces @LocalDateFormat
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ISO_DATE;
 
     @Inject
     Logger logger;

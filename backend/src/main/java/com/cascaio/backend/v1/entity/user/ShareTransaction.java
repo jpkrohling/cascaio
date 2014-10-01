@@ -16,10 +16,9 @@
  */
 package com.cascaio.backend.v1.entity.user;
 
-import org.joda.time.LocalDate;
-
 import javax.persistence.MappedSuperclass;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>

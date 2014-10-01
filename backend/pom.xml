@@ -41,24 +41,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         </dependency>
 
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.joda</groupId>
             <artifactId>joda-money</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jadira.usertype</groupId>
-            <artifactId>usertype.core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-entitymanager</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -143,10 +127,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
                     <compilerArguments>
                         <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
                     </compilerArguments>

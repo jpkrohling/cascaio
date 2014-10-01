@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,60 +16,61 @@
  */
 package com.cascaio.backend.v1.entity.reference.adapter;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormatter;
-
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.inject.Inject;
 import java.util.Date;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
- * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
+ *
+ * @author Juraci Paixão Kröhling <juraci at kroehling.de>
  */
-public class DateTimeAdapter {
+@Converter(autoApply = true)
+public class ZonedDateTimeAdapter implements AttributeConverter<ZonedDateTime, Timestamp> {
 
     @Inject
     DateTimeFormatter formatter;
 
-    public DateTime adaptToDateTime(String dateTime) {
-        if (null == dateTime || dateTime.isEmpty()) {
-            return null;
-        }
-        return new DateTime(dateTime);
-    }
-
-    public LocalDate adaptToLocalDate(String dateTime) {
+    public ZonedDateTime adapt(String dateTime) {
         if (null == dateTime || dateTime.isEmpty()) {
             return null;
         }
 
-        if (dateTime.contains(".")) {
-            String dateTimeParts[] = dateTime.substring(0, 10).split("\\.");
-            dateTime = dateTimeParts[2] + "-" + dateTimeParts[1] + "-" + dateTimeParts[0];
-        }
-
-        return new LocalDate(dateTime);
+        return ZonedDateTime.parse(dateTime, formatter);
     }
 
-    public String adapt(DateTime dateTime) {
+    public String adapt(ZonedDateTime dateTime) {
         if (null == dateTime) {
             return null;
         }
-        return dateTime.toString(formatter);
+
+        return dateTime.format(formatter);
     }
 
     public String adapt(Date date) {
         if (null == date) {
             return null;
         }
-        return new DateTime(date.getTime()).toString(formatter);
+        return ZonedDateTime
+                .of(
+                        LocalDateTime.ofEpochSecond(date.getTime(), 0, ZoneOffset.UTC),
+                        ZoneOffset.UTC
+                )
+                .format(formatter);
     }
 
-    public String adapt(LocalDate localDate) {
-        if (null == localDate) {
-            return null;
-        }
-        return localDate.toString();
+    @Override
+    public Timestamp convertToDatabaseColumn(ZonedDateTime attribute) {
+        return Timestamp.valueOf(attribute.toLocalDateTime());
     }
 
+    @Override
+    public ZonedDateTime convertToEntityAttribute(Timestamp dbData) {
+        return ZonedDateTime.of(dbData.toLocalDateTime(), ZoneOffset.UTC);
+    }
 }

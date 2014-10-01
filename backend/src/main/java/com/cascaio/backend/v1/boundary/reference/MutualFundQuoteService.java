@@ -25,9 +25,9 @@ import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.MutualFund;
 import com.cascaio.backend.v1.entity.reference.MutualFundQuote;
 import com.cascaio.backend.v1.entity.reference.MutualFundQuote_;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.MutualFundQuoteAdapter;
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -60,7 +60,7 @@ public class MutualFundQuoteService extends BaseService<
     Logger logger;
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    ZonedDateTimeAdapter dateTimeAdapter;
 
     @Inject
     MutualFundService mutualFundService;

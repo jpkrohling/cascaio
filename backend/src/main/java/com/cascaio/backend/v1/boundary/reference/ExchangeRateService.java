@@ -24,10 +24,11 @@ import com.cascaio.api.v1.reference.ExchangeRateUpdateRequest;
 import com.cascaio.backend.v1.boundary.BaseService;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate_;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.ExchangeRateAdapter;
+import com.cascaio.backend.v1.entity.reference.adapter.LocalDateAdapter;
+import java.time.LocalDate;
 import org.joda.money.CurrencyUnit;
-import org.joda.time.LocalDate;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -58,9 +59,10 @@ public class ExchangeRateService extends BaseService<
     private ExchangeRateAdapter adapter;
 
     @Inject
-    private DateTimeAdapter dateTimeAdapter;
+    private LocalDateAdapter dateTimeAdapter;
 
     @RolesAllowed({"admin", "user"})
+    @Override
     public List<ExchangeRate> listAsEntity(ExchangeRateQueryRequest request) {
         CurrencyUnit from = CurrencyUnit.of(request.getCurrencyFrom());
         CurrencyUnit to = CurrencyUnit.of(request.getCurrencyTo());
@@ -71,11 +73,11 @@ public class ExchangeRateService extends BaseService<
         LocalDate localDateEnd = null;
 
         if (null != dateStart && !dateStart.isEmpty()) {
-            localDateStart = dateTimeAdapter.adaptToLocalDate(dateStart);
+            localDateStart = dateTimeAdapter.adapt(dateStart);
         }
 
         if (null != dateEnd && !dateEnd.isEmpty()) {
-            localDateEnd = dateTimeAdapter.adaptToLocalDate(dateEnd);
+            localDateEnd = dateTimeAdapter.adapt(dateEnd);
         }
 
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
@@ -83,7 +85,7 @@ public class ExchangeRateService extends BaseService<
         Root<ExchangeRate> root = query.from(ExchangeRate.class);
         query.select(root);
 
-        List<Predicate> predicates = new ArrayList<Predicate>(4);
+        List<Predicate> predicates = new ArrayList<>(4);
         predicates.add(builder.equal(root.get(ExchangeRate_.currencyFrom), from));
         predicates.add(builder.equal(root.get(ExchangeRate_.currencyTo), to));
 

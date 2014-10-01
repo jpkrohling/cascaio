@@ -21,7 +21,6 @@ import com.cascaio.backend.v1.entity.reference.ExchangeRate;
 import com.cascaio.backend.v1.entity.reference.adapter.BigDecimalAdapter;
 import com.cascaio.backend.v1.entity.reference.adapter.CurrencyAdapter;
 import org.joda.money.CurrencyUnit;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 
 import javax.batch.api.BatchProperty;
@@ -33,6 +32,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.List;
 
 /**

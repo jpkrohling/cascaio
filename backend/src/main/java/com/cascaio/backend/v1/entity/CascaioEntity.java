@@ -17,7 +17,7 @@
 package com.cascaio.backend.v1.entity;
 
 import java.io.Serializable;
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -32,8 +32,8 @@ public abstract class CascaioEntity implements Serializable {
     @Id
     private String id = UUID.randomUUID().toString();
 
-    private final DateTime createdAt = new DateTime();
-    private DateTime updatedAt = new DateTime();
+    private final ZonedDateTime createdAt = ZonedDateTime.now();
+    private ZonedDateTime updatedAt = ZonedDateTime.now();
 
     protected CascaioEntity() {
     }
@@ -46,17 +46,17 @@ public abstract class CascaioEntity implements Serializable {
         return id;
     }
 
-    public DateTime getCreatedAt() {
+    public ZonedDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public DateTime getUpdatedAt() {
+    public ZonedDateTime getUpdatedAt() {
         return updatedAt;
     }
 
     @PreUpdate
     public void setUpdatedAt() {
-        this.updatedAt = new DateTime();
+        this.updatedAt = ZonedDateTime.now();
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class CascaioEntity implements Serializable {
      *
      * @return DateTime representing the last time that the object was changed.
      */
-    public DateTime getLastModifiedAt() {
+    public ZonedDateTime getLastModifiedAt() {
         return this.getUpdatedAt();
     }
 

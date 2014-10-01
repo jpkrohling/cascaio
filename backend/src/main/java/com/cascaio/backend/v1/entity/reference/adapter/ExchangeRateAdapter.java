@@ -22,10 +22,11 @@ import com.cascaio.api.v1.reference.ExchangeRateUpdateRequest;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import com.cascaio.backend.v1.entity.reference.ExchangeRate;
 import org.joda.money.CurrencyUnit;
-import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -37,7 +38,7 @@ public class ExchangeRateAdapter extends
     CurrencyAdapter currencyAdapter;
     
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    LocalDateAdapter dateTimeAdapter;
 
     @Override
     public ExchangeRateResponse adaptPersistent(ExchangeRate exchangeRate) {
@@ -64,7 +65,7 @@ public class ExchangeRateAdapter extends
         CurrencyUnit from = currencyAdapter.adapt(request.getCurrencyFrom());
         CurrencyUnit to = currencyAdapter.adapt(request.getCurrencyTo());
         BigDecimal rate = new BigDecimal(request.getRate());
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(request.getDate());
+        LocalDate date = dateTimeAdapter.adapt(request.getDate());
         return new ExchangeRate(from, to, rate, date);
     }
 }

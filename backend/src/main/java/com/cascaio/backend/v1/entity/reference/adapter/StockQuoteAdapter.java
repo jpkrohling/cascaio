@@ -23,10 +23,10 @@ import com.cascaio.backend.v1.boundary.reference.StockService;
 import com.cascaio.backend.v1.entity.EntityAdapter;
 import com.cascaio.backend.v1.entity.reference.Stock;
 import com.cascaio.backend.v1.entity.reference.StockQuote;
-import org.joda.time.LocalDate;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -35,7 +35,7 @@ public class StockQuoteAdapter extends
         EntityAdapter<StockQuoteCreateRequest, StockQuoteUpdateRequest, StockQuoteResponse, StockQuote> {
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    LocalDateAdapter dateTimeAdapter;
 
     @Inject
     BigDecimalAdapter bigDecimalAdapter;
@@ -66,7 +66,7 @@ public class StockQuoteAdapter extends
 
     @Override
     public StockQuote adaptCreate(StockQuoteCreateRequest request) {
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(request.getDate());
+        LocalDate date = dateTimeAdapter.adapt(request.getDate());
         BigDecimal price = bigDecimalAdapter.adapt(request.getPrice());
         Stock stock = stockService.readAsEntity(request.getStockId());
         return new StockQuote(date, price, stock);

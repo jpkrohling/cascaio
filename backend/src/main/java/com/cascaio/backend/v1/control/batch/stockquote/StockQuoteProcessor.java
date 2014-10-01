@@ -21,8 +21,7 @@ import com.cascaio.backend.v1.boundary.reference.StockService;
 import com.cascaio.backend.v1.entity.reference.Stock;
 import com.cascaio.backend.v1.entity.reference.StockQuote;
 import com.cascaio.backend.v1.entity.reference.adapter.BigDecimalAdapter;
-import com.cascaio.backend.v1.entity.reference.adapter.DateTimeAdapter;
-import org.joda.time.LocalDate;
+import com.cascaio.backend.v1.entity.reference.adapter.LocalDateAdapter;
 import org.slf4j.Logger;
 
 import javax.batch.api.BatchProperty;
@@ -30,6 +29,8 @@ import javax.batch.api.chunk.ItemProcessor;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -41,7 +42,7 @@ public class StockQuoteProcessor implements ItemProcessor {
     Logger logger;
 
     @Inject
-    DateTimeAdapter dateTimeAdapter;
+    LocalDateAdapter dateTimeAdapter;
 
     @Inject
     BigDecimalAdapter bigDecimalAdapter;
@@ -69,7 +70,7 @@ public class StockQuoteProcessor implements ItemProcessor {
 
         logger.trace("Identified this field as date: {}", parts[0]);
         logger.trace("Identified this field as price: {}", parts[4]);
-        LocalDate date = dateTimeAdapter.adaptToLocalDate(parts[0]);
+        LocalDate date = dateTimeAdapter.adapt(parts[0]);
         BigDecimal price = bigDecimalAdapter.adapt(parts[4]);
         Stock stock = stockService.readAsEntity(stockId);
 
