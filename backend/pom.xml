@@ -45,11 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <artifactId>joda-money</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-        </dependency>
-
         <!-- Provided runtime dependencies, present on the Wildfly BOM -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>

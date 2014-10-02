@@ -19,9 +19,9 @@ package com.cascaio.backend.v1.boundary.admin;
 import com.cascaio.api.v1.Error;
 import com.cascaio.api.v1.admin.BatchExecution;
 import com.cascaio.api.v1.admin.BatchResponse;
-import com.cascaio.backend.v1.control.batch.BatchJobStarter;
 import com.cascaio.backend.v1.entity.reference.adapter.ZonedDateTimeAdapter;
-import org.reflections.Reflections;
+import java.io.IOException;
+import java.io.InputStream;
 import org.slf4j.Logger;
 
 import javax.annotation.security.RolesAllowed;
@@ -36,8 +36,17 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 
 /**
  * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
@@ -56,14 +65,12 @@ public class BatchService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<BatchResponse> list() throws Exception {
-        Reflections reflections = new Reflections("com.cascaio.backend.v1.control.batch");
-        Set<Class<? extends BatchJobStarter>> jobs = reflections.getSubTypesOf(BatchJobStarter.class);
+        Set<String> allAvailableJobs = getAllAvailableJobNames();
 
         JobOperator jobOperator = BatchRuntime.getJobOperator();
         Set<String> knownJobs = jobOperator.getJobNames();
         List<BatchResponse> batchResponseList = new ArrayList<>();
-        for (Class<? extends BatchJobStarter> job : jobs) {
-            String name = job.newInstance().getJobName();
+        for (String name : allAvailableJobs) {
             if (knownJobs.contains(name)) {
                 int executionCount = jobOperator.getJobInstanceCount(name);
                 List<JobInstance> jobInstances = jobOperator.getJobInstances(name, 0, executionCount);
@@ -110,4 +117,71 @@ public class BatchService {
         }
     }
 
+    /**
+     * Gets a list of all available job names. We could query the job repository,
+     * but it seems to return only jobs which have been started in the past.
+     * So, we need another source information.
+     *
+     * @return  a Set containing the name of all batch jobs located in META-INF/batch-jobs
+     */
+    public Set<String> getAllAvailableJobNames() {
+        Set<String> jobNames = new HashSet<>();
+        List<String> fileNames = getFileNamesFromBatchJobs();
+
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        fileNames.stream().map((fileName) -> classLoader.getResourceAsStream("/META-INF/batch-jobs/" + fileName)).forEach((in) -> {
+            jobNames.add(getJobNameFromFile(in));
+        });
+        return jobNames;
+    }
+
+    /**
+     * Returns the file names for the files in META-INF/batch-jobs . Each file
+     * there represents a batch job.
+     * @return
+     */
+    private List<String> getFileNamesFromBatchJobs() {
+        List<String> fileNames = new ArrayList<>();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream directoryIs = classLoader.getResourceAsStream("/META-INF/batch-jobs");
+
+        if (directoryIs instanceof JarInputStream) {
+            try {
+                JarInputStream jis = (JarInputStream) directoryIs;
+                JarEntry entry;
+                while ((entry = jis.getNextJarEntry()) != null) {
+                    fileNames.add(entry.toString());
+                }
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        return fileNames;
+    }
+
+    /**
+     * Returns the job name for a given XML file.
+     *
+     * @param in    the input stream for the XML file
+     * @return  the value for the "id" property of the "job" XML node
+     */
+    private String getJobNameFromFile(InputStream in) {
+        try {
+            XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+            XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
+            while (eventReader.hasNext()) {
+                XMLEvent event = eventReader.nextEvent();
+                if (event.isStartElement()) {
+                    StartElement startElement = event.asStartElement();
+                    if (startElement.getName().getLocalPart().equalsIgnoreCase("job")) {
+                        return startElement.getAttributeByName(QName.valueOf("id")).getValue();
+                    }
+                }
+            }
+            return null;
+        } catch (XMLStreamException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }
