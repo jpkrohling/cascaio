@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,6 @@
 package com.cascaio.backend.v1.entity.reference.adapter;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -57,10 +56,7 @@ public class ZonedDateTimeAdapter implements AttributeConverter<ZonedDateTime, T
             return null;
         }
         return ZonedDateTime
-                .of(
-                        LocalDateTime.ofEpochSecond(date.getTime(), 0, ZoneOffset.UTC),
-                        ZoneOffset.UTC
-                )
+                .ofInstant(date.toInstant(), ZoneOffset.UTC)
                 .format(formatter);
     }
 
