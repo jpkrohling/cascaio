@@ -41,6 +41,17 @@ angular.module('frontendApp', [
       templateUrl: 'views/checkingaccountdetail.html'
       controller: 'CheckingAccountDetailCtrl'
 
+    .when '/mutualFundAccounts',
+      templateUrl: 'views/mutualfundaccounts.html'
+      controller: 'MutualFundAccountsCtrl'
+    .when '/mutualFundAccounts/new',
+      templateUrl: 'views/mutualfundaccountnew.html'
+      controller: 'MutualFundAccountNewCtrl'
+
+    .when '/mutualFundAccounts/:id',
+      templateUrl: 'views/mutualfundaccountdetail.html'
+      controller: 'MutualFundAccountDetailCtrl'
+
     .otherwise
         redirectTo: '/'
 
