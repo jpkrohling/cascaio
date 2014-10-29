@@ -1,7 +1,7 @@
 {
   "realm": "cascaio",
   "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGFL3ABo+ZLkFs9IFQOTi2bD1rw4F9lB0LNERhxKUrE4EFJ/xGK2YHx8hOX6G6gpLhuWNTuEcqTG8RO0vVs4ixrvb5SBDBXU6rontHkOCAHRTue9jzqpu+E5D1LGAe79npbWYS5fdbVZsWT8CAzagsCpp7K9JNwAeV1Mpk3gZtpwIDAQAB",
-  "auth-server-url": "https://auth.cascaio.com/auth",
+  "auth-server-url": "http://localhost:8080/auth",
   "ssl-required": "external",
   "resource": "frontend",
   "public-client": true,

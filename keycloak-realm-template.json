@@ -1,0 +1,160 @@
+{
+    "id": "cascaio",
+    "realm": "cascaio",
+    "enabled": true,
+    "sslRequired": "external",
+    "registrationAllowed": true,
+    "social": true,
+    "updateProfileOnInitialSocialLogin": true,
+    "rememberMe": true,
+    "verifyEmail": true,
+    "passwordCredentialGrantAllowed": false,
+    "requiredCredentials": [ "password" ],
+    "defaultRoles" : [ "user" ],
+    "socialProviders": {
+        "github.key": "abc",
+        "github.secret": "def"
+    },
+    "smtpServer": {
+        "from": "keycloak@acme.com",
+        "host": "localhost",
+        "port": "25",
+        "ssl": true,
+        "auth": true,
+        "user": "keycloak",
+        "password": "..."
+    },
+    "users" : [
+        {
+            "firstName" : "Juraci",
+            "lastName" : "Paixão Kröhling",
+            "username" : "jpkroehling",
+            "email" : "juraci@kroehling.de",
+            "enabled": true,
+            "socialLinks": [
+                {
+                    "socialProvider": "github",
+                    "socialUserId": "13387",
+                    "socialUsername": "jpkrohling"
+                }
+            ],
+            "realmRoles": [ "admin", "user" ]
+        }
+    ],
+    "roles" : {
+        "realm" : [
+            {
+                "name": "user",
+                "description": "User privileges",
+                "composite": true,
+                "composites": {
+                    "application": {
+                        "backend": ["user"],
+                        "frontend": ["user"]
+                    }
+                }
+            },
+            {
+                "name": "admin",
+                "description": "Admin privileges",
+                "composite": true,
+                "composites": {
+                    "application": {
+                        "backend": ["admin"],
+                        "admin": ["admin"]
+                    },
+                    "realm": ["user"]
+                }
+            }
+        ],
+        "application": {
+          "backend": [
+              {
+                  "name": "user"
+              },
+              {
+                  "name": "admin"
+              }
+          ],
+          "admin": [
+              {
+                  "name": "admin"
+              }
+          ],
+          "frontend": [
+              {
+                  "name": "user"
+              }
+          ]
+        }
+    },
+    "scopeMappings": [
+        {
+            "client": "frontend",
+            "roles": ["user"]
+        },
+        {
+            "client": "admin",
+            "roles": ["admin"]
+        }
+    ],
+    "applications": [
+        {
+            "name": "backend",
+            "enabled": true,
+            "bearerOnly" : true,
+            "publicClient": false,
+            "secret": "some-uuid"
+        },
+        {
+            "name": "frontend",
+            "enabled": true,
+            "bearerOnly" : false,
+            "publicClient": true,
+            "secret": "08e9aaf0-814b-494f-bed3-1a4bfbb4c509",
+            "fullScopeAllowed" : false,
+            "redirectUris": [
+                "https://app.cascaio.com",
+                "https://app.cascaio.com/*",
+                "http://dev.app.cascaio.com/*",
+                "http://localhost:9000/*"
+            ],
+            "webOrigins": [
+                "https://app.cascaio.com",
+                "https://app.cascaio.com/*",
+                "http://dev.app.cascaio.com",
+                "http://localhost:9000"
+            ],
+            "claims": {
+                "username": true,
+                "name": true,
+                "email": true
+            }
+        },
+        {
+            "name": "admin",
+            "enabled": true,
+            "bearerOnly" : false,
+            "publicClient": true,
+            "secret": "53f2feaa-fcf7-48fc-8636-56825e3ed038",
+            "fullScopeAllowed" : false,
+            "redirectUris": [
+                "https://admin.cascaio.com",
+                "https://admin.cascaio.com/*",
+                "http://dev.admin.cascaio.com/*",
+                "http://localhost:9000/*"
+            ],
+            "webOrigins": [
+                "https://admin.cascaio.com",
+                "https://admin.cascaio.com/*",
+                "http://dev.admin.cascaio.com",
+                "http://localhost:9000"
+            ],
+            "claims": {
+                "username": true,
+                "name": true,
+                "email": true
+            }
+        }
+    ]
+}
