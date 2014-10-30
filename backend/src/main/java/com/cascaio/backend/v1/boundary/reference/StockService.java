@@ -86,7 +86,7 @@ public class StockService extends BaseService<
             throw new IllegalStateException(message);
         }
 
-        if (stockList.size() == 0) {
+        if (stockList.isEmpty()) {
             return null;
         }
 

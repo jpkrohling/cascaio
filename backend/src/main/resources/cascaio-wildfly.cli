@@ -1,0 +1,16 @@
+/extension=org.keycloak.keycloak-wildfly-subsystem:add()
+/subsystem=keycloak:add
+reload
+/subsystem=keycloak/secure-deployment=backend.war:add()
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=realm, value=cascaio)
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=resource, value=backend)
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=use-resource-role-mappings, value=true)
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=bearer-only, value=true)
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=realm-public-key, value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDGFL3ABo+ZLkFs9IFQOTi2bD1rw4F9lB0LNERhxKUrE4EFJ/xGK2YHx8hOX6G6gpLhuWNTuEcqTG8RO0vVs4ixrvb5SBDBXU6rontHkOCAHRTue9jzqpu+E5D1LGAe79npbWYS5fdbVZsWT8CAzagsCpp7K9JNwAeV1Mpk3gZtpwIDAQAB")
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=ssl-required, value=EXTERNAL)
+/subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=enable-cors, value=true)
+/subsystem=security/security-domain=keycloak:add
+/subsystem=security/security-domain=keycloak/authentication=classic:add(login-modules=[{"code"=>"org.keycloak.adapters.jboss.KeycloakLoginModule", "flag"=>"required"}])
+reload
+xa-data-source add --name=cascaio-backend-ds --jndi-name=java:jboss/datasources/cascaio-backend-ds --driver-name=postgresql-jdbc.jar --user-name=cascaiobackend --password=cascaiobackend --enabled=true --xa-datasource-properties=[{ServerName=localhost}, {DatabaseName=cascaiobackend}] --xa-datasource-class=org.postgresql.xa.PGXADataSource
+/subsystem=undertow/server=default-server/host=cascaio-api/:add(alias=[dev.api.cascaio.com])
