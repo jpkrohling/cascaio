@@ -1,0 +1,9 @@
+{
+  "realm": "cascaio",
+  "realm-public-key": "CASCAIO_KEYCLOAK_REALM_PUBLIC_KEY",
+  "auth-server-url": "CASCAIO_KEYCLOAK_AUTH_SERVER_URL",
+  "ssl-required": "external",
+  "resource": "frontend",
+  "public-client": true,
+  "use-resource-role-mappings": true
+}

@@ -12,30 +12,30 @@
     "requiredCredentials": [ "password" ],
     "defaultRoles" : [ "user" ],
     "socialProviders": {
-        "github.key": "abc",
-        "github.secret": "def"
+        "github.key": "CASCAIO_KEYCLOAK_GITHUB_KEY",
+        "github.secret": "CASCAIO_KEYCLOAK_GITHUB_SECRET"
     },
     "smtpServer": {
-        "from": "keycloak@acme.com",
-        "host": "localhost",
-        "port": "25",
+        "from": "CASCAIO_KEYCLOAK_SMTP_FROM",
+        "host": "CASCAIO_KEYCLOAK_SMTP_HOST",
+        "port": "CASCAIO_KEYCLOAK_SMTP_PORT",
         "ssl": true,
         "auth": true,
-        "user": "keycloak",
-        "password": "..."
+        "user": "CASCAIO_KEYCLOAK_SMTP_USER",
+        "password": "CASCAIO_KEYCLOAK_SMTP_PASSWORD"
     },
     "users" : [
         {
-            "firstName" : "Juraci",
-            "lastName" : "Paixão Kröhling",
-            "username" : "jpkroehling",
-            "email" : "juraci@kroehling.de",
+            "firstName" : "CASCAIO_KEYCLOAK_USERS_ADMIN_FNAME",
+            "lastName" : "CASCAIO_KEYCLOAK_USERS_ADMIN_LNAME",
+            "username" : "CASCAIO_KEYCLOAK_USERS_ADMIN_USERNAME",
+            "email" : "CASCAIO_KEYCLOAK_USERS_ADMIN_EMAIL",
             "enabled": true,
             "socialLinks": [
                 {
                     "socialProvider": "github",
-                    "socialUserId": "13387",
-                    "socialUsername": "jpkrohling"
+                    "socialUserId": "CASCAIO_KEYCLOAK_USERS_ADMIN_SOCIAL_USERID",
+                    "socialUsername": "CASCAIO_KEYCLOAK_USERS_ADMIN_SOCIAL_USERNAME"
                 }
             ],
             "realmRoles": [ "admin", "user" ]
@@ -104,14 +104,14 @@
             "enabled": true,
             "bearerOnly" : true,
             "publicClient": false,
-            "secret": "some-uuid"
+            "secret": "CASCAIO_KEYCLOAK_APPLICATIONS_BACKEND_SECRET"
         },
         {
             "name": "frontend",
             "enabled": true,
             "bearerOnly" : false,
             "publicClient": true,
-            "secret": "08e9aaf0-814b-494f-bed3-1a4bfbb4c509",
+            "secret": "CASCAIO_KEYCLOAK_APPLICATIONS_FRONTEND_SECRET",
             "fullScopeAllowed" : false,
             "redirectUris": [
                 "https://app.cascaio.com",
@@ -136,7 +136,7 @@
             "enabled": true,
             "bearerOnly" : false,
             "publicClient": true,
-            "secret": "53f2feaa-fcf7-48fc-8636-56825e3ed038",
+            "secret": "CASCAIO_KEYCLOAK_APPLICATIONS_ADMIN_SECRET",
             "fullScopeAllowed" : false,
             "redirectUris": [
                 "https://admin.cascaio.com",

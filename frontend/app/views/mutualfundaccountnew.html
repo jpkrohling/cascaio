@@ -1,1 +1,43 @@
-mutual fund account new
+<div class="row">
+    <div class="col-sm-9 col-md-10 col-sm-push-3 col-md-push-2">
+        <ol class="breadcrumb">
+            <li><a data-ng-href="#">Home</a></li>
+            <li><a data-ng-href="#/mutualFundAccounts">Mutual fund accounts</a></li>
+        </ol>
+        <h1>
+            Add Mutual fund account
+        </h1>
+
+        <div data-cas-errors-box></div>
+
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="name" class="col-md-2 control-label">Name <span class="required">*</span> </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="mutualFundAccountNew.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Mutual Fund <span class="required">*</span></label>
+                <div class="col-md-6">
+                    <ui-select ng-model="mutualFund.selected" reset-search-input="false" theme="selectize" style="width: 200px;">
+                        <ui-select-match placeholder="Select a mutual fund">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices repeat="mutualFund in mutualFundResults track by $index" refresh="refreshMutualFunds($select.search)" refresh-delay="0">
+                            <span ng-bind-html="mutualFund.name | highlight: $select.search"></span>
+                            <small ng-bind-html="mutualFund.isin | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+
+                    <input type="hidden" style="width: 300px" id="mutualFundId" data-ng-model="mutualFundAccountNew.mutualFundId"/>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="pull-right">
+                    <a data-ng-href="#/mutualFundAccounts" class="btn btn-default btn-lg">Cancel</a>
+                    <button data-ng-click="persist()" type="submit" class="btn btn-primary btn-lg">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div><!-- /col -->
+</div><!-- /row -->

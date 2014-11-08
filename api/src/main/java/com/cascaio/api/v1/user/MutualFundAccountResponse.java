@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,14 @@
  */
 package com.cascaio.api.v1.user;
 
-import com.cascaio.api.v1.BaseUpdateRequest;
-
 /**
- * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
+ *
+ * @author Juraci Paixão Kröhling <juraci at kroehling.de>
  */
-public class CheckingAccountUpdateRequest extends CheckingAccountCreateRequest implements BaseUpdateRequest {
+public class MutualFundAccountResponse extends MutualFundAccountCreateRequest {
+
     private String id;
 
-    @Override
     public String getId() {
         return id;
     }
@@ -32,4 +31,5 @@ public class CheckingAccountUpdateRequest extends CheckingAccountCreateRequest i
     public void setId(String id) {
         this.id = id;
     }
+
 }

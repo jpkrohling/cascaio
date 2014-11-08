@@ -8,4 +8,4 @@
  # Service in the frontendApp.
 ###
 angular.module('frontendApp').service 'MutualFundAccount', ($resource, config) ->
-  $resource(config.apihost + '/user/checkingAccounts/:id', {id:'@id'})
+  $resource(config.apihost + '/user/mutualFundAccounts/:id', {id:'@id'})

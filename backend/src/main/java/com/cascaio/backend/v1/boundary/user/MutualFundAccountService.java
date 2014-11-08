@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2014 Juraci Paixão Kröhling <juraci at kroehling.de>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,36 +18,29 @@ package com.cascaio.backend.v1.boundary.user;
 
 import com.cascaio.api.v1.BaseQueryRequest;
 import com.cascaio.api.v1.ReadRequestById;
-import com.cascaio.api.v1.user.CheckingAccountCreateRequest;
-import com.cascaio.api.v1.user.CheckingAccountResponse;
-import com.cascaio.api.v1.user.CheckingAccountUpdateRequest;
-import com.cascaio.backend.v1.entity.user.CheckingAccount;
-import com.cascaio.backend.v1.entity.user.Transaction;
-import com.cascaio.backend.v1.entity.user.adapter.CheckingAccountAdapter;
+import com.cascaio.api.v1.user.MutualFundAccountCreateRequest;
+import com.cascaio.api.v1.user.MutualFundAccountResponse;
+import com.cascaio.api.v1.user.MutualFundAccountUpdateRequest;
+import com.cascaio.backend.v1.entity.user.MutualFundAccount;
+import com.cascaio.backend.v1.entity.user.adapter.MutualFundAccountAdapter;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ws.rs.Path;
 
 /**
- * @author <a href="mailto:juraci.javadoc@kroehling.de">Juraci Paixão Kröhling</a>
+ *
+ * @author Juraci Paixão Kröhling <juraci at kroehling.de>
  */
-@Path("/user/checkingAccounts")
+@Path("/user/mutualFundAccounts")
 @Stateless
 @RolesAllowed({"user", "admin"})
-public class CheckingAccountService extends BaseUserService<
-        CheckingAccountCreateRequest,
-        CheckingAccountUpdateRequest,
+public class MutualFundAccountService extends BaseUserService<
+        MutualFundAccountCreateRequest,
+        MutualFundAccountUpdateRequest,
         BaseQueryRequest,
         ReadRequestById,
-        CheckingAccountResponse,
-        CheckingAccount,
-        CheckingAccountAdapter> {
+        MutualFundAccountResponse,
+        MutualFundAccount,
+        MutualFundAccountAdapter> {
 
-    @Override
-    public void preDelete(ReadRequestById request) {
-        CheckingAccount account = getEntityManager().find(CheckingAccount.class, request.getId());
-        account.getTransactions().stream().forEach((transaction) -> {
-            getEntityManager().remove(transaction);
-        });
-    }
 }

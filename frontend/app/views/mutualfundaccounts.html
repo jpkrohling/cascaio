@@ -1,1 +1,29 @@
-mutual fund accounts
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="page-header page-header-bleed-right">
+            <div class="actions pull-right">
+                <a data-ng-click="load()" href=""><span class="pficon pficon-refresh"></span> Refresh</a>
+                <a class="btn btn-primary" type="button" role="button" data-ng-href="#/mutualFundAccounts/new">Create</a>
+            </div>
+            <h1>Mutual fund accounts</h1>
+        </div>
+        <div class="row" data-ng-show="!mutualFundAccounts.length && !loading">
+            <div class="col-sm-6">
+                No mutual fund accounts yet. How about creating one?
+            </div>
+        </div>
+        <div class="row" data-ng-show="mutualFundAccounts.length && !loading">
+            <div class="col-sm-6" data-ng-repeat="mutualFundAccount in mutualFundAccounts">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>
+                            {{mutualFundAccount.name}}
+                            <a data-ng-href="#/mutualFundAccounts/{{mutualFundAccount.id}}" class="btn btn-primary pull-right" role="button">View</a>
+                        </h3>
+                        <div data-cas-transactions-for-account="true" data-account="mutualFundAccount"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /col -->
+</div><!-- /row -->
