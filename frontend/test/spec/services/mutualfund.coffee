@@ -1,14 +1,14 @@
 'use strict'
 
-describe 'Service: Mutualfund', ->
+describe 'Service: MutualFund', ->
 
   # load the service's module
   beforeEach module 'frontendApp'
 
   # instantiate service
-  Mutualfund = {}
-  beforeEach inject (_Mutualfund_) ->
-    Mutualfund = _Mutualfund_
+  MutualFund = {}
+  beforeEach inject (_MutualFund_) ->
+    MutualFund = _MutualFund_
 
   it 'should do something', ->
-    expect(!!Mutualfund).toBe true
+    expect(!!MutualFund).toBe true
