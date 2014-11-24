@@ -97,7 +97,7 @@ fi
 printf "Starting the Application Server in background..."
 export JBOSS_PIDFILE="/tmp/cascaio-wildfly.pid"
 export LAUNCH_JBOSS_IN_BACKGROUND=true
-$WILDFLY_HOME/bin/standalone.sh -Dkeycloak.import=$CASCAIO_MERGED_REALM > /dev/null 2>&1 & >> $CASCAIO_LOG 2>&1
+$WILDFLY_HOME/bin/standalone.sh -Dkeycloak.import=$CASCAIO_REALM_FILE > /dev/null 2>&1 & >> $CASCAIO_LOG 2>&1
 
 while [ "x$SERVER_STARTED" == "x" ]
 do
@@ -253,6 +253,23 @@ then
     printf "Done!\r\n"
 else
     sudo echo "127.0.0.1	dev.api.cascaio.com" >> /etc/hosts 2>>$CASCAIO_LOG
+    if [ $? -eq 0 ]
+    then
+        printf "Added!\r\n"
+    else
+        printf "Failed! Check $CASCAIO_LOG for details\r\n"
+        exit -1
+    fi
+    exit -1
+fi
+
+printf "Checking that dev.auth.cascaio.com exists on /etc/hosts..."
+grep dev.auth.cascaio.com /etc/hosts > /dev/null 2>>$CASCAIO_LOG
+if [ $? -eq 0 ]
+then
+    printf "Done!\r\n"
+else
+    sudo echo "127.0.0.1	dev.auth.cascaio.com" >> /etc/hosts 2>>$CASCAIO_LOG
     if [ $? -eq 0 ]
     then
         printf "Added!\r\n"
