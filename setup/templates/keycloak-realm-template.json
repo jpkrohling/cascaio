@@ -2,6 +2,8 @@
     "id": "cascaio",
     "realm": "cascaio",
     "enabled": true,
+    "privateKey": "CASCAIO_KEYCLOAK_REALM_PRIVATE_KEY",
+    "publicKey": "CASCAIO_KEYCLOAK_REALM_PUBLIC_KEY",
     "sslRequired": "external",
     "registrationAllowed": true,
     "social": true,

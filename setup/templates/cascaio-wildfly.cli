@@ -6,5 +6,6 @@
 /subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=realm-public-key, value="CASCAIO_KEYCLOAK_REALM_PUBLIC_KEY")
 /subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=ssl-required, value=EXTERNAL)
 /subsystem=keycloak/secure-deployment=backend.war:write-attribute(name=enable-cors, value=true)
-xa-data-source add --name=cascaio-backend-ds --jndi-name=java:jboss/datasources/cascaio-backend-ds --driver-name=postgresql-jdbc.jar --user-name=cascaiobackend --password=cascaiobackend --enabled=true --xa-datasource-properties=[{ServerName=localhost}, {DatabaseName=cascaiobackend}] --xa-datasource-class=org.postgresql.xa.PGXADataSource
+xa-data-source add --name=cascaio-backend-ds --jndi-name=java:jboss/datasources/cascaio-backend-ds --driver-name=postgresql-jdbc.jar --user-name=cascaiobackend --password=cascaiobackend --enabled=true --xa-datasource-properties=[{ServerName=localhost, DatabaseName=cascaiobackend}] --xa-datasource-class=org.postgresql.xa.PGXADataSource
 /subsystem=undertow/server=default-server/host=cascaio-api/:add(alias=[dev.api.cascaio.com])
+/subsystem=undertow/server=default-server/host=cascaio-auth/:add(alias=[dev.auth.cascaio.com])
